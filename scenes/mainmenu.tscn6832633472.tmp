@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1xytqr44a50q"]
+
+[ext_resource type="Theme" uid="uid://hh2h3y67qk0i" path="res://assets/Default.tres" id="1_5mbse"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.5
+offset_top = -35.5
+offset_right = 77.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5mbse")
+text = "Start"
