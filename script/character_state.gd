@@ -15,13 +15,7 @@ func _enter() -> void:
 		print("Gagal memainkan animasi karena sprite tidak ditemukan.")
 	character_stats = character.stats
 
-func move() -> Vector2:
-	var direction : Vector2 = blackboard.get_var(BBNames.direction_var)
 
-	if not is_zero_approx(direction.x):
-		character.velocity.x = direction.x * character_stats.run_speed
-	else:
-		character.velocity.x = move_toward(character.velocity.x, 0, character_stats.run_speed)
-
-	character.move_and_slide()
-	return character.velocity
+func _apply_gravity(delta: float) -> void:
+	if not character.is_on_floor():
+		character.velocity.y += character_stats.gravity * delta
