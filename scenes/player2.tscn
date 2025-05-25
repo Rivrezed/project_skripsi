@@ -953,6 +953,8 @@ script = ExtResource("5_hb4is")
 limbo_hsm = NodePath("../LimboHSM")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -90)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("54_skjg8")
 
