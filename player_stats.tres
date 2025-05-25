@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://b3p14xb4okcvd"]
+
+[ext_resource type="Script" uid="uid://de8uc2jxao5q7" path="res://script/player_stats.gd" id="1_l3p20"]
+
+[resource]
+script = ExtResource("1_l3p20")
+max_jumps = 1
+run_speed = 300.0
+attacking_run_speed = 150.0
+max_air_speed = 200.0
+air_acceleration = 200.0
+jump_velocity = 400.0
+metadata/_custom_type_script = "uid://de8uc2jxao5q7"

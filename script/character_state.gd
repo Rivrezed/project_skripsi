@@ -1,21 +1,23 @@
+#character_state.gd
 class_name CharacterState
 extends LimboState
 
 @export var animation_name : StringName
 
-var character : CharacterBody2D
-var character_stats : CharacterStats
+var character : Character
+var animation_lock : bool = false
 
 func _enter() -> void:
-	character = owner as CharacterBody2D
-	var sprite = owner.get("sprite") as AnimatedSprite2D
-	if sprite:
-		sprite.play(animation_name)
-	else:
-		print("Gagal memainkan animasi karena sprite tidak ditemukan.")
-	character_stats = character.stats
+	character = agent as Character
+	character.animation_player.play(animation_name)
 
 
-func _apply_gravity(delta: float) -> void:
+func _apply_gravity(p_delta : float):
 	if not character.is_on_floor():
-		character.velocity.y += character_stats.gravity * delta
+		character.velocity += character.get_gravity() * p_delta
+
+func lock_animation():
+	animation_lock = true
+
+func unlock_animation():
+	animation_lock = false

@@ -1,3 +1,4 @@
+#state_label.gd
 extends Label
 
 @export var limbo_hsm : LimboHSM :

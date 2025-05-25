@@ -1,3 +1,4 @@
+#player_actions.gd
 class_name PlayerActions
 extends Resource
 
@@ -6,3 +7,4 @@ extends Resource
 @export var move_up : StringName = "move_up"
 @export var move_down : StringName = "move_down"
 @export var jump : StringName = "jump"
+@export var attack : StringName = "attack"

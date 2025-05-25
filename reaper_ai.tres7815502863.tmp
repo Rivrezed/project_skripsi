@@ -1,0 +1,17 @@
+[gd_resource type="BehaviorTree" load_steps=5 format=3 uid="uid://cikhtbx7uqdtn"]
+
+[ext_resource type="Script" uid="uid://yxpjjom5jbid" path="res://ai/tasks/navigation/navigation_to_point.gd" id="1_tpir3"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ckxdj"]
+
+[sub_resource type="BTAction" id="BTAction_hdege"]
+script = ExtResource("1_tpir3")
+max_distance = null
+
+[sub_resource type="BTSequence" id="BTSequence_47jqv"]
+custom_name = "find_target"
+children = [SubResource("BTAction_hdege")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_ckxdj")
+root_task = SubResource("BTSequence_47jqv")
