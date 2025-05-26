@@ -11,6 +11,9 @@ func _enter() -> void:
 
 func _exit() -> void:
 	character.animation_player.animation_finished.disconnect(_on_animation_finished)
+	# Tambahkan baris ini untuk menghentikan dan mereset animasi
+	character.animation_player.stop()
+	character.animation_player.seek(0, true) # Mengatur ulang ke frame pertama
 
 # Handles chaining of attacks is attack is still set to true or return to ground
 func _on_animation_finished(p_animation : StringName):
