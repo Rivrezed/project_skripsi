@@ -1395,10 +1395,11 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player")]
+[node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("health_node", "sprite", "animation_player")]
 scale = Vector2(1.75, 1.75)
 script = ExtResource("1_c08b3")
 player_actions = SubResource("Resource_pfuoj")
+health_node = NodePath("Health")
 stats = ExtResource("3_acr3s")
 sprite = NodePath("Facing/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
@@ -1581,5 +1582,4 @@ position = Vector2(15, 17)
 scale = Vector2(1.77938, 1.77938)
 texture = ExtResource("99_mpxq4")
 
-[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/Control/Button" method="_on_pressed"]

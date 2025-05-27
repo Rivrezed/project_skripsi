@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfho3dnic1x66"]
+
+[ext_resource type="Script" uid="uid://c7h2mr5msxu0f" path="res://scenes/PlayerHpBar.gd" id="1_wwpxq"]
+
+[node name="PlayerHpBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 134.0
+offset_bottom = 27.0
+script = ExtResource("1_wwpxq")

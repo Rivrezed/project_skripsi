@@ -1,7 +1,6 @@
 class_name Health
 extends Node
 
-
 signal max_health_changed(diff: int)
 signal health_changed(diff: int)
 signal health_depleted
@@ -16,15 +15,15 @@ var immortality_timer: Timer = null
 
 
 func set_max_health(value: int):
-	var clamped_value = 1 if value <= 0 else value
+	var clamped_value = max(1, value) # Pastikan max_health minimal 1
 	
 	if not clamped_value == max_health:
 		var difference = clamped_value - max_health
-		max_health = value
+		max_health = clamped_value # Set max_health ke nilai yang sudah diklamp
 		max_health_changed.emit(difference)
 		
 		if health > max_health:
-			health = max_health
+			set_health(max_health) # Gunakan setter untuk memastikan health tidak melebihi max_health
 
 
 func get_max_health() -> int:
@@ -53,21 +52,24 @@ func set_temporary_immortality(time: float):
 	immortality = true
 	immortality_timer.start()
 
-
+# Fungsi setter untuk 'health' (memastikan nilai selalu di antara 0 dan max_health)
 func set_health(value: int):
-	if value < health and immortality:
-		return
+	var new_health_value = clampi(value, 0, max_health) # Kunci: Selalu klamphp di sini!
 	
-	var clamped_value = clampi(value, 0, max_health)
-	
-	if clamped_value != health:
-		var difference = clamped_value - health
-		health = value
+	if new_health_value != health:
+		var difference = new_health_value - health
+		health = new_health_value # Set health ke nilai yang sudah diklamp
 		health_changed.emit(difference)
 		
 		if health == 0:
 			health_depleted.emit()
 
-
 func get_health():
 	return health
+
+# Fungsi baru untuk menerapkan damage atau healing
+func apply_damage(amount: int):
+	if immortality and amount > 0: # Jika ada damage dan immortality aktif, jangan lakukan apa-apa
+		return
+	
+	set_health(health - amount) # Gunakan setter untuk mengurangi health

@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://diln6iyvvpvpm"]
+[gd_scene load_steps=8 format=3 uid="uid://diln6iyvvpvpm"]
 
 [ext_resource type="Texture2D" uid="uid://dwwl52q781dr3" path="res://assets/Map/lvl1/begraun TA[1].png" id="1_ykc37"]
 [ext_resource type="Texture2D" uid="uid://dqapsyi25o6a6" path="res://assets/Map/lvl1/bintang.png" id="2_k0f50"]
 [ext_resource type="Texture2D" uid="uid://b4aqwwfe248pg" path="res://assets/Map/lvl1/awan.png" id="3_0vyxx"]
 [ext_resource type="Texture2D" uid="uid://cgjdpph1ibhiq" path="res://assets/Map/lvl1/rumput.png" id="3_ji414"]
-[ext_resource type="Script" uid="uid://c2ieeewfbb04j" path="res://script/aaaaaaaaaaaaaaaaa.gd" id="3_vnsep"]
-[ext_resource type="Texture2D" uid="uid://c7gq4aoc0dr7e" path="res://icon.svg" id="4_ibcq6"]
 [ext_resource type="Texture2D" uid="uid://4t8ptj2rmddy" path="res://assets/Map/lvl1/ground.png" id="4_k0f50"]
 [ext_resource type="Texture2D" uid="uid://c1dqyn1vjja43" path="res://assets/Map/lvl1/pohon belakang.png" id="4_vnsep"]
 [ext_resource type="Texture2D" uid="uid://evo53xhu1h5n" path="res://assets/Map/lvl1/pohon depan.png" id="5_ibcq6"]
@@ -36,18 +34,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_k0f50")
 stretch_mode = 1
-
-[node name="Button" type="Button" parent="ParallaxBackground/sky"]
-offset_left = 1229.0
-offset_top = 25.0
-offset_right = 1256.0
-offset_bottom = 53.0
-script = ExtResource("3_vnsep")
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky/Button"]
-position = Vector2(13.5, 14)
-scale = Vector2(0.210938, 0.21875)
-texture = ExtResource("4_ibcq6")
 
 [node name="awan" type="ParallaxLayer" parent="ParallaxBackground"]
 texture_filter = 1
@@ -138,5 +124,3 @@ offset_top = 480.0
 offset_right = 1280.0
 offset_bottom = 1033.0
 color = Color(0.109804, 0.192157, 0.27451, 1)
-
-[connection signal="pressed" from="ParallaxBackground/sky/Button" to="ParallaxBackground/sky/Button" method="_on_pressed"]

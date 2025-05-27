@@ -40,7 +40,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_t40jp"]
 resource_name = "select1"
-length = 1.5
+length = 1.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

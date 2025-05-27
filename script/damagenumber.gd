@@ -21,7 +21,7 @@ func display_number(value: int, position: Vector2, is_critical: bool = false):
 		number.label_settings.outline_size = 1
 
 	number.label_settings.font_color = Color(color)
-	number.label_settings.font_size = 60
+	number.label_settings.font_size = 30
 
 	# Shadow untuk tampilan yang lebih dalam
 	number.label_settings.shadow_size = 4

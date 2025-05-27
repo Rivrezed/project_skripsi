@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bentnn475kw6l"]
+
+[ext_resource type="Script" uid="uid://j5664emulkni" path="res://scenes/enemydamagetest.gd" id="1_1yn4p"]
+[ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="2_7wesy"]
+[ext_resource type="PackedScene" uid="uid://b7pep4hq1kt5g" path="res://scenes/health_bar_ui.tscn" id="3_j3aj1"]
+[ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_wdycq"]
+[ext_resource type="Texture2D" uid="uid://c7gq4aoc0dr7e" path="res://icon.svg" id="5_g07vx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yn4p"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wesy"]
+size = Vector2(129.047, 129.047)
+
+[node name="EnemyTest" type="CharacterBody2D"]
+script = ExtResource("1_1yn4p")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_7wesy")
+max_health = 100
+metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 0
+script = ExtResource("4_wdycq")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://m72no1svtvu"
+
+[node name="CollisionHurtBox" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_1yn4p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.464948, 0.464948)
+texture = ExtResource("5_g07vx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(0.464948, 0.464948)
+shape = SubResource("RectangleShape2D_7wesy")
+
+[node name="HealthBarUI" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_j3aj1")]
+offset_top = -39.0
+offset_bottom = -39.0
+scale = Vector2(0.875856, 0.727627)
+health_component = NodePath("../Health")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
