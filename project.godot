@@ -15,6 +15,10 @@ run/main_scene="uid://di54eyrr8xw3g"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Damagenumber="*res://script/damagenumber.gd"
+
 [display]
 
 window/size/viewport_width=1280
