@@ -1,8 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=13 format=4 uid="uid://di54eyrr8xw3g"]
 
+[ext_resource type="Script" uid="uid://j5664emulkni" path="res://scenes/enemydamagetest.gd" id="1_ejswk"]
+[ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="2_ru4tf"]
 [ext_resource type="PackedScene" uid="uid://dmfh4praqdryj" path="res://scenes/player2.tscn" id="2_wwpf4"]
+[ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="3_bbk5w"]
 [ext_resource type="PackedScene" uid="uid://diln6iyvvpvpm" path="res://parallax.tscn" id="3_m7ahb"]
+[ext_resource type="Texture2D" uid="uid://c7gq4aoc0dr7e" path="res://icon.svg" id="4_dwgg1"]
 [ext_resource type="Texture2D" uid="uid://d1qg07b8d327u" path="res://assets/world_tileset.png" id="6_6sh32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru4tf"]
+size = Vector2(129.047, 129.047)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwpf4"]
 texture = ExtResource("6_6sh32")
@@ -151,6 +158,33 @@ size = Vector2(46329, 20)
 
 [node name="level1" type="Node2D"]
 
+[node name="EnemyTest" type="CharacterBody2D" parent="."]
+position = Vector2(554, 401)
+script = ExtResource("1_ejswk")
+
+[node name="Health" type="Node" parent="EnemyTest"]
+script = ExtResource("2_ru4tf")
+max_health = 5
+metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
+
+[node name="HurtBox" type="Area2D" parent="EnemyTest" node_paths=PackedStringArray("health")]
+collision_layer = 0
+script = ExtResource("3_bbk5w")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://m72no1svtvu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest/HurtBox"]
+shape = SubResource("RectangleShape2D_ru4tf")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyTest"]
+scale = Vector2(0.464948, 0.464948)
+texture = ExtResource("4_dwgg1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest"]
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.464948, 0.464948)
+shape = SubResource("RectangleShape2D_ru4tf")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["navigation"]]
 visible = false
 position = Vector2(-113, -111)
@@ -173,3 +207,5 @@ position = Vector2(142, 344)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(23164.5, 451)
 shape = SubResource("RectangleShape2D_m7ahb")
+
+[connection signal="health_depleted" from="EnemyTest/Health" to="EnemyTest" method="_on_health_health_depleted"]

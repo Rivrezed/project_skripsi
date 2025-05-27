@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://dmfh4praqdryj"]
+[gd_scene load_steps=113 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
 [ext_resource type="Resource" uid="uid://b3p14xb4okcvd" path="res://player_stats.tres" id="3_acr3s"]
@@ -61,7 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://dgbpavvceoses" path="res://assets/Pixel Art Animations - Slashes/Slash 1/color2/Frames/Slash_color2_frame8.png" id="52_p6ptt"]
 [ext_resource type="Texture2D" uid="uid://bji6bomo763xi" path="res://assets/Pixel Art Animations - Slashes/Slash 1/color2/Frames/Slash_color2_frame9.png" id="53_0hgtk"]
 [ext_resource type="Texture2D" uid="uid://g86ju5os2sdr" path="res://assets/Pixel Art Animations - Slashes/Slash 2/color2/Frames/Slash2_color2_frame1.png" id="54_7ncc1"]
-[ext_resource type="Script" uid="uid://bu2qjp6cncvr8" path="res://scenes/camera_zoom.gd" id="54_skjg8"]
+[ext_resource type="Script" uid="uid://bu2qjp6cncvr8" path="res://script/camera_zoom.gd" id="54_skjg8"]
 [ext_resource type="Texture2D" uid="uid://b0lyusl2t8q7w" path="res://assets/Pixel Art Animations - Slashes/Slash 2/color2/Frames/Slash2_color2_frame2.png" id="55_tth12"]
 [ext_resource type="Texture2D" uid="uid://dbgf8a4f2nm1r" path="res://assets/Pixel Art Animations - Slashes/Slash 2/color2/Frames/Slash2_color2_frame3.png" id="56_eqk6x"]
 [ext_resource type="Texture2D" uid="uid://dioc1xwfg1j5v" path="res://assets/Pixel Art Animations - Slashes/Slash 2/color2/Frames/Slash2_color2_frame4.png" id="57_mevj4"]
@@ -91,6 +91,8 @@
 [ext_resource type="Texture2D" uid="uid://cnnm7rv2q7xe2" path="res://assets/Pixel Art Animations - Slashes/newslash/2.png" id="81_n8dma"]
 [ext_resource type="Texture2D" uid="uid://gqt4rcuwlk5j" path="res://assets/Pixel Art Animations - Slashes/newslash/3.png" id="82_up6wr"]
 [ext_resource type="Texture2D" uid="uid://dxigve36ei2k6" path="res://assets/Pixel Art Animations - Slashes/newslash/4.png" id="83_8etlw"]
+[ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="92_n8dma"]
+[ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="93_up6wr"]
 
 [sub_resource type="Resource" id="Resource_ftkcl"]
 script = ExtResource("9_24gv0")
@@ -829,7 +831,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_2jkey"]
 resource_name = "attack_1"
 length = 0.25
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -885,10 +887,10 @@ tracks/4/path = NodePath("Facing/Sword/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -986,10 +988,10 @@ tracks/4/path = NodePath("Facing/Sword/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1087,10 +1089,10 @@ tracks/4/path = NodePath("Facing/Sword/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1187,36 +1189,6 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_cl1ms"]
-resource_name = "idle"
-length = 0.750015
-loop_mode = 1
-step = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_2vqqj"]
 resource_name = "jump"
 length = 0.6
@@ -1293,10 +1265,10 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_xjogy"]
-resource_name = "run"
+resource_name = "run_s"
 length = 0.6
 loop_mode = 1
-step = 0.15
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1322,6 +1294,36 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_cl1ms"]
+resource_name = "idle_s"
+length = 0.750015
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ymin"]
 _data = {
 &"RESET": SubResource("Animation_m7vsc"),
@@ -1331,18 +1333,23 @@ _data = {
 &"attack_3": SubResource("Animation_8j5c0"),
 &"dash": SubResource("Animation_skjg8"),
 &"falling": SubResource("Animation_o2kp8"),
-&"idle": SubResource("Animation_cl1ms"),
+&"idle_s": SubResource("Animation_cl1ms"),
 &"jump": SubResource("Animation_2vqqj"),
 &"rising": SubResource("Animation_0ae3a"),
-&"run": SubResource("Animation_xjogy")
+&"run_s": SubResource("Animation_xjogy")
 }
 
 [node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player")]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_c08b3")
 player_actions = SubResource("Resource_ftkcl")
 stats = ExtResource("3_acr3s")
 sprite = NodePath("Facing/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("92_n8dma")
+metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("limbo_hsm")]
 script = ExtResource("4_7f0u4")
@@ -1354,6 +1361,8 @@ sprite_frames = SubResource("SpriteFrames_7f0u4")
 animation = &"air_attack"
 
 [node name="Sword" type="Area2D" parent="Facing"]
+collision_mask = 0
+script = ExtResource("93_up6wr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/Sword"]
 position = Vector2(0, 8.5)
@@ -1381,8 +1390,10 @@ states = {
 
 [node name="GroundMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("7_24gv0")
+idle_anim = &"idle_s"
+move_anim = &"run_s"
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
-animation_name = &"idle"
+animation_name = &"idle_s"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
 [node name="AirMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
@@ -1417,9 +1428,11 @@ script = ExtResource("5_hb4is")
 limbo_hsm = NodePath("../LimboHSM")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -90)
-zoom = Vector2(2, 2)
+position = Vector2(0, -160)
+limit_top = -275
+limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 2.5
 script = ExtResource("54_skjg8")
 
 [node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("limbo_hsm")]

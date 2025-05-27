@@ -1,129 +1,351 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1xytqr44a50q"]
+[gd_scene load_steps=40 format=3 uid="uid://d1xytqr44a50q"]
 
-[ext_resource type="Texture2D" uid="uid://b74rkgmkvsgbc" path="res://assets/maxresdefault.jpg" id="1_3vvtq"]
-[ext_resource type="Theme" uid="uid://hh2h3y67qk0i" path="res://assets/Default.tres" id="1_5mbse"]
+[ext_resource type="Texture2D" uid="uid://vh742gftk0mi" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/sky_fc.png" id="1_h73c4"]
+[ext_resource type="Texture2D" uid="uid://0b0wqohf3r1i" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/far_mountains_fc.png" id="2_uui5l"]
+[ext_resource type="Texture2D" uid="uid://bf346l4ansfmc" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/grassy_mountains_fc.png" id="3_4hago"]
 [ext_resource type="Script" uid="uid://biut2eol6sorq" path="res://script/button.gd" id="3_7yvfd"]
 [ext_resource type="Texture2D" uid="uid://bhepstnm575eq" path="res://assets/Project.png" id="3_s5g8n"]
 [ext_resource type="Texture2D" uid="uid://dil6o4lkuhbmb" path="res://assets/Skripsi.png" id="4_7yvfd"]
+[ext_resource type="Texture2D" uid="uid://cffurs6lnfufo" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/clouds_mid_fc.png" id="4_gjjcl"]
+[ext_resource type="Texture2D" uid="uid://cr26j1puqdud1" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/hill.png" id="5_kait0"]
+[ext_resource type="Texture2D" uid="uid://bo2w8ar3tqc25" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/clouds_front_fc.png" id="6_6pj40"]
+[ext_resource type="Script" uid="uid://cmm31qq133pd7" path="res://script/node_2d.gd" id="8_4hago"]
+[ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="9_6pj40"]
+[ext_resource type="Texture2D" uid="uid://dfp1ggawiq706" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/Button_52x14.png" id="11_kait0"]
+[ext_resource type="Script" uid="uid://v6txgac4eltg" path="res://script/camera_mouse.gd" id="12_4hago"]
+[ext_resource type="Script" uid="uid://bxfwnkbxetpb6" path="res://scenes/exitbutton.gd" id="12_kait0"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r3g3c"]
-texture = ExtResource("1_3vvtq")
-region_rect = Rect2(0, 0, 854, 526)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kait0"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pj40"]
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_r3g3c")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nkpmc"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fsdjo"]
 
-[node name="Start" type="Button" parent="."]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6huh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_prb5i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gjjcl"]
+texture = ExtResource("11_kait0")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwyuh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kait0"]
+texture = ExtResource("11_kait0")
+modulate_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hn6ym"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pj40"]
+texture = ExtResource("11_kait0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjjcl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gr43c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18cd8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gj5y3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6643n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5diu1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_prb5i"]
+texture = ExtResource("11_kait0")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c50wd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nkpmc"]
+texture = ExtResource("11_kait0")
+modulate_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcrt3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fsdjo"]
+texture = ExtResource("11_kait0")
+
+[sub_resource type="Animation" id="Animation_kait0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gjjcl"]
+resource_name = "camera_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(500, -1000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pj40"]
+_data = {
+&"RESET": SubResource("Animation_kait0"),
+&"camera_start": SubResource("Animation_gjjcl")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="sky" type="Sprite2D" parent="ParallaxBackground/sky"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -51.0
-offset_right = 98.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme = ExtResource("1_5mbse")
-theme_override_font_sizes/font_size = 50
-text = "Play"
-script = ExtResource("3_7yvfd")
+position = Vector2(638.811, 163.302)
+scale = Vector2(4.05631, 5.38243)
+texture = ExtResource("1_h73c4")
 
-[node name="Settings" type="Button" parent="."]
+[node name="FarMountains" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.2, 1.2)
+
+[node name="FarMountains" type="Sprite2D" parent="ParallaxBackground/FarMountains"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = 29.0
-offset_right = 98.0
-offset_bottom = 99.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme = ExtResource("1_5mbse")
-theme_override_font_sizes/font_size = 50
-text = "Options"
+position = Vector2(638.811, 163.302)
+scale = Vector2(4.05631, 5.38243)
+texture = ExtResource("2_uui5l")
 
-[node name="Credits" type="Button" parent="."]
+[node name="GrassMountains" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="GrassMountains" type="Sprite2D" parent="ParallaxBackground/GrassMountains"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = 109.0
-offset_right = 98.0
-offset_bottom = 179.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme = ExtResource("1_5mbse")
-theme_override_font_sizes/font_size = 50
-text = "Credits"
+position = Vector2(638.811, 163.302)
+scale = Vector2(4.05631, 5.38243)
+texture = ExtResource("3_4hago")
 
-[node name="Exit" type="Button" parent="."]
+[node name="CloudsMid" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="CloudsMid" type="Sprite2D" parent="ParallaxBackground/CloudsMid"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = 189.0
-offset_right = 98.0
-offset_bottom = 259.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme = ExtResource("1_5mbse")
-theme_override_font_sizes/font_size = 50
-text = "Exit"
-script = ExtResource("3_7yvfd")
+position = Vector2(638.811, 163.302)
+scale = Vector2(4.05631, 5.38243)
+texture = ExtResource("4_gjjcl")
 
-[node name="Project" type="Sprite2D" parent="."]
+[node name="hill" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="hill" type="Sprite2D" parent="ParallaxBackground/hill"]
+texture_filter = 1
+position = Vector2(638.811, 163.302)
+scale = Vector2(4.05631, 5.38243)
+texture = ExtResource("5_kait0")
+
+[node name="Menu" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(-0.1, -0.1)
+
+[node name="Control" type="Node2D" parent="ParallaxBackground/Menu"]
+script = ExtResource("8_4hago")
+max_offset_x = 0.0
+max_offset_y = 0.0
+follow_speed = 0.0
+
+[node name="Project" type="Sprite2D" parent="ParallaxBackground/Menu/Control"]
 position = Vector2(544, 104)
 scale = Vector2(0.586466, 0.586466)
 texture = ExtResource("3_s5g8n")
 
-[node name="Skripsi" type="Sprite2D" parent="."]
+[node name="Skripsi" type="Sprite2D" parent="ParallaxBackground/Menu/Control"]
 position = Vector2(616, 192)
 scale = Vector2(0.619718, 0.619718)
 texture = ExtResource("4_7yvfd")
 
-[connection signal="pressed" from="Start" to="Start" method="_on_pressed_start"]
-[connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
-[connection signal="pressed" from="Exit" to="Exit" method="_on_pressed_exit"]
+[node name="Start" type="Button" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 309.0
+offset_right = 738.0
+offset_bottom = 379.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kait0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_6pj40")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nkpmc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fsdjo")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c6huh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_prb5i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gjjcl")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_xwyuh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kait0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_hn6ym")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6pj40")
+text = "Play"
+script = ExtResource("3_7yvfd")
+
+[node name="Settings" type="Button" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 389.0
+offset_right = 738.0
+offset_bottom = 459.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjjcl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gr43c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_18cd8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gj5y3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6643n")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5diu1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_prb5i")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c50wd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
+text = "Options"
+
+[node name="Credits" type="Button" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 469.0
+offset_right = 738.0
+offset_bottom = 539.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjjcl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gr43c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_18cd8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gj5y3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6643n")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5diu1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_prb5i")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c50wd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
+text = "Credits"
+
+[node name="Exit" type="Button" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 549.0
+offset_right = 738.0
+offset_bottom = 619.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjjcl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gr43c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_18cd8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gj5y3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6643n")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5diu1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_prb5i")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c50wd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
+text = "Exit"
+script = ExtResource("12_kait0")
+
+[node name="CloudsFront" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(-0.4, -0.4)
+
+[node name="CloudsFront" type="Sprite2D" parent="ParallaxBackground/CloudsFront"]
+texture_filter = 1
+position = Vector2(638.811, 163.302)
+scale = Vector2(4.05631, 5.38243)
+texture = ExtResource("6_6pj40")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(640, 360)
+script = ExtResource("12_4hago")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6pj40")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -24.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = 23.0
+scale = Vector2(14.8122, 12.0111)
+mouse_filter = 2
+
+[connection signal="pressed" from="ParallaxBackground/Menu/Control/Start" to="ParallaxBackground/Menu/Control/Start" method="_on_pressed_start"]
+[connection signal="pressed" from="ParallaxBackground/Menu/Control/Exit" to="ParallaxBackground/Menu/Control/Exit" method="_on_pressed"]
