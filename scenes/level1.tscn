@@ -1,11 +1,112 @@
-[gd_scene load_steps=14 format=3 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=56 format=3 uid="uid://di54eyrr8xw3g"]
 
 [ext_resource type="PackedScene" uid="uid://dmfh4praqdryj" path="res://scenes/player2.tscn" id="2_wwpf4"]
 [ext_resource type="PackedScene" uid="uid://diln6iyvvpvpm" path="res://parallax.tscn" id="3_m7ahb"]
+[ext_resource type="Texture2D" uid="uid://clq2xs5qogaqp" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HotkeyBox_34x34.png" id="7_conm7"]
+[ext_resource type="Script" uid="uid://c2ieeewfbb04j" path="res://script/aaaaaaaaaaaaaaaaa.gd" id="8_d3jkd"]
 [ext_resource type="Texture2D" uid="uid://b423m4ao5kjf7" path="res://assets/Map/lvl1/groundlvl1.png" id="9_d3jkd"]
+[ext_resource type="Texture2D" uid="uid://dd6lnarqwrvoa" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/MenusIcons_34x34.png" id="9_u3awl"]
+[ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="10_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://toytikah4cu0" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/RectangleBox_96x96.png" id="10_f31uk"]
+[ext_resource type="Script" uid="uid://ce7lgaog3bmfq" path="res://scenes/pause.gd" id="10_gnai3"]
 [ext_resource type="Script" uid="uid://bowbgo3ooxwyh" path="res://scenes/moving_platform.gd" id="10_u3awl"]
+[ext_resource type="Texture2D" uid="uid://dfp1ggawiq706" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/Button_52x14.png" id="11_f31uk"]
 [ext_resource type="PackedScene" uid="uid://bentnn475kw6l" path="res://scenes/enemy_test.tscn" id="12_2ku1j"]
+[ext_resource type="Script" uid="uid://d1wefotx7rqv1" path="res://scenes/ChangeSceene.gd" id="12_f31uk"]
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ku1j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f31uk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gnai3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8kv5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxn3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14jow"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gnai3"]
+texture = ExtResource("7_conm7")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jvkml"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvsps"]
+texture = ExtResource("7_conm7")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3w4mx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8kv5"]
+texture = ExtResource("7_conm7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u068y"]
+atlas = ExtResource("9_u3awl")
+region = Rect2(104, 0, 32, 34)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mvsps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u068y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ooyw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ai3nx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phfsf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3oqy1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mq0oc"]
+texture = ExtResource("11_f31uk")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msy1c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7dkav"]
+texture = ExtResource("11_f31uk")
+modulate_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4niyd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3umqw"]
+texture = ExtResource("11_f31uk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqmnx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p71k4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1oofn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6i0tl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lx4c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xmqk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvrd6"]
+texture = ExtResource("11_f31uk")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1vjko"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3pui"]
+texture = ExtResource("11_f31uk")
+modulate_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vcq6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqir8"]
+texture = ExtResource("11_f31uk")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
 size = Vector2(46329, 20)
@@ -59,6 +160,188 @@ _data = {
 size = Vector2(65, 98)
 
 [node name="level1" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1212.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 70.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ku1j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_f31uk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gnai3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i8kv5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dxn3v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_14jow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gnai3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_jvkml")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mvsps")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3w4mx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_i8kv5")
+script = ExtResource("8_d3jkd")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/Button"]
+position = Vector2(23.5, 25)
+scale = Vector2(1.46875, 1.47059)
+texture = SubResource("AtlasTexture_u068y")
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_gnai3")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+position = Vector2(660.5, 404.5)
+scale = Vector2(2.94641, 4.68881)
+texture = ExtResource("10_f31uk")
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 229.0
+offset_right = 738.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Resume"
+
+[node name="Restart" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 309.0
+offset_right = 738.0
+offset_bottom = 379.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gqmnx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p71k4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1oofn")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6i0tl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6lx4c")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6xmqk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hvrd6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1vjko")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y3pui")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7vcq6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dqir8")
+text = "Restart"
+script = ExtResource("12_f31uk")
+target_scene_path = "res://scenes/level1.tscn"
+
+[node name="Settings" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 389.0
+offset_right = 738.0
+offset_bottom = 459.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Options"
+
+[node name="End" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 469.0
+offset_right = 738.0
+offset_bottom = 539.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "End"
+script = ExtResource("12_f31uk")
+target_scene_path = "res://scenes/mainmenu.tscn"
 
 [node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
 position = Vector2(144, 385)
@@ -127,3 +410,8 @@ position = Vector2(656, 400)
 
 [node name="EnemyTest3" parent="." instance=ExtResource("12_2ku1j")]
 position = Vector2(635, 407)
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Restart" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/End" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]

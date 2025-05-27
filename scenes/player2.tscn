@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://dmfh4praqdryj"]
+[gd_scene load_steps=119 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
 [ext_resource type="Resource" uid="uid://b3p14xb4okcvd" path="res://player_stats.tres" id="3_acr3s"]
@@ -94,9 +94,6 @@
 [ext_resource type="Texture2D" uid="uid://dxigve36ei2k6" path="res://assets/Pixel Art Animations - Slashes/newslash/4.png" id="83_8etlw"]
 [ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="92_n8dma"]
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="93_up6wr"]
-[ext_resource type="Texture2D" uid="uid://clq2xs5qogaqp" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HotkeyBox_34x34.png" id="95_pfuoj"]
-[ext_resource type="Script" uid="uid://c2ieeewfbb04j" path="res://script/aaaaaaaaaaaaaaaaa.gd" id="96_4wblf"]
-[ext_resource type="Texture2D" uid="uid://dd6lnarqwrvoa" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/MenusIcons_34x34.png" id="97_nsiar"]
 [ext_resource type="Script" uid="uid://b3e5mubpvd52t" path="res://scenes/playerhp.gd" id="98_grty4"]
 [ext_resource type="Texture2D" uid="uid://vivkgduiv31m" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HeartIcons_32x32.png" id="99_mpxq4"]
 
@@ -1348,29 +1345,6 @@ _data = {
 &"run_s": SubResource("Animation_xjogy")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0c0tg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx0wx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtit8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ljr4h"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dr5py"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4whl"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_le4t5"]
-texture = ExtResource("95_pfuoj")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsfl3"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sh1pf"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r30ev"]
-atlas = ExtResource("97_nsiar")
-region = Rect2(104, 0, 32, 34)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3250y"]
 bg_color = Color(0.294118, 0.239216, 0.266667, 1)
 border_width_left = 2
@@ -1518,41 +1492,7 @@ libraries = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Button" type="Button" parent="CanvasLayer/Control"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 1212.0
-offset_top = 20.0
-offset_right = 1260.0
-offset_bottom = 70.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0c0tg")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rx0wx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rtit8")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ljr4h")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dr5py")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_j4whl")
-theme_override_styles/hover = SubResource("StyleBoxTexture_le4t5")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_qsfl3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_le4t5")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_sh1pf")
-theme_override_styles/normal = SubResource("StyleBoxTexture_le4t5")
-script = ExtResource("96_4wblf")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/Button"]
-position = Vector2(24, 25)
-scale = Vector2(1.5, 1.47059)
-texture = SubResource("AtlasTexture_r30ev")
-
-[node name="HP" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("progress_bar", "health_component")]
+[node name="HpBar" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("progress_bar", "health_component")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 50.0
@@ -1563,7 +1503,7 @@ script = ExtResource("98_grty4")
 progress_bar = NodePath("ProgressBar")
 health_component = NodePath("../../Health")
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HP"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HpBar"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 52.0
@@ -1575,11 +1515,10 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6gvle")
 value = 50.0
 show_percentage = false
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HP"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HpBar"]
 texture_filter = 1
 position = Vector2(15, 17)
 scale = Vector2(1.77938, 1.77938)
 texture = ExtResource("99_mpxq4")
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
-[connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/Control/Button" method="_on_pressed"]

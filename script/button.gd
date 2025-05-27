@@ -39,3 +39,7 @@ func _change_to_level1_scene() -> void:
 		return
 
 	tree.change_scene_to_file(target_scene_path)
+
+
+func _on_Restart_pressed() -> void:
+	pass # Replace with function body.
