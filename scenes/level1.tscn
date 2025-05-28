@@ -22,11 +22,11 @@
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
 [ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
-[ext_resource type="Resource" uid="uid://b3p14xb4okcvd" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://c1ydhe6pgohce" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
 [ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
-[ext_resource type="Script" uid="uid://ba3nh68ikte1j" path="res://scenes/button_upgrade_hp.gd" id="27_msy1c"]
+[ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/healthup.gd" id="27_7dkav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
 size = Vector2(46329, 20)
@@ -83,7 +83,7 @@ attacking_run_speed = 150.0
 max_air_speed = 200.0
 air_acceleration = 200.0
 jump_velocity = 600.0
-max_health_stat = 3
+max_health_stat = 0
 base_damage_stat = 5
 damage_random_range_stat = 3
 crit_rate_stat = 0.1
@@ -754,28 +754,6 @@ text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="hp" type="Label" parent="CanvasLayer/UpgradeMenu"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 728.0
-offset_top = 264.0
-offset_right = 787.0
-offset_bottom = 306.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
-theme_override_fonts/font = ExtResource("10_2ku1j")
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 2
-vertical_alignment = 1
-script = ExtResource("21_1ooyw")
-player_character_stats_resource = ExtResource("22_ai3nx")
-
 [node name="atk" type="Label" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
 layout_mode = 1
@@ -863,18 +841,48 @@ position = Vector2(847, 358)
 scale = Vector2(4, 4)
 texture = ExtResource("12_jvkml")
 
-[node name="hpUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu"]
+[node name="Control" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("27_7dkav")
+player_stats = ExtResource("22_ai3nx")
+
+[node name="hpUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Control"]
 texture_filter = 1
 position = Vector2(847, 300)
 scale = Vector2(4, 4)
 texture = ExtResource("12_jvkml")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/hpUP"]
-offset_top = -5.0
-offset_right = 9.0
-offset_bottom = 6.0
+[node name="IncreaseHealthButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/Control"]
+offset_left = 848.0
+offset_top = 282.0
+offset_right = 875.0
+offset_bottom = 318.0
 texture_hover = SubResource("AtlasTexture_mq0oc")
-script = ExtResource("27_msy1c")
+
+[node name="HealthDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 728.0
+offset_top = 264.0
+offset_right = 787.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "hp"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("21_1ooyw")
+player_character_stats_resource = ExtResource("22_ai3nx")
 
 [node name="Apply" type="Button" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -911,4 +919,5 @@ text = "Apply"
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Restart" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/End" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/Control/IncreaseHealthButton" to="CanvasLayer/UpgradeMenu/Control" method="_on_IncreaseHealthButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/Apply" to="CanvasLayer/UpgradeMenu" method="upgrade_menu"]
