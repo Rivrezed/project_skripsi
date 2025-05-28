@@ -1721,7 +1721,7 @@ animation_player = NodePath("AnimationPlayer")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("92_n8dma")
-max_health = 20
+character_stats = ExtResource("3_acr3s")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -1747,8 +1747,7 @@ animation = &"air_attack"
 [node name="Sword" type="Area2D" parent="Facing"]
 collision_mask = 0
 script = ExtResource("93_up6wr")
-crit_rate = 0.5
-crit_damage_multiplier = 2.0
+character_stats = ExtResource("3_acr3s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/Sword"]
 position = Vector2(0, 8.5)
@@ -1834,7 +1833,7 @@ libraries = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HpBar" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("progress_bar", "health_component")]
+[node name="HpBar" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("health_component")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 50.0
@@ -1842,7 +1841,6 @@ offset_top = 37.0
 offset_right = 183.0
 offset_bottom = 64.0
 script = ExtResource("98_grty4")
-progress_bar = NodePath("ProgressBar")
 health_component = NodePath("../../Health")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HpBar"]

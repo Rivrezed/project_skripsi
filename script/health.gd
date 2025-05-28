@@ -5,30 +5,48 @@ signal max_health_changed(diff: int)
 signal health_changed(diff: int)
 signal health_depleted
 
+# Hapus atau ubah ini jika Anda tidak ingin max_health diekspor di Health.gd secara langsung
+# @export var max_health: int = 3 : set = set_max_health, get = get_max_health
 
-@export var max_health: int = 3 : set = set_max_health, get = get_max_health
+# Ini adalah cara Health akan mendapatkan statsnya
+@export var character_stats: CharacterStats # WAJIB: Ini harus diekspor agar bisa diatur di editor
+
 @export var immortality: bool = false : set = set_immortality, get = get_immortality
 
 var immortality_timer: Timer = null
 
-@onready var health: int = max_health : set = set_health, get = get_health
+# Inisialisasi health di _ready setelah max_health diatur
+var _current_max_health: int = 1 # Variabel internal untuk menyimpan max_health yang efektif
+var health: int = 1 : set = set_health, get = get_health # Gunakan setter saat inisialisasi
 
+func _ready():
+	# Pastikan character_stats sudah terhubung
+	if character_stats == null:
+		# Peringatan atau error jika resource tidak terhubung, atau gunakan default
+		print("Warning: character_stats not assigned to Health node. Using default max_health.")
+		set_max_health(3) # Default jika tidak ada stats yang diberikan
+	else:
+		# Gunakan nilai dari character_stats untuk menginisialisasi max_health
+		set_max_health(character_stats.max_health_stat)
+	
+	# Inisialisasi health setelah max_health diatur.
+	# Gunakan setter untuk memastikan health tidak melebihi max_health_stat
+	set_health(_current_max_health) # Inisialisasi health ke nilai max_health
 
 func set_max_health(value: int):
 	var clamped_value = max(1, value) # Pastikan max_health minimal 1
 	
-	if not clamped_value == max_health:
-		var difference = clamped_value - max_health
-		max_health = clamped_value # Set max_health ke nilai yang sudah diklamp
+	if not clamped_value == _current_max_health: # Bandingkan dengan _current_max_health
+		var difference = clamped_value - _current_max_health
+		_current_max_health = clamped_value # Set _current_max_health ke nilai yang sudah diklamp
 		max_health_changed.emit(difference)
 		
-		if health > max_health:
-			set_health(max_health) # Gunakan setter untuk memastikan health tidak melebihi max_health
-
+		# Jika health saat ini melebihi max_health yang baru, turunkan health
+		if health > _current_max_health:
+			set_health(_current_max_health) # Gunakan setter untuk memastikan health tidak melebihi _current_max_health
 
 func get_max_health() -> int:
-	return max_health
-
+	return _current_max_health # Mengembalikan _current_max_health
 
 func set_immortality(value: bool):
 	immortality = value
@@ -52,9 +70,10 @@ func set_temporary_immortality(time: float):
 	immortality = true
 	immortality_timer.start()
 
-# Fungsi setter untuk 'health' (memastikan nilai selalu di antara 0 dan max_health)
+# Fungsi setter untuk 'health' (memastikan nilai selalu di antara 0 dan _current_max_health)
 func set_health(value: int):
-	var new_health_value = clampi(value, 0, max_health) # Kunci: Selalu klamphp di sini!
+	# Kunci: Selalu klamphp di sini menggunakan _current_max_health!
+	var new_health_value = clampi(value, 0, _current_max_health) 
 	
 	if new_health_value != health:
 		var difference = new_health_value - health

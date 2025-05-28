@@ -1,10 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://bentnn475kw6l"]
+[gd_scene load_steps=10 format=3 uid="uid://bentnn475kw6l"]
 
 [ext_resource type="Script" uid="uid://j5664emulkni" path="res://scenes/enemydamagetest.gd" id="1_1yn4p"]
 [ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="2_7wesy"]
+[ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="3_7wesy"]
 [ext_resource type="PackedScene" uid="uid://b7pep4hq1kt5g" path="res://scenes/health_bar_ui.tscn" id="3_j3aj1"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_wdycq"]
 [ext_resource type="Texture2D" uid="uid://c7gq4aoc0dr7e" path="res://icon.svg" id="5_g07vx"]
+
+[sub_resource type="Resource" id="Resource_7wesy"]
+script = ExtResource("3_7wesy")
+run_speed = 300.0
+attacking_run_speed = 150.0
+max_air_speed = 200.0
+air_acceleration = 200.0
+jump_velocity = 600.0
+max_health_stat = 50
+base_damage_stat = 5
+damage_random_range_stat = 3
+crit_rate_stat = 0.1
+crit_damage_multiplier_stat = 1.5
+metadata/_custom_type_script = "uid://gixqlxsoukbl"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1yn4p"]
 size = Vector2(60, 60)
@@ -17,7 +32,7 @@ script = ExtResource("1_1yn4p")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_7wesy")
-max_health = 100
+character_stats = SubResource("Resource_7wesy")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=75 format=3 uid="uid://di54eyrr8xw3g"]
 
 [ext_resource type="Script" uid="uid://bqsghgh87q8wv" path="res://scenes/level_1.gd" id="1_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://dmfh4praqdryj" path="res://scenes/player2.tscn" id="2_wwpf4"]
@@ -20,6 +20,78 @@
 [ext_resource type="Texture2D" uid="uid://crw75n00mqqg6" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/CoinIcon_16x18.png" id="12_mvsps"]
 [ext_resource type="Texture2D" uid="uid://c6o081jvxcrf" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/BuffIcons_16x16.png" id="13_jvkml"]
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
+[ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
+[ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
+[ext_resource type="Resource" uid="uid://b3p14xb4okcvd" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
+[ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
+[ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
+[ext_resource type="Script" uid="uid://ba3nh68ikte1j" path="res://scenes/button_upgrade_hp.gd" id="27_msy1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
+size = Vector2(46329, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
+size = Vector2(20, 461)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ku1j"]
+size = Vector2(356, 40)
+
+[sub_resource type="Animation" id="Animation_f31uk"]
+resource_name = "LR"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gnai3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8kv5"]
+_data = {
+&"LR": SubResource("Animation_f31uk"),
+&"RESET": SubResource("Animation_gnai3")
+}
+
+[sub_resource type="Resource" id="Resource_1ooyw"]
+script = ExtResource("21_u068y")
+run_speed = 300.0
+attacking_run_speed = 150.0
+max_air_speed = 200.0
+air_acceleration = 200.0
+jump_velocity = 600.0
+max_health_stat = 3
+base_damage_stat = 5
+damage_random_range_stat = 3
+crit_rate_stat = 0.1
+crit_damage_multiplier_stat = 1.5
+metadata/_custom_type_script = "uid://gixqlxsoukbl"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14jow"]
+size = Vector2(65, 98)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ku1j"]
 
@@ -130,61 +202,84 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("13_jvkml")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
-size = Vector2(46329, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
-size = Vector2(20, 461)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ku1j"]
-size = Vector2(356, 40)
-
-[sub_resource type="Animation" id="Animation_f31uk"]
-resource_name = "LR"
-length = 4.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(200, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_gnai3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8kv5"]
-_data = {
-&"LR": SubResource("Animation_f31uk"),
-&"RESET": SubResource("Animation_gnai3")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_14jow"]
-size = Vector2(65, 98)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq0oc"]
+atlas = ExtResource("12_jvkml")
+region = Rect2(7, 0, 7, 9)
 
 [node name="level1" type="Node2D" node_paths=PackedStringArray("player_node", "ui_manager")]
 script = ExtResource("1_i8kv5")
 player_node = NodePath("Player2")
 ui_manager = NodePath("CanvasLayer/DeadMenu")
+
+[node name="EnemyTest2" parent="." instance=ExtResource("12_2ku1j")]
+position = Vector2(656, 400)
+
+[node name="EnemyTest3" parent="." instance=ExtResource("12_2ku1j")]
+position = Vector2(635, 407)
+
+[node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
+position = Vector2(144, 385)
+
+[node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
+position = Vector2(607, 302)
+
+[node name="FixedPlatform" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="FixedPlatform" type="CollisionShape2D" parent="FixedPlatform"]
+position = Vector2(23164.5, 451)
+shape = SubResource("RectangleShape2D_m7ahb")
+
+[node name="FixedPlatformColl" type="CollisionShape2D" parent="FixedPlatform"]
+position = Vector2(-10, 230.5)
+shape = SubResource("RectangleShape2D_conm7")
+
+[node name="AirGround" type="StaticBody2D" parent="."]
+position = Vector2(302, 270)
+scale = Vector2(1.5, 1.5)
+
+[node name="AirPlatform" type="Sprite2D" parent="AirGround"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_d3jkd")
+
+[node name="AirPlatformColl" type="CollisionShape2D" parent="AirGround"]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2ku1j")
+
+[node name="MoveGround" type="Node2D" parent="."]
+position = Vector2(553, 141)
+scale = Vector2(1.5, 1.5)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="MoveGround"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("10_u3awl")
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveGround/AnimatableBody2D"]
+texture_filter = 1
+texture = ExtResource("9_d3jkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveGround/AnimatableBody2D"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_2ku1j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MoveGround/AnimatableBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_i8kv5")
+}
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(330, 393)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("16_dxn3v")
+character_stats = SubResource("Resource_1ooyw")
+metadata/_custom_type_script = "uid://ca33ogih0q53s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1.5, -20)
+shape = SubResource("RectangleShape2D_14jow")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -483,7 +578,6 @@ script = ExtResource("12_f31uk")
 target_scene_path = "res://scenes/mainmenu.tscn"
 
 [node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -677,9 +771,10 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
 theme_override_fonts/font = ExtResource("10_2ku1j")
 theme_override_font_sizes/font_size = 32
-text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("21_1ooyw")
+player_character_stats_resource = ExtResource("22_ai3nx")
 
 [node name="atk" type="Label" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -701,6 +796,8 @@ theme_override_font_sizes/font_size = 32
 text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("23_phfsf")
+player_character_stats_resource = ExtResource("22_ai3nx")
 
 [node name="cr" type="Label" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -722,6 +819,8 @@ theme_override_font_sizes/font_size = 32
 text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("24_3oqy1")
+player_character_stats_resource = ExtResource("22_ai3nx")
 
 [node name="cd" type="Label" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -743,6 +842,8 @@ theme_override_font_sizes/font_size = 32
 text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("25_mq0oc")
+player_character_stats_resource = ExtResource("22_ai3nx")
 
 [node name="cdUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -767,6 +868,13 @@ texture_filter = 1
 position = Vector2(847, 300)
 scale = Vector2(4, 4)
 texture = ExtResource("12_jvkml")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/hpUP"]
+offset_top = -5.0
+offset_right = 9.0
+offset_bottom = 6.0
+texture_hover = SubResource("AtlasTexture_mq0oc")
+script = ExtResource("27_msy1c")
 
 [node name="Apply" type="Button" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -798,75 +906,6 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
 text = "Apply"
-
-[node name="EnemyTest2" parent="." instance=ExtResource("12_2ku1j")]
-position = Vector2(656, 400)
-
-[node name="EnemyTest3" parent="." instance=ExtResource("12_2ku1j")]
-position = Vector2(635, 407)
-
-[node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
-position = Vector2(144, 385)
-
-[node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
-position = Vector2(607, 302)
-
-[node name="FixedPlatform" type="StaticBody2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="FixedPlatform" type="CollisionShape2D" parent="FixedPlatform"]
-position = Vector2(23164.5, 451)
-shape = SubResource("RectangleShape2D_m7ahb")
-
-[node name="FixedPlatformColl" type="CollisionShape2D" parent="FixedPlatform"]
-position = Vector2(-10, 230.5)
-shape = SubResource("RectangleShape2D_conm7")
-
-[node name="AirGround" type="StaticBody2D" parent="."]
-position = Vector2(302, 270)
-scale = Vector2(1.5, 1.5)
-
-[node name="AirPlatform" type="Sprite2D" parent="AirGround"]
-texture_filter = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_d3jkd")
-
-[node name="AirPlatformColl" type="CollisionShape2D" parent="AirGround"]
-position = Vector2(0, 8)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_2ku1j")
-
-[node name="MoveGround" type="Node2D" parent="."]
-position = Vector2(553, 141)
-scale = Vector2(1.5, 1.5)
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="MoveGround"]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("10_u3awl")
-
-[node name="Sprite2D" type="Sprite2D" parent="MoveGround/AnimatableBody2D"]
-texture_filter = 1
-texture = ExtResource("9_d3jkd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveGround/AnimatableBody2D"]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_2ku1j")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MoveGround/AnimatableBody2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_i8kv5")
-}
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2(330, 393)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("16_dxn3v")
-metadata/_custom_type_script = "uid://ca33ogih0q53s"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(1.5, -20)
-shape = SubResource("RectangleShape2D_14jow")
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/UpgradeMenu" method="upgrade_select"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]

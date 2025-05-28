@@ -1,6 +1,6 @@
 # HealthBarUI.gd
 extends Control
-@export var progress_bar: ProgressBar # Added @export var for ProgressBar
+@onready var progress_bar: ProgressBar = $ProgressBar
 @export var health_component: Health # Menggunakan export var untuk komponen Health
 
 func _ready():
@@ -43,10 +43,12 @@ func disconnect_health_component():
 
 func _on_max_health_changed(_diff: int):
 	if health_component != null:
-		progress_bar.max_value = health_component.max_health
+		# PERBAIKAN: Gunakan get_max_health()
+		progress_bar.max_value = health_component.get_max_health()
 		# Pastikan health bar terupdate jika max health berubah
 		_on_health_changed(0)
 
 func _on_health_changed(_diff: int):
 	if health_component != null:
-		progress_bar.value = health_component.health
+		# PERBAIKAN: Gunakan get_health()
+		progress_bar.value = health_component.get_health()
