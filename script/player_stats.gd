@@ -2,4 +2,4 @@
 class_name PlayerStats
 extends CharacterStats
 
-@export var max_jumps : int = 2
+@export var max_jumps : int = 1

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c06jjfjelnvdk"]
+
+[ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="1_ehfp0"]
+
+[node name="RefreshStats" type="Node"]
+script = ExtResource("1_ehfp0")
+metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"

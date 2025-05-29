@@ -1,7 +1,7 @@
-[gd_scene load_steps=168 format=3 uid="uid://dmfh4praqdryj"]
+[gd_scene load_steps=172 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://bff8dnem2rgh4" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://bcvcehd4e6gsh" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_up6wr"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b57o25wi20y4s" path="res://script/player_actions.gd" id="9_24gv0"]
 [ext_resource type="Texture2D" uid="uid://dp0hp8cd5k4cg" path="res://assets/Characters/MC/attack/atack 1 (jubah belom)/attack 1 (5).png" id="9_mprcl"]
 [ext_resource type="Texture2D" uid="uid://c2106ijs0dqbw" path="res://assets/Characters/MC/attack/attack 2/PNG/attack 2 (1).png" id="10_4g8nq"]
+[ext_resource type="Texture2D" uid="uid://bla17201qersb" path="res://assets/Characters/MC/Dash/dash 6.png" id="10_nsiar"]
 [ext_resource type="Texture2D" uid="uid://ctmwd4kpv5jya" path="res://assets/Characters/MC/attack/attack 2/PNG/attack 2 (2).png" id="11_5rl4r"]
 [ext_resource type="Script" uid="uid://cmiuuky8v7su7" path="res://script/ground_attack_state.gd" id="11_ltp6r"]
 [ext_resource type="Texture2D" uid="uid://b3qf5hpabm5we" path="res://assets/Characters/MC/attack/attack 2/PNG/attack 3.png" id="12_du1rj"]
@@ -95,7 +96,10 @@
 [ext_resource type="Texture2D" uid="uid://dxigve36ei2k6" path="res://assets/Pixel Art Animations - Slashes/newslash/4.png" id="83_8etlw"]
 [ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="92_n8dma"]
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="93_up6wr"]
+[ext_resource type="Script" uid="uid://chxtxvqt0dugq" path="res://scenes/labelhp.gd" id="98_4wblf"]
 [ext_resource type="Script" uid="uid://b3e5mubpvd52t" path="res://scenes/playerhp.gd" id="98_grty4"]
+[ext_resource type="Script" uid="uid://bl4cyyuf8pajt" path="res://script/damagenumber.gd" id="98_pfuoj"]
+[ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="99_4wblf"]
 [ext_resource type="Texture2D" uid="uid://vivkgduiv31m" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HeartIcons_32x32.png" id="99_mpxq4"]
 
 [sub_resource type="Resource" id="Resource_pfuoj"]
@@ -316,18 +320,24 @@ animations = [{
 "texture": ExtResource("22_f6pdf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_2y2ai")
+"texture": ExtResource("10_nsiar")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_2y2ai")
+"texture": ExtResource("30_xjogy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_2y2ai")
+"texture": ExtResource("30_xjogy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_2y2ai")
+"texture": ExtResource("20_3pmu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5p7sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xjogy")
 }],
-"loop": true,
+"loop": false,
 "name": &"air_attack",
 "speed": 12.0
 }, {
@@ -821,6 +831,38 @@ animations = [{
 "texture": ExtResource("49_pup5u")
 }, {
 "duration": 1.0,
+"texture": ExtResource("75_jrx0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_027we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_n8dma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_up6wr")
+}],
+"loop": true,
+"name": &"airslash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_uda0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_5xupu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_lrgjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_eew4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_pup5u")
+}, {
+"duration": 1.0,
 "texture": ExtResource("50_df3bv")
 }, {
 "duration": 1.0,
@@ -1090,7 +1132,7 @@ tracks/7/keys = {
 [sub_resource type="Animation" id="Animation_acr3s"]
 resource_name = "air_attack"
 length = 0.7
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1110,10 +1152,10 @@ tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385, 0.692308),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 6, 7, 8, 8, 8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1122,10 +1164,10 @@ tracks/2/path = NodePath("Facing/Sword/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 8.5), Vector2(0, 6)]
+"values": [Vector2(0, 8.5), Vector2(0, 6), Vector2(0, 8.5), Vector2(0, 6), Vector2(0, 8.5), Vector2(0, 6)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1134,10 +1176,10 @@ tracks/3/path = NodePath("Facing/Sword/CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 47), Vector2(150, 110)]
+"values": [Vector2(0, 47), Vector2(150, 110), Vector2(0, 47), Vector2(150, 110), Vector2(0, 47), Vector2(150, 110)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1161,7 +1203,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"slashnew"]
+"values": [&"airslash"]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1170,10 +1212,10 @@ tracks/6/path = NodePath("Facing/Sword/Swords:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 5, 6, 7, 1, 2, 4, 5, 6, 7, 8, 0]
 }
 
 [sub_resource type="Animation" id="Animation_2jkey"]
@@ -1688,7 +1730,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3250y"]
-bg_color = Color(0.294118, 0.239216, 0.266667, 1)
+bg_color = Color(0.29, 0.2349, 0.26245, 0.490196)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -1777,12 +1819,14 @@ states = {
 script = ExtResource("7_24gv0")
 idle_anim = &"idle_s"
 move_anim = &"run_s"
+dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
 animation_name = &"idle_s"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
 [node name="AirMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("8_dauvq")
+dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
 animation_name = &"jump"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
@@ -1794,12 +1838,14 @@ attack_3 = &"attack_3"
 can_move = false
 can_jump = false
 movement_speed_var = &"attacking_run_speed"
+dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
 animation_name = &"attack_1"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
 [node name="AirAttackState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("52_2y2ai")
+dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
 animation_name = &"air_attack"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
@@ -1848,11 +1894,10 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 52.0
 offset_top = 3.0
-offset_right = 287.0
+offset_right = 325.0
 offset_bottom = 30.0
 theme_override_styles/background = SubResource("StyleBoxFlat_3250y")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6gvle")
-value = 50.0
 show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HpBar"]
@@ -1860,5 +1905,22 @@ texture_filter = 1
 position = Vector2(15, 17)
 scale = Vector2(1.77938, 1.77938)
 texture = ExtResource("99_mpxq4")
+
+[node name="Label" type="Label" parent="CanvasLayer/HpBar"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 3.0
+offset_right = 325.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("99_4wblf")
+theme_override_font_sizes/font_size = 19
+text = "999999999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("98_4wblf")
+character_stats = ExtResource("3_acr3s")
+
+[node name="damagenumber" type="CanvasLayer" parent="CanvasLayer"]
+script = ExtResource("98_pfuoj")
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

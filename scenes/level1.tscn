@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=81 format=3 uid="uid://di54eyrr8xw3g"]
 
 [ext_resource type="Script" uid="uid://bqsghgh87q8wv" path="res://scenes/level_1.gd" id="1_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://dmfh4praqdryj" path="res://scenes/player2.tscn" id="2_wwpf4"]
@@ -22,11 +22,12 @@
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
 [ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
-[ext_resource type="Resource" uid="uid://c1ydhe6pgohce" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://bcvcehd4e6gsh" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
 [ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
-[ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/healthup.gd" id="27_7dkav"]
+[ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/statshup.gd" id="27_7dkav"]
+[ext_resource type="Script" uid="uid://g2end4cdybyl" path="res://scenes/healtest.gd" id="28_7dkav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
 size = Vector2(46329, 20)
@@ -75,23 +76,6 @@ _data = {
 &"LR": SubResource("Animation_f31uk"),
 &"RESET": SubResource("Animation_gnai3")
 }
-
-[sub_resource type="Resource" id="Resource_1ooyw"]
-script = ExtResource("21_u068y")
-run_speed = 300.0
-attacking_run_speed = 150.0
-max_air_speed = 200.0
-air_acceleration = 200.0
-jump_velocity = 600.0
-max_health_stat = 0
-base_damage_stat = 5
-damage_random_range_stat = 3
-crit_rate_stat = 0.1
-crit_damage_multiplier_stat = 1.5
-metadata/_custom_type_script = "uid://gixqlxsoukbl"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_14jow"]
-size = Vector2(65, 98)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ku1j"]
 
@@ -194,17 +178,49 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("13_jvkml")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3w4mx"]
-atlas = ExtResource("13_jvkml")
-region = Rect2(16, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_u068y"]
 atlas = ExtResource("13_jvkml")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mq0oc"]
-atlas = ExtResource("12_jvkml")
-region = Rect2(7, 0, 7, 9)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w4mx"]
+atlas = ExtResource("13_jvkml")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_msy1c"]
+load_path = "res://.godot/imported/StatusIncDecButton_7x9.png-4945ba418055d8246ad7b611085cc7a9.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4niyd"]
+atlas = SubResource("CompressedTexture2D_msy1c")
+region = Rect2(7, 0, 6, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4niyd"]
+load_path = "res://.godot/imported/StatusIncDecButton_7x9.png-4945ba418055d8246ad7b611085cc7a9.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msy1c"]
+atlas = SubResource("CompressedTexture2D_4niyd")
+region = Rect2(1, 0, 6, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dkav"]
+atlas = SubResource("CompressedTexture2D_msy1c")
+region = Rect2(7, 0, 6, 9)
+
+[sub_resource type="Resource" id="Resource_msy1c"]
+script = ExtResource("21_u068y")
+run_speed = 300.0
+attacking_run_speed = 150.0
+max_air_speed = 200.0
+air_acceleration = 200.0
+jump_velocity = 600.0
+damage_random_range_stat = 5
+max_health_stat = 0
+base_damage_stat = 30
+crit_rate_stat = 0.0
+crit_damage_multiplier_stat = 0.0
+metadata/_custom_type_script = "uid://gixqlxsoukbl"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dkav"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4niyd"]
 
 [node name="level1" type="Node2D" node_paths=PackedStringArray("player_node", "ui_manager")]
 script = ExtResource("1_i8kv5")
@@ -268,18 +284,6 @@ shape = SubResource("RectangleShape2D_2ku1j")
 libraries = {
 &"": SubResource("AnimationLibrary_i8kv5")
 }
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2(330, 393)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("16_dxn3v")
-character_stats = SubResource("Resource_1ooyw")
-metadata/_custom_type_script = "uid://ca33ogih0q53s"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(1.5, -20)
-shape = SubResource("RectangleShape2D_14jow")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -578,29 +582,31 @@ script = ExtResource("12_f31uk")
 target_scene_path = "res://scenes/mainmenu.tscn"
 
 [node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_3w4mx")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UpgradeMenu"]
+[node name="Label" type="Control" parent="CanvasLayer/UpgradeMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UpgradeMenu/Label"]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.490196)
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
 texture_filter = 1
 position = Vector2(661, 366)
 scale = Vector2(8.26608, 7.72632)
 texture = ExtResource("10_14jow")
-
-[node name="Label" type="Control" parent="CanvasLayer/UpgradeMenu"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Upgrades" type="Label" parent="CanvasLayer/UpgradeMenu/Label"]
 texture_filter = 1
@@ -721,17 +727,17 @@ position = Vector2(488, 360)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_jvkml")
 
-[node name="CR" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
-texture_filter = 1
-position = Vector2(488, 417)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_3w4mx")
-
 [node name="CD" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
 texture_filter = 1
 position = Vector2(488, 478)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_u068y")
+
+[node name="CR" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(488, 417)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_3w4mx")
 
 [node name="coin" type="Label" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
@@ -754,7 +760,20 @@ text = "10"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="atk" type="Label" parent="CanvasLayer/UpgradeMenu"]
+[node name="HealthUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("27_7dkav")
+player_stats = ExtResource("22_ai3nx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+position = Vector2(847, 300)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="HealthDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/HealthUp"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -762,7 +781,61 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 728.0
+offset_left = 669.0
+offset_top = 264.0
+offset_right = 787.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("21_1ooyw")
+player_character_stats_resource = ExtResource("22_ai3nx")
+
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 282.0
+offset_right = 875.0
+offset_bottom = 318.0
+texture_hover = SubResource("AtlasTexture_4niyd")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 282.0
+offset_right = 846.0
+offset_bottom = 318.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="AttackUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+position = Vector2(847, 358)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="BaseDamageLabel" type="Label" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 606.0
 offset_top = 320.0
 offset_right = 787.0
 offset_bottom = 362.0
@@ -771,13 +844,44 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
 theme_override_fonts/font = ExtResource("10_2ku1j")
 theme_override_font_sizes/font_size = 32
-text = "10"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("23_phfsf")
 player_character_stats_resource = ExtResource("22_ai3nx")
 
-[node name="cr" type="Label" parent="CanvasLayer/UpgradeMenu"]
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 340.0
+offset_right = 875.0
+offset_bottom = 376.0
+texture_hover = SubResource("AtlasTexture_7dkav")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 340.0
+offset_right = 846.0
+offset_bottom = 376.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="CritRateUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+position = Vector2(847, 420)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="CritRateLabel" type="Label" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -785,7 +889,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 728.0
+offset_left = 642.0
 offset_top = 382.0
 offset_right = 787.0
 offset_bottom = 424.0
@@ -800,7 +904,38 @@ vertical_alignment = 1
 script = ExtResource("24_3oqy1")
 player_character_stats_resource = ExtResource("22_ai3nx")
 
-[node name="cd" type="Label" parent="CanvasLayer/UpgradeMenu"]
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 402.0
+offset_right = 875.0
+offset_bottom = 438.0
+texture_hover = SubResource("AtlasTexture_7dkav")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 402.0
+offset_right = 846.0
+offset_bottom = 438.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="CritDmgUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
+texture_filter = 1
+position = Vector2(847, 480)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="CritDamageMultiplierLabel" type="Label" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -808,7 +943,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 728.0
+offset_left = 686.0
 offset_top = 444.0
 offset_right = 787.0
 offset_bottom = 486.0
@@ -823,68 +958,27 @@ vertical_alignment = 1
 script = ExtResource("25_mq0oc")
 player_character_stats_resource = ExtResource("22_ai3nx")
 
-[node name="cdUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu"]
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
 texture_filter = 1
-position = Vector2(847, 480)
-scale = Vector2(4, 4)
-texture = ExtResource("12_jvkml")
-
-[node name="crUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu"]
-texture_filter = 1
-position = Vector2(847, 420)
-scale = Vector2(4, 4)
-texture = ExtResource("12_jvkml")
-
-[node name="atkUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu"]
-texture_filter = 1
-position = Vector2(847, 358)
-scale = Vector2(4, 4)
-texture = ExtResource("12_jvkml")
-
-[node name="Control" type="Control" parent="CanvasLayer/UpgradeMenu"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("27_7dkav")
-player_stats = ExtResource("22_ai3nx")
-
-[node name="hpUP" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Control"]
-texture_filter = 1
-position = Vector2(847, 300)
-scale = Vector2(4, 4)
-texture = ExtResource("12_jvkml")
-
-[node name="IncreaseHealthButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/Control"]
+layout_mode = 0
 offset_left = 848.0
-offset_top = 282.0
+offset_top = 462.0
 offset_right = 875.0
-offset_bottom = 318.0
-texture_hover = SubResource("AtlasTexture_mq0oc")
+offset_bottom = 498.0
+texture_hover = SubResource("AtlasTexture_7dkav")
+stretch_mode = 0
 
-[node name="HealthDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/Control"]
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 728.0
-offset_top = 264.0
-offset_right = 787.0
-offset_bottom = 306.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
-theme_override_fonts/font = ExtResource("10_2ku1j")
-theme_override_font_sizes/font_size = 32
-text = "hp"
-horizontal_alignment = 2
-vertical_alignment = 1
-script = ExtResource("21_1ooyw")
-player_character_stats_resource = ExtResource("22_ai3nx")
+layout_mode = 0
+offset_left = 819.0
+offset_top = 462.0
+offset_right = 846.0
+offset_bottom = 498.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
 
-[node name="Apply" type="Button" parent="CanvasLayer/UpgradeMenu"]
+[node name="ApplyButton" type="Button" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -913,11 +1007,47 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
-text = "Apply"
+text = "Close"
+
+[node name="damagetest" type="Area2D" parent="."]
+position = Vector2(330, 393)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("16_dxn3v")
+character_stats = SubResource("Resource_msy1c")
+metadata/_custom_type_script = "uid://ca33ogih0q53s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damagetest"]
+shape = SubResource("CircleShape2D_7dkav")
+
+[node name="Label" type="Label" parent="damagetest"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "damage test"
+
+[node name="healtest" type="Area2D" parent="."]
+position = Vector2(456, 399)
+script = ExtResource("28_7dkav")
+heal_amount = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="healtest"]
+shape = SubResource("CircleShape2D_4niyd")
+
+[node name="Label" type="Label" parent="healtest"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "heal test"
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/UpgradeMenu" method="upgrade_select"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Restart" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/End" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
-[connection signal="pressed" from="CanvasLayer/UpgradeMenu/Control/IncreaseHealthButton" to="CanvasLayer/UpgradeMenu/Control" method="_on_IncreaseHealthButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/UpgradeMenu/Apply" to="CanvasLayer/UpgradeMenu" method="upgrade_menu"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseHealthButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseHealthButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/AttackUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseBaseDamageButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/AttackUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseBaseDamageButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritRateUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseCritRateButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritRateUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseCritRateButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseCritDamageMultiplierButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseCritDamageMultiplierButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/ApplyButton" to="CanvasLayer/UpgradeMenu" method="upgrade_menu"]
