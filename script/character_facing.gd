@@ -1,5 +1,5 @@
 #character_facing.gd
-class_name Facing
+class_name Facing2
 extends Node2D
 
 ## Updates the nodes scale to face left (-1 scale.x) or right (+1 scale.x)

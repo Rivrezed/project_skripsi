@@ -1,7 +1,7 @@
 [gd_scene load_steps=172 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://bcvcehd4e6gsh" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://b5gs1njgs5k01" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_up6wr"]
@@ -1188,10 +1188,10 @@ tracks/4/path = NodePath("Facing/Sword/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1787,7 +1787,6 @@ sprite_frames = SubResource("SpriteFrames_7f0u4")
 animation = &"air_attack"
 
 [node name="Sword" type="Area2D" parent="Facing"]
-collision_mask = 0
 script = ExtResource("93_up6wr")
 character_stats = ExtResource("3_acr3s")
 
