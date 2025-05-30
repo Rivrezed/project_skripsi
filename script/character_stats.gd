@@ -28,7 +28,6 @@ signal resource_changed_custom
 		jump_velocity = value
 		resource_changed_custom.emit()
 		
-var _damage_random_range_stat: int = 5
 @export var damage_random_range_stat: int = 5:
 	set(value):
 		damage_random_range_stat = value

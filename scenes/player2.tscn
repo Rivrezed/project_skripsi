@@ -1,7 +1,7 @@
 [gd_scene load_steps=172 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://b5gs1njgs5k01" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://s3ivdtr7jqyg" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_up6wr"]
@@ -995,8 +995,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c08b3"]
-size = Vector2(20, 62.8571)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nsiar"]
+height = 62.8571
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_24gv0"]
 var/direction/name = &"direction"
@@ -1801,7 +1801,7 @@ animation = &"slash1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.571428)
-shape = SubResource("RectangleShape2D_c08b3")
+shape = SubResource("CapsuleShape2D_nsiar")
 
 [node name="LimboHSM" type="LimboHSM" parent="." node_paths=PackedStringArray("character", "states")]
 blackboard_plan = SubResource("BlackboardPlan_24gv0")

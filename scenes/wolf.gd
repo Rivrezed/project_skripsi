@@ -19,8 +19,7 @@ func _on_health_health_depleted() -> void:
 	set_physics_process(false)
 	set_process(false)
 
-func _on_death_animation_finished(anim_name: String) -> void:
-	if anim_name == "death":
+func _on_death_animation_finished(_anim_name: String) -> void:
 		queue_free()
 		
 func _ready():

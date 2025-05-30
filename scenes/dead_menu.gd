@@ -1,7 +1,5 @@
 extends Control
 
-signal player_died_event
-
 var is_game_over: bool = false
 
 func _ready():

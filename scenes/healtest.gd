@@ -26,10 +26,10 @@ func _apply_heal(health_node: Health):
 		health_node.set_health(health_node.get_health() + heal_amount)
 
 		# Tampilkan popup +heal_amount di posisi Area2D (HealingArea)
-		if has_node("/root/Damagenumber"):
-			var damage_number = get_node("/root/Damagenumber")
-			var position = self.global_position  # posisi Area2D healingnya
-			damage_number.display_number(heal_amount, position, false, true)
+	if has_node("/root/Damagenumber"):
+		var damage_number = get_node("/root/Damagenumber")
+		var display_position = self.global_position
+		damage_number.display_number(heal_amount, display_position, false, true)
 
 		if disable_on_heal:
 			set_deferred("monitoring", false)
