@@ -1,6 +1,7 @@
 class_name CharacterStats
 extends Resource
 
+
 signal resource_changed_custom
 
 @export var run_speed : float = 300.0:
