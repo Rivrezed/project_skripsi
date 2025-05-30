@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://s3ivdtr7jqyg"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://xmybce76gwqc"]
 
 [ext_resource type="Script" uid="uid://de8uc2jxao5q7" path="res://script/player_stats.gd" id="1_l3p20"]
 
@@ -11,7 +11,7 @@ max_air_speed = 200.0
 air_acceleration = 200.0
 jump_velocity = 600.0
 damage_random_range_stat = 5
-max_health_stat = 284
+max_health_stat = 1392
 base_damage_stat = 617
 crit_rate_stat = 1.0
 crit_damage_multiplier_stat = 17.8

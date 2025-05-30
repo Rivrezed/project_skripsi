@@ -1,11 +1,10 @@
-[gd_scene load_steps=83 format=3 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=85 format=3 uid="uid://di54eyrr8xw3g"]
 
 [ext_resource type="Script" uid="uid://bqsghgh87q8wv" path="res://scenes/level_1.gd" id="1_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://m46def77t122" path="res://scenes/skeleton_boss.tscn" id="2_4niyd"]
 [ext_resource type="PackedScene" uid="uid://dmfh4praqdryj" path="res://scenes/player2.tscn" id="2_wwpf4"]
 [ext_resource type="Texture2D" uid="uid://ilawi6xsblay" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/ItemsIcons_24x24.png" id="3_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://diln6iyvvpvpm" path="res://parallax.tscn" id="3_m7ahb"]
-[ext_resource type="Resource" uid="uid://cuxpac7y6enc2" path="res://wolf_stats.tres" id="4_3umqw"]
 [ext_resource type="Texture2D" uid="uid://clq2xs5qogaqp" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HotkeyBox_34x34.png" id="7_conm7"]
 [ext_resource type="Texture2D" uid="uid://b423m4ao5kjf7" path="res://assets/Map/lvl1/groundlvl1.png" id="9_d3jkd"]
 [ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="10_2ku1j"]
@@ -23,13 +22,15 @@
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
 [ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
-[ext_resource type="Resource" uid="uid://s3ivdtr7jqyg" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://xmybce76gwqc" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
 [ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
 [ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/statshup.gd" id="27_7dkav"]
 [ext_resource type="Script" uid="uid://g2end4cdybyl" path="res://scenes/healtest.gd" id="28_7dkav"]
 [ext_resource type="PackedScene" uid="uid://ujtenlbccho3" path="res://scenes/wolf.tscn" id="30_3umqw"]
+[ext_resource type="PackedScene" uid="uid://f43m4jly5hvq" path="res://item_claim.tscn" id="31_gqmnx"]
+[ext_resource type="Script" uid="uid://4gr3iucip7le" path="res://scenes/claim_rewards.gd" id="31_p71k4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
 size = Vector2(46329, 20)
@@ -224,6 +225,8 @@ metadata/_custom_type_script = "uid://gixqlxsoukbl"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4niyd"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1oofn"]
+
 [node name="level1" type="Node2D" node_paths=PackedStringArray("player_node", "ui_manager")]
 script = ExtResource("1_i8kv5")
 player_node = NodePath("Player2")
@@ -232,20 +235,10 @@ ui_manager = NodePath("CanvasLayer/DeadMenu")
 [node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
 position = Vector2(144, 385)
 
-[node name="Wolf" parent="." instance=ExtResource("30_3umqw")]
-position = Vector2(802, 340)
-stats = ExtResource("4_3umqw")
-
-[node name="SkeletonBoss" parent="." instance=ExtResource("2_4niyd")]
-position = Vector2(924, 273)
-scale = Vector2(2, 2)
-
 [node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
 position = Vector2(607, 302)
 
 [node name="FixedPlatform" type="StaticBody2D" parent="."]
-collision_layer = 15
-collision_mask = 15
 metadata/_edit_lock_ = true
 
 [node name="FixedPlatform" type="CollisionShape2D" parent="FixedPlatform"]
@@ -271,7 +264,7 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2ku1j")
 
 [node name="MoveGround" type="Node2D" parent="."]
-position = Vector2(553, 141)
+position = Vector2(553, 111)
 scale = Vector2(1.5, 1.5)
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="MoveGround"]
@@ -1043,6 +1036,22 @@ shape = SubResource("CircleShape2D_4niyd")
 offset_right = 40.0
 offset_bottom = 23.0
 text = "heal test"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(273, 402)
+script = ExtResource("31_p71k4")
+player_node = NodePath("../Player2")
+scene_to_open = ExtResource("31_gqmnx")
+trigger_once = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1oofn")
+
+[node name="Wolf" parent="." instance=ExtResource("30_3umqw")]
+position = Vector2(724, 359)
+
+[node name="SkeletonBoss" parent="." instance=ExtResource("2_4niyd")]
+position = Vector2(820, 146)
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/UpgradeMenu" method="upgrade_select"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]

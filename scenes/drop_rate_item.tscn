@@ -1,0 +1,175 @@
+[gd_scene load_steps=3 format=3 uid="uid://yu5sktobug4k"]
+
+[ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="1_ye4hq"]
+
+[sub_resource type="GDScript" id="GDScript_tye0v"]
+script/source = "extends Node2D
+
+enum Rarity {COMMON, RARE, EPIC}
+
+var rarities = {
+	\"werewolf feet\": 50,
+	\"red claw\": 25,
+	\"broken scythe\": 10
+}
+
+var icon_paths = {
+	\"werewolf feet\": preload(\"res://icon/werewolf feet (common).png\"),
+	\"red claw\": preload(\"res://icon/red claw (rare).png\"),
+	\"broken scythe\": preload(\"res://icon/grim scythe.png\")
+}
+
+var border_paths = {
+	\"werewolf feet\": preload(\"res://icon/border common.png\"),
+	\"red claw\": preload(\"res://icon/border rare.png\"),
+	\"broken scythe\": preload(\"res://icon/border item.png\")
+}
+
+var item_values = {
+	\"werewolf feet\": {\"rarity\": Rarity.COMMON, \"value\": 5},
+	\"red claw\": {\"rarity\": Rarity.RARE, \"value\": 10},
+	\"broken scythe\": {\"rarity\": Rarity.EPIC, \"value\": 25}
+}
+
+var ItemIconScene = preload(\"res://scenes/item_icon.tscn\")
+var rng = RandomNumberGenerator.new()
+
+var dropped_items = []
+var spawned_item_icons = []
+var total_status = 0
+var claimed = false
+
+func get_rarity():
+	var weighted_sum = 0
+	for item in rarities:
+		weighted_sum += rarities[item]
+
+	var pick = rng.randi_range(0, weighted_sum - 1)
+
+	for item in rarities:
+		if pick < rarities[item]:
+			return item
+		pick -= rarities[item]
+
+	return \"werewolf feet\"
+
+func _ready():
+	rng.randomize()
+
+	var item_count = rng.randi_range(15, 20)
+	var screen_size = get_viewport().get_visible_rect().size
+
+	var icon_width = 64
+	var icon_height = 64
+	var spacing = 10
+	var max_per_row = 5
+	var row_delay = 0.3
+
+	var rows = ceil(float(item_count) / max_per_row)
+	var total_height = rows * icon_height + (rows - 1) * spacing
+	var start_y = (screen_size.y - total_height) / 2
+
+	# Label: You've Obtained
+	var label = Label.new()
+	label.name = \"ObtainedLabel\"
+	add_child(label)
+
+	# Label: Tap to claim
+	var tap_label = Label.new()
+	tap_label.name = \"TapLabel\"
+	add_child(tap_label)
+
+	for i in range(item_count):
+		var item = get_rarity()
+		dropped_items.append(item)
+
+		var icon_instance = ItemIconScene.instantiate()
+		icon_instance.texture = icon_paths[item]
+		spawned_item_icons.append(icon_instance)
+
+		var row = i / max_per_row
+		var col = i % max_per_row
+
+		var is_last_row = row == rows - 1
+		var items_in_row = (item_count % max_per_row if is_last_row and item_count % max_per_row != 0 else max_per_row)
+
+		var row_width = items_in_row * icon_width + (items_in_row - 1) * spacing
+		var start_x = (screen_size.x - row_width) / 2
+
+		var target_pos = Vector2(start_x + col * (icon_width + spacing), start_y + row * (icon_height + spacing))
+		var start_pos = target_pos + Vector2(0, 200)
+
+		icon_instance.position = start_pos
+		icon_instance.scale = Vector2(0.5, 0.5)
+
+		var border_sprite = Sprite2D.new()
+		border_sprite.texture = border_paths[item]
+		border_sprite.position = Vector2.ZERO
+		border_sprite.z_index = 1
+		icon_instance.add_child(border_sprite)
+
+		add_child(icon_instance)
+
+		var tween = create_tween()
+		tween.tween_interval(row * row_delay)
+		tween.tween_property(icon_instance, \"position\", target_pos, 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(icon_instance, \"scale\", Vector2(1, 1), 0.4)
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and not claimed:
+		claim_rewards()
+		claimed = true
+
+func claim_rewards():
+	for item in dropped_items:
+		var item_info = item_values.get(item)
+		if item_info:
+			total_status += item_info[\"value\"]
+
+	print(\"Total Point Status After Claim:\", total_status)
+
+	# Remove labels
+	var tap_label = get_node_or_null(\"TapLabel\")
+	if tap_label:
+		tap_label.queue_free()
+
+	var obtained_label = get_node_or_null(\"ObtainedLabel\")
+	if obtained_label:
+		obtained_label.queue_free()
+
+	# Remove item icons
+	for icon in spawned_item_icons:
+		if icon:
+			icon.queue_free()
+	spawned_item_icons.clear()
+"
+
+[node name="DropRateItem" type="Node2D"]
+position = Vector2(30, 0)
+script = SubResource("GDScript_tye0v")
+
+[node name="TapLabel" type="Label" parent="."]
+offset_right = 1209.0
+offset_bottom = 720.0
+theme_override_fonts/font = ExtResource("1_ye4hq")
+theme_override_font_sizes/font_size = 30
+text = "
+
+
+
+You've Obtained
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tap anywhere to claim"
+horizontal_alignment = 1

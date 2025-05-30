@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://f43m4jly5hvq"]
+
+[ext_resource type="PackedScene" uid="uid://yu5sktobug4k" path="res://scenes/drop_rate_item.tscn" id="1_72wgy"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="DropRateItem" parent="." instance=ExtResource("1_72wgy")]

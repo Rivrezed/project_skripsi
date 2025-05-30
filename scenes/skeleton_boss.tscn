@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://be7q5amwopadh" path="res://scenes/Teleport.gd" id="11_6w8g5"]
 [ext_resource type="Script" uid="uid://cb8ex5wx8w06q" path="res://scenes/spawn_minion.gd" id="12_uk8m5"]
 [ext_resource type="Script" uid="uid://dsan83pvxqls0" path="res://scenes/death.gd" id="14_tkpea"]
-[ext_resource type="PackedScene" uid="uid://ujtenlbccho3" path="res://scenes/wolf.tscn" id="18_wpsq5"]
+[ext_resource type="PackedScene" uid="uid://de5juuykkiprv" path="res://scenes/minireaper.tscn" id="17_fkkif"]
 [ext_resource type="PackedScene" uid="uid://b7pep4hq1kt5g" path="res://scenes/health_bar_ui.tscn" id="20_wpsq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpsq5"]
@@ -531,10 +531,10 @@ tracks/2/path = NodePath("HitBox/CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.2, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(250, 250), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(300, 300), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -587,7 +587,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(250, 250), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(300, 300), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -809,6 +809,7 @@ size = Vector2(200, 200)
 
 [node name="SkeletonBoss" type="CharacterBody2D"]
 texture_filter = 1
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_sf4ck")
@@ -936,7 +937,7 @@ script = ExtResource("11_6w8g5")
 
 [node name="SpawnMinion" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("12_uk8m5")
-minion_node = ExtResource("18_wpsq5")
+minion_node = ExtResource("17_fkkif")
 
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("14_tkpea")
