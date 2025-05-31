@@ -5,6 +5,8 @@
 [sub_resource type="GDScript" id="GDScript_tye0v"]
 script/source = "extends Node2D
 
+signal rewards_claimed(total_status)  # Tambahkan signal di atas
+
 enum Rarity { COMMON, RARE, EPIC }
 
 var rarities = {
@@ -72,11 +74,13 @@ func _ready():
 	# Label: You've Obtained
 	var label = Label.new()
 	label.name = \"ObtainedLabel\"
+	label.position = Vector2(screen_size.x / 2 - 100, start_y - 50)
 	add_child(label)
 
 	# Label: Tap to claim
 	var tap_label = Label.new()
 	tap_label.name = \"TapLabel\"
+	tap_label.position = Vector2(screen_size.x / 2 - 70, screen_size.y - 100)
 	add_child(tap_label)
 
 	for i in range(item_count):
@@ -127,6 +131,9 @@ func claim_rewards():
 			total_status += item_info[\"value\"]
 
 	print(\"Total Point Status After Claim:\", total_status)
+
+	# Emit signal
+	emit_signal(\"rewards_claimed\", total_status)
 
 	# Remove labels
 	var tap_label = get_node_or_null(\"TapLabel\")

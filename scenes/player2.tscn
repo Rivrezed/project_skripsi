@@ -1,7 +1,7 @@
 [gd_scene load_steps=172 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://dos0hw8fy2eql" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://up27f41dn2n5" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_up6wr"]
@@ -1775,7 +1775,6 @@ metadata/_custom_type_script = "uid://m72no1svtvu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 1.14286)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8etlw")
 
 [node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("limbo_hsm")]

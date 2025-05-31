@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=84 format=3 uid="uid://di54eyrr8xw3g"]
 
 [ext_resource type="Script" uid="uid://bqsghgh87q8wv" path="res://scenes/level_1.gd" id="1_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://m46def77t122" path="res://scenes/skeleton_boss.tscn" id="2_4niyd"]
@@ -22,14 +22,13 @@
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
 [ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
-[ext_resource type="Resource" uid="uid://cf1xltiw2iq27" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://bbf8111a0jiqv" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
 [ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
 [ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/statshup.gd" id="27_7dkav"]
 [ext_resource type="Script" uid="uid://g2end4cdybyl" path="res://scenes/healtest.gd" id="28_7dkav"]
 [ext_resource type="PackedScene" uid="uid://ujtenlbccho3" path="res://scenes/wolf.tscn" id="30_3umqw"]
-[ext_resource type="PackedScene" uid="uid://f43m4jly5hvq" path="res://item_claim.tscn" id="31_gqmnx"]
 [ext_resource type="Script" uid="uid://4gr3iucip7le" path="res://scenes/claim_rewards.gd" id="31_p71k4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
@@ -581,7 +580,6 @@ script = ExtResource("12_f31uk")
 target_scene_path = "res://scenes/mainmenu.tscn"
 
 [node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -738,11 +736,12 @@ position = Vector2(488, 417)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_3w4mx")
 
-[node name="HealthUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+[node name="HealthUp" type="Control" parent="CanvasLayer/UpgradeMenu" node_paths=PackedStringArray("coin_display_label")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("27_7dkav")
+coin_display_label = NodePath("CoinDisplayLabel")
 player_stats = ExtResource("22_ai3nx")
 
 [node name="CoinDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/HealthUp"]
@@ -753,9 +752,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 721.0
+offset_left = 436.0
 offset_top = 205.0
-offset_right = 800.0
+offset_right = 799.0
 offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -897,7 +896,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
 theme_override_fonts/font = ExtResource("10_2ku1j")
 theme_override_font_sizes/font_size = 32
-text = "10"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("24_3oqy1")
@@ -951,7 +950,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
 theme_override_fonts/font = ExtResource("10_2ku1j")
 theme_override_font_sizes/font_size = 32
-text = "10"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("25_mq0oc")
@@ -1008,6 +1007,37 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
 text = "Close"
 
+[node name="ApplyButton2" type="Button" parent="CanvasLayer/UpgradeMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 900.0
+offset_top = 340.0
+offset_right = 1095.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.694991, 0.694991)
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Close"
+
 [node name="damagetest" type="Area2D" parent="."]
 position = Vector2(330, 369)
 collision_layer = 2
@@ -1041,7 +1071,6 @@ text = "heal test"
 position = Vector2(302, 191)
 script = ExtResource("31_p71k4")
 player_node = NodePath("../Player2")
-scene_to_open = ExtResource("31_gqmnx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="itemdrop"]
 shape = SubResource("CircleShape2D_1oofn")
@@ -1072,3 +1101,5 @@ position = Vector2(820, 146)
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseCritDamageMultiplierButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseCritDamageMultiplierButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/ApplyButton" to="CanvasLayer/UpgradeMenu" method="upgrade_menu"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/ApplyButton2" to="CanvasLayer/UpgradeMenu/HealthUp" method="_claim_rewards"]
+[connection signal="area_entered" from="itemdrop" to="CanvasLayer/UpgradeMenu/HealthUp" method="show_rewards_popup"]

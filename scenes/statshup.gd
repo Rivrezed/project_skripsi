@@ -4,7 +4,7 @@ extends Control
 @onready var base_damage_label: Label = $"../AttackUp/BaseDamageLabel"
 @onready var crit_rate_label: Label = $"../CritRateUp/CritRateLabel"
 @onready var crit_damage_multiplier_label: Label = $"../CritDmgUp/CritDamageMultiplierLabel"
-@onready var coin_display_label: Label = $CoinDisplayLabel
+@export var coin_display_label: Label
 
 @export var player_stats: CharacterStats
 @export var coin_amount: int = 100
@@ -13,11 +13,10 @@ extends Control
 @export var crit_rate_upgrade_cost: int = 20
 @export var crit_damage_upgrade_cost: int = 25
 
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("e"):
 		update_all_displays()
-		
+
 func _ready():
 	if player_stats == null:
 		push_warning("player_stats Resource not assigned in the editor!")
@@ -26,6 +25,18 @@ func _ready():
 	player_stats.resource_changed_custom.connect(update_all_displays)
 	update_all_displays()
 	update_coin_display()
+
+	# Menghubungkan signal dari reward popup (ubah path sesuai struktur node Anda)
+func _claim_rewards():
+	var popup = preload("res://scenes/drop_rate_item.tscn").instantiate()
+	popup.connect("rewards_claimed", self._on_rewards_claimed)
+	add_child(popup)
+
+
+func _on_rewards_claimed(total_status: int) -> void:
+	coin_amount += total_status
+	update_coin_display()
+	print("Menerima reward coin:", total_status, " | Total coin sekarang:", coin_amount)
 
 func _on_IncreaseHealthButton_pressed():
 	if player_stats == null: return
@@ -39,13 +50,11 @@ func _on_IncreaseHealthButton_pressed():
 
 func _on_DecreaseHealthButton_pressed():
 	if player_stats == null: return
-	# Pastikan stat tidak kurang dari nilai dasarnya (jika ada batasan)
-	# Misalnya, jika health dasar adalah 1, jangan biarkan kurang dari itu.
-	if player_stats.max_health_stat > 1: # Batasi agar tidak kurang dari 1
+	if player_stats.max_health_stat > 1:
 		player_stats.max_health_stat -= 1
-		coin_amount += health_upgrade_cost # Koin dikembalikan saat downgrade
+		coin_amount += health_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
-		update_coin_display() # Perbarui tampilan koin
+		update_coin_display()
 	else:
 		print("Kesehatan sudah pada batas minimal.")
 
@@ -61,11 +70,11 @@ func _on_IncreaseBaseDamageButton_pressed():
 
 func _on_DecreaseBaseDamageButton_pressed():
 	if player_stats == null: return
-	if player_stats.base_damage_stat > 0: # Batasi agar tidak kurang dari 0
+	if player_stats.base_damage_stat > 0:
 		player_stats.base_damage_stat -= 1
-		coin_amount += base_damage_upgrade_cost # Koin dikembalikan saat downgrade
+		coin_amount += base_damage_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
-		update_coin_display() # Perbarui tampilan koin
+		update_coin_display()
 	else:
 		print("Base Damage sudah pada batas minimal.")
 
@@ -81,12 +90,11 @@ func _on_IncreaseCritRateButton_pressed():
 
 func _on_DecreaseCritRateButton_pressed():
 	if player_stats == null: return
-	# Penting: Pastikan ada batasan minimal untuk crit rate (misal 0.0)
-	if player_stats.crit_rate_stat > 0.0: # Batasi agar tidak kurang dari 0.0
+	if player_stats.crit_rate_stat > 0.0:
 		player_stats.crit_rate_stat = max(player_stats.crit_rate_stat - 0.01, 0.0)
-		coin_amount += crit_rate_upgrade_cost # Koin dikembalikan saat downgrade
+		coin_amount += crit_rate_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
-		update_coin_display() # Perbarui tampilan koin
+		update_coin_display()
 	else:
 		print("Critical Rate sudah pada batas minimal.")
 
@@ -102,12 +110,11 @@ func _on_IncreaseCritDamageMultiplierButton_pressed():
 
 func _on_DecreaseCritDamageMultiplierButton_pressed():
 	if player_stats == null: return
-	# Penting: Batasi crit damage multiplier agar tidak kurang dari 1.0 (kerusakan dasar)
-	if player_stats.crit_damage_multiplier_stat > 1.0: # Batasi agar tidak kurang dari 1.0
+	if player_stats.crit_damage_multiplier_stat > 1.0:
 		player_stats.crit_damage_multiplier_stat -= 0.01
-		coin_amount += crit_damage_upgrade_cost # Koin dikembalikan saat downgrade
+		coin_amount += crit_damage_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
-		update_coin_display() # Perbarui tampilan koin
+		update_coin_display()
 	else:
 		print("Critical Damage Multiplier sudah pada batas minimal (1.0x).")
 
