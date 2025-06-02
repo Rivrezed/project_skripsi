@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://2xpqcpncmu28"
+path="res://.godot/imported/Rock Wall 1.ogg-a9f507a6d8aad699aa000faeebf8a50d.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/OGG Files/SFX/Spells/Rock Wall 1.ogg"
+dest_files=["res://.godot/imported/Rock Wall 1.ogg-a9f507a6d8aad699aa000faeebf8a50d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

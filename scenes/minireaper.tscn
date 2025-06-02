@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://vp51deg3a470" path="res://scenes/minireaper.gd" id="1_l4qqq"]
 [ext_resource type="Resource" uid="uid://dwq7hgdlc4tqq" path="res://minireaper.tres" id="2_47164"]
-[ext_resource type="Resource" uid="uid://cuxpac7y6enc2" path="res://wolf_stats.tres" id="2_uw517"]
 [ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="3_fg8n6"]
+[ext_resource type="AudioStream" uid="uid://xknjhpa1dgo3" path="res://sfx/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.ogg" id="4_47164"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_o06vj"]
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="5_nfl8n"]
 [ext_resource type="Texture2D" uid="uid://bv0w33v2d71dx" path="res://assets/Characters/Reaper (Animated Pixel Art)/Animation Sprite Sheets (PNG)/HostileAttackReaper-Sheet.png" id="6_l4qqq"]
@@ -355,6 +355,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:disable_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ekqw8"]
 resource_name = "attack_1"
@@ -393,7 +405,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(250, 200), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(75, 75), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -446,7 +458,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(250, 200), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(75, 75), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -517,9 +529,21 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [""],
-"method": &"_on_death_animation_finished"
+"args": [],
+"method": &"queue_free"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:disable_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.9, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
 }
 
 [sub_resource type="Animation" id="Animation_qyih2"]
@@ -697,7 +721,8 @@ stats = ExtResource("2_47164")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_fg8n6")
-character_stats = ExtResource("2_uw517")
+character_stats = ExtResource("2_47164")
+damage_sound_effect = ExtResource("4_47164")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -714,7 +739,7 @@ shape = SubResource("RectangleShape2D_fkhb5")
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("5_nfl8n")
-character_stats = ExtResource("2_uw517")
+character_stats = ExtResource("2_47164")
 metadata/_custom_type_script = "uid://ca33ogih0q53s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -767,6 +792,8 @@ offset_top = -20.0
 offset_bottom = -20.0
 scale = Vector2(0.339999, 0.339999)
 health_component = NodePath("../Health")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

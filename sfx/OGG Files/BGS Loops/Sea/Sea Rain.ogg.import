@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cqrdh8hhdmnby"
+path="res://.godot/imported/Sea Rain.ogg-e691659faf8becdc4acf49a7b0d41ec5.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/OGG Files/BGS Loops/Sea/Sea Rain.ogg"
+dest_files=["res://.godot/imported/Sea Rain.ogg-e691659faf8becdc4acf49a7b0d41ec5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

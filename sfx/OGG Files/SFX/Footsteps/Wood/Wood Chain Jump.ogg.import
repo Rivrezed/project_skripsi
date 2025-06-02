@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bokgon77yrjkr"
+path="res://.godot/imported/Wood Chain Jump.ogg-e64adfb8a63cf05c5d258d3f1729b465.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/OGG Files/SFX/Footsteps/Wood/Wood Chain Jump.ogg"
+dest_files=["res://.godot/imported/Wood Chain Jump.ogg-e64adfb8a63cf05c5d258d3f1729b465.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,10 +1,11 @@
-[gd_scene load_steps=63 format=3 uid="uid://ujtenlbccho3"]
+[gd_scene load_steps=64 format=3 uid="uid://ujtenlbccho3"]
 
 [ext_resource type="Script" uid="uid://crhss5lv40n54" path="res://scenes/wolf.gd" id="1_sf4ck"]
 [ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="2_fkhb5"]
 [ext_resource type="Texture2D" uid="uid://cw4l545rqng56" path="res://assets/White_Werewolf/Attack_1.png" id="2_h1vri"]
 [ext_resource type="Resource" uid="uid://cuxpac7y6enc2" path="res://wolf_stats.tres" id="3_55f01"]
 [ext_resource type="Texture2D" uid="uid://cwn2n8s06qc3a" path="res://assets/White_Werewolf/Attack_2.png" id="3_r7non"]
+[ext_resource type="AudioStream" uid="uid://xknjhpa1dgo3" path="res://sfx/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.ogg" id="4_21den"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_gja75"]
 [ext_resource type="Texture2D" uid="uid://owpcxtpis8io" path="res://assets/White_Werewolf/Dead.png" id="4_h1vri"]
 [ext_resource type="Texture2D" uid="uid://7aqnegm60han" path="res://assets/White_Werewolf/Idle.png" id="5_4yvo6"]
@@ -348,7 +349,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.750013),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(500, 200), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(250, 200), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -401,7 +402,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(500, 200), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(250, 200), Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -473,8 +474,8 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [""],
-"method": &"_on_death_animation_finished"
+"args": [],
+"method": &"queue_free"
 }]
 }
 
@@ -652,6 +653,7 @@ stats = ExtResource("3_55f01")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_fkhb5")
 character_stats = ExtResource("3_55f01")
+damage_sound_effect = ExtResource("4_21den")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -723,6 +725,8 @@ script = ExtResource("14_tkpea")
 offset_top = -90.6667
 offset_bottom = -90.6667
 health_component = NodePath("../Health")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

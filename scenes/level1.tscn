@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://di54eyrr8xw3g"]
+[gd_scene load_steps=91 format=3 uid="uid://di54eyrr8xw3g"]
 
 [ext_resource type="Script" uid="uid://bqsghgh87q8wv" path="res://scenes/level_1.gd" id="1_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://m46def77t122" path="res://scenes/skeleton_boss.tscn" id="2_4niyd"]
@@ -22,14 +22,19 @@
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
 [ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
-[ext_resource type="Resource" uid="uid://bbf8111a0jiqv" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://n2fl2atinu2j" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
+[ext_resource type="Script" uid="uid://2mgsuyuois3g" path="res://scenes/combo_attack.gd" id="25_gqmnx"]
 [ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
 [ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/statshup.gd" id="27_7dkav"]
 [ext_resource type="Script" uid="uid://g2end4cdybyl" path="res://scenes/healtest.gd" id="28_7dkav"]
+[ext_resource type="PackedScene" uid="uid://de5juuykkiprv" path="res://scenes/minireaper.tscn" id="30_1oofn"]
 [ext_resource type="PackedScene" uid="uid://ujtenlbccho3" path="res://scenes/wolf.tscn" id="30_3umqw"]
-[ext_resource type="Script" uid="uid://4gr3iucip7le" path="res://scenes/claim_rewards.gd" id="31_p71k4"]
+[ext_resource type="Script" uid="uid://py2xksl41s20" path="res://scenes/claim_rewards.gd" id="31_p71k4"]
+[ext_resource type="Script" uid="uid://dp4jx7sk7caol" path="res://scenes/claim_reward_area.gd" id="32_p71k4"]
+[ext_resource type="Script" uid="uid://byx0yh6siitv1" path="res://scenes/claim.gd" id="34_6i0tl"]
+[ext_resource type="AudioStream" uid="uid://dw73dkqtxkjhw" path="res://sfx/BGS Loops/Forest Night/Forest Night.ogg" id="35_6lx4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
 size = Vector2(46329, 20)
@@ -224,7 +229,46 @@ metadata/_custom_type_script = "uid://gixqlxsoukbl"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4niyd"]
 
+[sub_resource type="GDScript" id="GDScript_gqmnx"]
+script/source = "extends Area2D
+
+@export var monster_scene: PackedScene
+@export var spawn_count: int = 1
+@export var spawn_delay: float = 0.0
+@export var spawn_on_enter: bool = true
+@export var spawn_radius: float = 100.0  # Jarak acak dari pusat spawner
+
+var has_spawned := false
+
+func _ready():
+	connect(\"body_entered\", Callable(self, \"_on_body_entered\"))
+
+func _on_body_entered(body):
+	if not has_spawned and spawn_on_enter and body.name == \"Player2\":
+		call_deferred(\"spawn_monsters\")
+		has_spawned = true
+
+func spawn_monsters():
+	for i in spawn_count:
+		if spawn_delay > 0:
+			await get_tree().create_timer(spawn_delay).timeout
+		spawn_monster()
+
+func spawn_monster():
+	if monster_scene:
+		var monster_instance = monster_scene.instantiate()
+
+		# Posisi acak hanya horizontal (sumbu X)
+		var offset_x = randf_range(-spawn_radius, spawn_radius)
+		var offset = Vector2(offset_x, 0)  # hanya di sumbu X
+
+		monster_instance.position = global_position + offset
+		get_tree().current_scene.add_child(monster_instance)
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1oofn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6i0tl"]
 
 [node name="level1" type="Node2D" node_paths=PackedStringArray("player_node", "ui_manager")]
 script = ExtResource("1_i8kv5")
@@ -235,7 +279,6 @@ ui_manager = NodePath("CanvasLayer/DeadMenu")
 position = Vector2(144, 385)
 
 [node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
-position = Vector2(607, 302)
 
 [node name="FixedPlatform" type="StaticBody2D" parent="."]
 metadata/_edit_lock_ = true
@@ -580,6 +623,7 @@ script = ExtResource("12_f31uk")
 target_scene_path = "res://scenes/mainmenu.tscn"
 
 [node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -736,12 +780,13 @@ position = Vector2(488, 417)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_3w4mx")
 
-[node name="HealthUp" type="Control" parent="CanvasLayer/UpgradeMenu" node_paths=PackedStringArray("coin_display_label")]
+[node name="HealthUp" type="Control" parent="CanvasLayer/UpgradeMenu" node_paths=PackedStringArray("coin_display_label", "coin_display_label2")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("27_7dkav")
 coin_display_label = NodePath("CoinDisplayLabel")
+coin_display_label2 = NodePath("../../CoinDisplayLabel2")
 player_stats = ExtResource("22_ai3nx")
 
 [node name="CoinDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/HealthUp"]
@@ -1007,7 +1052,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
 text = "Close"
 
-[node name="ApplyButton2" type="Button" parent="CanvasLayer/UpgradeMenu"]
+[node name="ClaimRewards" type="Button" parent="CanvasLayer/UpgradeMenu"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -1036,7 +1081,55 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
-text = "Close"
+text = "Claim"
+script = ExtResource("31_p71k4")
+
+[node name="Coin2" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(65, 123)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("12_mvsps")
+
+[node name="CoinDisplayLabel2" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -538.0
+offset_top = -249.0
+offset_right = -265.0
+offset_bottom = -218.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 35
+text = "9999999"
+vertical_alignment = 1
+
+[node name="ComboTextLabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -489.0
+offset_top = -212.0
+offset_right = -24.0
+offset_bottom = -98.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0.729412, 0.568627, 0.345098, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+text = "99999999999"
+horizontal_alignment = 2
+script = ExtResource("25_gqmnx")
 
 [node name="damagetest" type="Area2D" parent="."]
 position = Vector2(330, 369)
@@ -1067,26 +1160,72 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "heal test"
 
-[node name="itemdrop" type="Area2D" parent="."]
+[node name="SpawnerMinireaper" type="Area2D" parent="."]
 position = Vector2(302, 191)
-script = ExtResource("31_p71k4")
-player_node = NodePath("../Player2")
+script = SubResource("GDScript_gqmnx")
+monster_scene = ExtResource("30_1oofn")
+spawn_count = 20
+spawn_radius = 250.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="itemdrop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerMinireaper"]
 shape = SubResource("CircleShape2D_1oofn")
 
-[node name="Label" type="Label" parent="itemdrop"]
+[node name="Label" type="Label" parent="SpawnerMinireaper"]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "itemdrop"
+text = "spawnerMiniReaper"
+
+[node name="SpawnerWolf" type="Area2D" parent="."]
+position = Vector2(649, 392)
+script = SubResource("GDScript_gqmnx")
+monster_scene = ExtResource("30_3umqw")
+spawn_count = 20
+spawn_radius = 250.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerWolf"]
+shape = SubResource("CircleShape2D_1oofn")
+
+[node name="Label" type="Label" parent="SpawnerWolf"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "spawnerWolf"
 
 [node name="Wolf" parent="." instance=ExtResource("30_3umqw")]
-process_mode = 4
 position = Vector2(724, 359)
 
 [node name="SkeletonBoss" parent="." instance=ExtResource("2_4niyd")]
-process_mode = 4
 position = Vector2(820, 146)
+
+[node name="minireaper" parent="." instance=ExtResource("30_1oofn")]
+
+[node name="ClaimRewardArea" type="Area2D" parent="."]
+position = Vector2(40, 409)
+script = ExtResource("32_p71k4")
+reward_target = NodePath("CanvasLayer/Claim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClaimRewardArea"]
+shape = SubResource("CircleShape2D_6i0tl")
+
+[node name="Label" type="Label" parent="ClaimRewardArea"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "claimrewards"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ClaimRewardArea"]
+
+[node name="Claim" type="Control" parent="ClaimRewardArea/CanvasLayer" node_paths=PackedStringArray("coin_display_label", "coin_display_label2")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("34_6i0tl")
+coin_display_label = NodePath("../../../CanvasLayer/UpgradeMenu/HealthUp/CoinDisplayLabel")
+coin_display_label2 = NodePath("../../../CanvasLayer/CoinDisplayLabel2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_6lx4c")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/UpgradeMenu" method="upgrade_select"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
@@ -1101,5 +1240,4 @@ position = Vector2(820, 146)
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseCritDamageMultiplierButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseCritDamageMultiplierButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/ApplyButton" to="CanvasLayer/UpgradeMenu" method="upgrade_menu"]
-[connection signal="pressed" from="CanvasLayer/UpgradeMenu/ApplyButton2" to="CanvasLayer/UpgradeMenu/HealthUp" method="_claim_rewards"]
-[connection signal="area_entered" from="itemdrop" to="CanvasLayer/UpgradeMenu/HealthUp" method="show_rewards_popup"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/ClaimRewards" to="CanvasLayer/UpgradeMenu/HealthUp" method="_claim_rewards"]

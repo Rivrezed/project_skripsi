@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c4n71uw80qfoj"
+path="res://.godot/imported/Wood Chain Land.ogg-bde423529f38d4d36a066e8798964793.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/OGG Files/SFX/Footsteps/Wood/Wood Chain Land.ogg"
+dest_files=["res://.godot/imported/Wood Chain Land.ogg-bde423529f38d4d36a066e8798964793.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -12,6 +12,10 @@ extends CharacterState
 @export var dash_animation : StringName = "dash"
 @export var animated_sprite: AnimatedSprite2D # Pastikan ini juga ada di AirState
 
+# --- Variabel Audio Baru ---
+@export var dash_sound_player: AudioStreamPlayer2D # Reference to your AudioStreamPlayer2D node
+@export var dash_sound_effect: AudioStream # The actual sound file (e.g., a .wav or .ogg)
+
 var is_dashing = false
 var dash_start_position = 0.0
 var dash_direction = 0.0
@@ -60,10 +64,16 @@ func start_dash(direction: float):
 	dash_direction = direction
 	dash_timer = dash_cooldown
 	play_dash_animation()
+	play_dash_sound() # Panggil fungsi play_dash_sound di sini
 
 func play_dash_animation():
 	if animated_sprite and dash_animation != &"" and animated_sprite.animation != dash_animation:
 		animated_sprite.play(dash_animation)
+
+func play_dash_sound():
+	if dash_sound_player and dash_sound_effect:
+		dash_sound_player.stream = dash_sound_effect
+		dash_sound_player.play()
 
 func perform_dash(_delta: float):
 	var current_distance = abs(character.position.x - dash_start_position)

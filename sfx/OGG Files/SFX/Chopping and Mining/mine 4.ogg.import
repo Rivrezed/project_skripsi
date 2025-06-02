@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wpkits2xoln1"
+path="res://.godot/imported/mine 4.ogg-75d44ba6b799d84138334872b318685c.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/OGG Files/SFX/Chopping and Mining/mine 4.ogg"
+dest_files=["res://.godot/imported/mine 4.ogg-75d44ba6b799d84138334872b318685c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

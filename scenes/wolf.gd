@@ -14,20 +14,21 @@ signal player_died_event
 
 func _on_health_health_depleted() -> void:
 	player_died_event.emit()
-	
-	# Mulai animasi kematian
-	animation_player.play("death")
-
-	# Menunggu animasi selesai, lalu menjalankan _on_death_animation_finished sekali
-	animation_player.animation_finished.connect(_on_death_animation_finished, CONNECT_ONE_SHOT)
-
-	# Matikan physics dan logic proses
-	set_physics_process(false)
-	set_process(false)
-
-func _on_death_animation_finished(_anim_name: String) -> void:
-	if _anim_name == "death":
-		queue_free()  # Hapus node ini sepenuhnya dari scene
+	queue_free()
+	#
+	## Mulai animasi kematian
+	#animation_player.play("death")
+#
+	## Menunggu animasi selesai, lalu menjalankan _on_death_animation_finished sekali
+	#animation_player.animation_finished.connect(_on_death_animation_finished, CONNECT_ONE_SHOT)
+#
+	## Matikan physics dan logic proses
+	#set_physics_process(false)
+	#set_process(false)
+#
+#func _on_death_animation_finished(_anim_name: String) -> void:
+	#if _anim_name == "death":
+		#queue_free()  # Hapus node ini sepenuhnya dari scene
 
 		
 func _ready():

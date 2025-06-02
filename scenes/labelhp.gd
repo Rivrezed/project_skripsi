@@ -1,7 +1,7 @@
 extends Label
 
 @export var character_stats: CharacterStats # Referensi ke CharacterStats Resource Anda
-@onready var player_health_node: Health = $"../../../Health" # Sesuaikan path ini ke node Health pemain Anda
+@onready var player_health_node: Node = $"../../../PlayerHealth" # Sesuaikan path ini ke node Health pemain Anda
 
 func _ready() -> void:
 	# Pastikan referensi tidak null

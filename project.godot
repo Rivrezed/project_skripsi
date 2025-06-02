@@ -18,6 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Damagenumber="*res://script/damagenumber.gd"
+ComboTextLabel="*res://scenes/combo_attack.gd"
+Startupcoin="*res://script/startupcoin.gd"
+SoundManager="*res://SoundManager.tscn"
 
 [display]
 

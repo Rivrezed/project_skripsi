@@ -13,12 +13,12 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D):
-	var health_node: Health = _get_health_node_from_body(body)
+	var health_node: Player_Health = _get_health_node_from_body(body)
 
 	if health_node != null:
 		_apply_heal(health_node)
 
-func _apply_heal(health_node: Health):
+func _apply_heal(health_node: Player_Health):
 	if not _can_heal:
 		return
 
@@ -44,19 +44,19 @@ func _start_cooldown():
 	var cooldown_timer = get_tree().create_timer(heal_cooldown)
 	cooldown_timer.timeout.connect(func(): _can_heal = true)
 
-func _get_health_node_from_body(body: Node) -> Health:
+func _get_health_node_from_body(body: Node) -> Player_Health:
 	if body == null:
 		return null
 
 	if body is Health:
-		return body as Health
+		return body as Player_Health
 
 	for child in body.get_children():
-		if child is Health:
-			return child as Health
+		if child is Player_Health:
+			return child as Player_Health
 
 	for child in body.get_children():
-		var found_health: Health = _get_health_node_from_body(child)
+		var found_health: Player_Health = _get_health_node_from_body(child)
 		if found_health != null:
 			return found_health
 

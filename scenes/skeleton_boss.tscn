@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://m46def77t122"]
+[gd_scene load_steps=88 format=3 uid="uid://m46def77t122"]
 
 [ext_resource type="Texture2D" uid="uid://eq1t02ym53yf" path="res://assets/png/attacking.png" id="1_qt3rb"]
 [ext_resource type="Script" uid="uid://bwkcxtsohucts" path="res://scenes/skeleton_boss.gd" id="1_sf4ck"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://o77k7yrtcmjs" path="res://assets/png/idle.png" id="3_d13q6"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="3_fkkif"]
 [ext_resource type="Texture2D" uid="uid://3eqyasyolyo2" path="res://assets/png/skill1.png" id="4_sjb5i"]
+[ext_resource type="AudioStream" uid="uid://xknjhpa1dgo3" path="res://sfx/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.ogg" id="4_wpsq5"]
 [ext_resource type="Texture2D" uid="uid://5i7evheiqw4k" path="res://assets/png/summon.png" id="5_sf4ck"]
 [ext_resource type="Script" uid="uid://b3udmhycbvcu4" path="res://scenes/finite_state_machine.gd" id="6_s8qi0"]
 [ext_resource type="Resource" uid="uid://8ia4vwj7014u" path="res://skeleton_boss_stats.tres" id="6_x61nq"]
@@ -625,7 +626,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -671,8 +672,8 @@ tracks/2/keys = {
 "times": PackedFloat32Array(2.375),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [""],
-"method": &"_on_death_animation_finished"
+"args": [],
+"method": &"queue_free"
 }]
 }
 
@@ -818,6 +819,7 @@ stats = ExtResource("6_x61nq")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_4yvo6")
 character_stats = ExtResource("6_x61nq")
+damage_sound_effect = ExtResource("4_wpsq5")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -946,6 +948,8 @@ script = ExtResource("14_tkpea")
 offset_top = -85.0
 offset_bottom = -85.0
 health_component = NodePath("../Health")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

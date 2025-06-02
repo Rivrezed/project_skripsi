@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dxiljthkc6u08"
+path="res://.godot/imported/Beach Storm.ogg-013bd12a2cdca88eba29c6f7249846ae.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/BGS Loops/Beach/Beach Storm.ogg"
+dest_files=["res://.godot/imported/Beach Storm.ogg-013bd12a2cdca88eba29c6f7249846ae.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,12 +1,14 @@
-[gd_scene load_steps=172 format=3 uid="uid://dmfh4praqdryj"]
+[gd_scene load_steps=180 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://up27f41dn2n5" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://n2fl2atinu2j" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
+[ext_resource type="Script" uid="uid://6nh3p1sb6mch" path="res://scenes/player_health.gd" id="4_grty4"]
 [ext_resource type="Script" uid="uid://m72no1svtvu" path="res://script/hurtbox.gd" id="4_up6wr"]
 [ext_resource type="Texture2D" uid="uid://cs8u7p8x8m44s" path="res://assets/Characters/MC/attack/atack 1 (jubah belom)/attack 1 (1).png" id="5_5fah0"]
 [ext_resource type="Script" uid="uid://bi2k6a5xt01ks" path="res://script/state_label.gd" id="5_hb4is"]
+[ext_resource type="AudioStream" uid="uid://c4xhfu2bdmxdt" path="res://sfx/OGG Files/SFX/Torch/Torch Impact 2.ogg" id="5_j4whl"]
 [ext_resource type="Texture2D" uid="uid://q03mv5g5f23e" path="res://assets/Characters/MC/attack/atack 1 (jubah belom)/attack 1 (2).png" id="6_17d6m"]
 [ext_resource type="Script" uid="uid://bbpng5f5pahst" path="res://script/ground_move_state.gd" id="7_24gv0"]
 [ext_resource type="Texture2D" uid="uid://i45umd3fyohy" path="res://assets/Characters/MC/attack/atack 1 (jubah belom)/attack 1 (3).png" id="7_xtdgf"]
@@ -94,13 +96,19 @@
 [ext_resource type="Texture2D" uid="uid://cnnm7rv2q7xe2" path="res://assets/Pixel Art Animations - Slashes/newslash/2.png" id="81_n8dma"]
 [ext_resource type="Texture2D" uid="uid://gqt4rcuwlk5j" path="res://assets/Pixel Art Animations - Slashes/newslash/3.png" id="82_up6wr"]
 [ext_resource type="Texture2D" uid="uid://dxigve36ei2k6" path="res://assets/Pixel Art Animations - Slashes/newslash/4.png" id="83_8etlw"]
-[ext_resource type="Script" uid="uid://cgeyfxu6i0b7u" path="res://script/health.gd" id="92_n8dma"]
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="93_up6wr"]
+[ext_resource type="AudioStream" uid="uid://cm3lsmacmpak5" path="res://sfx/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.ogg" id="97_0c0tg"]
 [ext_resource type="Script" uid="uid://chxtxvqt0dugq" path="res://scenes/labelhp.gd" id="98_4wblf"]
 [ext_resource type="Script" uid="uid://b3e5mubpvd52t" path="res://scenes/playerhp.gd" id="98_grty4"]
 [ext_resource type="Script" uid="uid://bl4cyyuf8pajt" path="res://script/damagenumber.gd" id="98_pfuoj"]
+[ext_resource type="AudioStream" uid="uid://c8yyyihotc08k" path="res://sfx/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.ogg" id="98_rx0wx"]
 [ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="99_4wblf"]
 [ext_resource type="Texture2D" uid="uid://vivkgduiv31m" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HeartIcons_32x32.png" id="99_mpxq4"]
+[ext_resource type="AudioStream" uid="uid://dn6dcpnnqyg4" path="res://sfx/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="99_rtit8"]
+[ext_resource type="AudioStream" uid="uid://cfblroqospi56" path="res://sfx/OGG Files/SFX/Torch/Light Torch 1.ogg" id="100_rtit8"]
+[ext_resource type="AudioStream" uid="uid://dlakkedqsa6c4" path="res://sfx/OGG Files/SFX/Footsteps/Water/Water Jump.ogg" id="100_rx0wx"]
+[ext_resource type="AudioStream" uid="uid://diiv41v070fra" path="res://sfx/OGG Files/SFX/Footsteps/Dirt/Dirt Run 4.ogg" id="102_dr5py"]
+[ext_resource type="AudioStream" uid="uid://c2t2kwogx4sfu" path="res://sfx/OGG Files/SFX/Footsteps/Dirt/Dirt Run 1.ogg" id="102_ljr4h"]
 
 [sub_resource type="Resource" id="Resource_pfuoj"]
 script = ExtResource("9_24gv0")
@@ -1131,7 +1139,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_acr3s"]
 resource_name = "air_attack"
-length = 0.7
+length = 0.8
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1217,6 +1225,33 @@ tracks/6/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 5, 6, 7, 1, 2, 4, 5, 6, 7, 8, 0]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SFX")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.130896,
+"stream": ExtResource("97_0c0tg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("98_rx0wx")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("97_0c0tg")
+}, {
+"end_offset": 0.100912,
+"start_offset": 0.0,
+"stream": ExtResource("99_rtit8")
+}],
+"times": PackedFloat32Array(0.000658017, 0.1, 0.15, 0.4)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2jkey"]
 resource_name = "attack_1"
@@ -1318,6 +1353,21 @@ tracks/7/keys = {
 "update": 1,
 "values": [Vector2(15.35, -6.975), Vector2(0, 0)]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SFX")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.159366,
+"stream": ExtResource("97_0c0tg")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_x5gwk"]
 resource_name = "attack_2"
@@ -1419,6 +1469,21 @@ tracks/7/keys = {
 "update": 1,
 "values": [Vector2(19.59, -20.525), Vector2(0, 0)]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SFX")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("98_rx0wx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_8j5c0"]
 resource_name = "attack_3"
@@ -1520,35 +1585,21 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_skjg8"]
-resource_name = "dash"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"dash"]
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SFX")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("99_rtit8")
+}],
+"times": PackedFloat32Array(0.05)
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [4, 4, 4, 4, 4]
-}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_o2kp8"]
 resource_name = "falling"
@@ -1651,14 +1702,25 @@ tracks/2/keys = {
 "method": &"lock_animation"
 }, {
 "args": [],
-"method": &"lock_animation"
+"method": &"unlock_animation"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_0ae3a"]
 resource_name = "rising"
 length = 0.6
-step = 0.1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1683,12 +1745,27 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("100_rx0wx")
+}],
+"times": PackedFloat32Array(0.01)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_xjogy"]
 resource_name = "run_s"
-length = 0.6
+length = 0.7
 loop_mode = 1
-step = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1713,6 +1790,68 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.00702195,
+"stream": ExtResource("102_ljr4h")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("102_dr5py")
+}],
+"times": PackedFloat32Array(0.00702195, 0.3)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_skjg8"]
+resource_name = "dash_s"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 4, 4, 4, 4]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.659775,
+"start_offset": 0.0,
+"stream": ExtResource("100_rtit8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ymin"]
 _data = {
@@ -1721,7 +1860,7 @@ _data = {
 &"attack_1": SubResource("Animation_2jkey"),
 &"attack_2": SubResource("Animation_x5gwk"),
 &"attack_3": SubResource("Animation_8j5c0"),
-&"dash": SubResource("Animation_skjg8"),
+&"dash_s": SubResource("Animation_skjg8"),
 &"falling": SubResource("Animation_o2kp8"),
 &"idle_s": SubResource("Animation_cl1ms"),
 &"jump": SubResource("Animation_2vqqj"),
@@ -1761,16 +1900,18 @@ stats = ExtResource("3_acr3s")
 sprite = NodePath("Facing/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("92_n8dma")
+[node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("damage_sound_player")]
+script = ExtResource("4_grty4")
 character_stats = ExtResource("3_acr3s")
-metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
+damage_sound_player = NodePath("../SFX")
+damage_sound_effect = ExtResource("5_j4whl")
+damage_sfx_cooldown = 0.1
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_up6wr")
-health = NodePath("../Health")
+health = NodePath("../PlayerHealth")
 metadata/_custom_type_script = "uid://m72no1svtvu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -1814,23 +1955,27 @@ states = {
 "ground": NodePath("GroundMoveState")
 }
 
-[node name="GroundMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="GroundMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sound_player")]
 script = ExtResource("7_24gv0")
 idle_anim = &"idle_s"
 move_anim = &"run_s"
 dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
+dash_sound_player = NodePath("../../SFX")
+dash_sound_effect = ExtResource("100_rtit8")
 animation_name = &"idle_s"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
-[node name="AirMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="AirMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sound_player")]
 script = ExtResource("8_dauvq")
 dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
+dash_sound_player = NodePath("../../SFX")
+dash_sound_effect = ExtResource("100_rtit8")
 animation_name = &"jump"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
-[node name="GrondAttack" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="GrondAttack" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sound_player")]
 script = ExtResource("11_ltp6r")
 attack_2 = &"attack_2"
 attack_3 = &"attack_3"
@@ -1839,13 +1984,14 @@ can_jump = false
 movement_speed_var = &"attacking_run_speed"
 dash_max_distance = 150.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
+dash_sound_player = NodePath("../../SFX")
+dash_sound_effect = ExtResource("100_rtit8")
 animation_name = &"attack_1"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
-[node name="AirAttackState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="AirAttackState" type="LimboState" parent="LimboHSM"]
 script = ExtResource("52_2y2ai")
 dash_max_distance = 150.0
-animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
 animation_name = &"air_attack"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
@@ -1886,7 +2032,7 @@ offset_top = 37.0
 offset_right = 183.0
 offset_bottom = 64.0
 script = ExtResource("98_grty4")
-health_component = NodePath("../../Health")
+health_component = NodePath("../../PlayerHealth")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HpBar"]
 texture_filter = 1
@@ -1906,11 +2052,13 @@ scale = Vector2(1.77938, 1.77938)
 texture = ExtResource("99_mpxq4")
 
 [node name="Label" type="Label" parent="CanvasLayer/HpBar"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 52.0
 offset_top = 3.0
 offset_right = 325.0
-offset_bottom = 34.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
 theme_override_fonts/font = ExtResource("99_4wblf")
 theme_override_font_sizes/font_size = 19
 text = "999999999999"
@@ -1922,4 +2070,9 @@ character_stats = ExtResource("3_acr3s")
 [node name="damagenumber" type="CanvasLayer" parent="CanvasLayer"]
 script = ExtResource("98_pfuoj")
 
-[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("100_rtit8")
+
+[connection signal="health_depleted" from="PlayerHealth" to="." method="_on_health_health_depleted"]

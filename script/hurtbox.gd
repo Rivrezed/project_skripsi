@@ -3,7 +3,7 @@ extends Area2D
 
 signal received_damage(damage: int)
 
-@export var health: Health
+@export var health: Node
 @export var damage_number_offset: Vector2 = Vector2(0, -30) # Contoh: 30 piksel di atas
 @export var camera_shake_strength: float = 5.0 # Kekuatan getaran kamera
 @export var camera_shake_duration: float = 0.15 # Durasi getaran kamera

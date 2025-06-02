@@ -4,19 +4,28 @@ extends Node
 signal max_health_changed(diff: int)
 signal health_changed(diff: int)
 signal health_depleted
+signal damage_taken(amount: int)
 
 @export var character_stats: CharacterStats
 
 @export var immortality: bool = false : set = set_immortality, get = get_immortality
 
+# --- Re-add damage_sound_effect here! ---
+@export var damage_sound_effect: AudioStream # The actual sound file (e.g., a .wav or .ogg)
+@export var damage_sfx_cooldown: float = 0.2 # Durasi cooldown untuk SFX damage (dalam detik)
+
 var immortality_timer: Timer = null
+var _can_play_damage_sfx: bool = true # Flag untuk mengontrol cooldown SFX
 
 var _current_max_health: int = 1
 var health: int = 1 : set = set_health, get = get_health
 
+# --- Tambahkan referensi ke SoundManager global ---
+@onready var sound_manager = get_node("/root/SoundManager") # Pastikan nama autoload sesuai
+
 func _ready():
 	if character_stats == null:
-		print("Warning: character_stats not assigned to Health node. Using default max_health.")
+		print("Peringatan: character_stats tidak ditetapkan ke node Health. Menggunakan max_health default.")
 		set_max_health(3)
 	else:
 		update_from_resource()
@@ -64,6 +73,7 @@ func set_health(value: int):
 	if new_health_value != health:
 		var difference = new_health_value - health
 		health = new_health_value
+		# Emit sinyal health_changed dengan perbedaan
 		health_changed.emit(difference)
 
 		if health == 0:
@@ -76,7 +86,32 @@ func apply_damage(amount: int):
 	if immortality and amount > 0:
 		return
 
-	set_health(health - amount)
+	var actual_damage = clampi(amount, 0, health) # Avoid over-damage
+	
+	if actual_damage > 0: # Only apply damage if there's actual damage to take
+		set_health(health - actual_damage)
+		play_damage_sound() # Play sound when damage is successfully applied
+		damage_taken.emit(actual_damage) # Emit the damage_taken signal
+
+		# Panggil ComboTextLabel jika ada
+		var combo_label = get_tree().get_root().get_node("level1/CanvasLayer/ComboTextLabel")
+		if combo_label:
+			combo_label.add_combo_damage(actual_damage)
+
+func play_damage_sound():
+	# Memutar SFX melalui SoundManager global jika cooldown memungkinkan
+	if _can_play_damage_sfx:
+		# Panggil fungsi di SoundManager untuk memutar suara
+		if sound_manager and damage_sound_effect: # CHECK FOR damage_sound_effect here
+			sound_manager.play_sfx(damage_sound_effect) # Pass the specific sound effect
+		
+		# Set flag ke false untuk memulai cooldown
+		_can_play_damage_sfx = false
+		
+		# Buat timer untuk mereset flag setelah durasi cooldown
+		get_tree().create_timer(damage_sfx_cooldown).timeout.connect(func():
+			_can_play_damage_sfx = true
+		)
 
 func update_from_resource():
 	if character_stats != null:

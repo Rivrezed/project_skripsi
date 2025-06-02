@@ -1,7 +1,7 @@
 # HealthBarUI.gd
 extends Control
 @onready var progress_bar: ProgressBar = $ProgressBar
-@export var health_component: Health # Menggunakan export var untuk komponen Health
+@export var health_component: Node # Menggunakan export var untuk komponen Health
 
 func _ready():
 	# Pastikan kita memiliki ProgressBar dan HealthComponent yang terhubung
