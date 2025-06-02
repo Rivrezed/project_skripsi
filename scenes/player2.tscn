@@ -1,7 +1,7 @@
 [gd_scene load_steps=180 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://n2fl2atinu2j" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://ch3c11k50kvao" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
 [ext_resource type="Script" uid="uid://6nh3p1sb6mch" path="res://scenes/player_health.gd" id="4_grty4"]
@@ -1601,6 +1601,49 @@ tracks/8/keys = {
 }
 tracks/8/use_blend = true
 
+[sub_resource type="Animation" id="Animation_skjg8"]
+resource_name = "dash_s"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 4, 4, 4, 4]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.659775,
+"start_offset": 0.0,
+"stream": ExtResource("100_rtit8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
 [sub_resource type="Animation" id="Animation_o2kp8"]
 resource_name = "falling"
 length = 0.2
@@ -1807,49 +1850,6 @@ tracks/2/keys = {
 "stream": ExtResource("102_dr5py")
 }],
 "times": PackedFloat32Array(0.00702195, 0.3)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_skjg8"]
-resource_name = "dash_s"
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"dash"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [4, 4, 4, 4, 4]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SFX")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.659775,
-"start_offset": 0.0,
-"stream": ExtResource("100_rtit8")
-}],
-"times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
 

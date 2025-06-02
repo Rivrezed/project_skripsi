@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
 [ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
-[ext_resource type="Resource" uid="uid://n2fl2atinu2j" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://b83j4er8361qd" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
 [ext_resource type="Script" uid="uid://2mgsuyuois3g" path="res://scenes/combo_attack.gd" id="25_gqmnx"]
@@ -35,54 +35,6 @@
 [ext_resource type="Script" uid="uid://dp4jx7sk7caol" path="res://scenes/claim_reward_area.gd" id="32_p71k4"]
 [ext_resource type="Script" uid="uid://byx0yh6siitv1" path="res://scenes/claim.gd" id="34_6i0tl"]
 [ext_resource type="AudioStream" uid="uid://dw73dkqtxkjhw" path="res://sfx/BGS Loops/Forest Night/Forest Night.ogg" id="35_6lx4c"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
-size = Vector2(46329, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
-size = Vector2(20, 461)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ku1j"]
-size = Vector2(356, 40)
-
-[sub_resource type="Animation" id="Animation_f31uk"]
-resource_name = "LR"
-length = 4.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(200, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_gnai3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8kv5"]
-_data = {
-&"LR": SubResource("Animation_f31uk"),
-&"RESET": SubResource("Animation_gnai3")
-}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ku1j"]
 
@@ -211,6 +163,54 @@ region = Rect2(1, 0, 6, 9)
 atlas = SubResource("CompressedTexture2D_msy1c")
 region = Rect2(7, 0, 6, 9)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
+size = Vector2(46329, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
+size = Vector2(20, 461)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ku1j"]
+size = Vector2(356, 40)
+
+[sub_resource type="Animation" id="Animation_f31uk"]
+resource_name = "LR"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gnai3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8kv5"]
+_data = {
+&"LR": SubResource("Animation_f31uk"),
+&"RESET": SubResource("Animation_gnai3")
+}
+
 [sub_resource type="Resource" id="Resource_msy1c"]
 script = ExtResource("21_u068y")
 run_speed = 300.0
@@ -274,57 +274,6 @@ func spawn_monster():
 script = ExtResource("1_i8kv5")
 player_node = NodePath("Player2")
 ui_manager = NodePath("CanvasLayer/DeadMenu")
-
-[node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
-position = Vector2(144, 385)
-
-[node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
-
-[node name="FixedPlatform" type="StaticBody2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="FixedPlatform" type="CollisionShape2D" parent="FixedPlatform"]
-position = Vector2(23164.5, 451)
-shape = SubResource("RectangleShape2D_m7ahb")
-
-[node name="FixedPlatformColl" type="CollisionShape2D" parent="FixedPlatform"]
-position = Vector2(-10, 230.5)
-shape = SubResource("RectangleShape2D_conm7")
-
-[node name="AirGround" type="StaticBody2D" parent="."]
-position = Vector2(302, 270)
-scale = Vector2(1.5, 1.5)
-
-[node name="AirPlatform" type="Sprite2D" parent="AirGround"]
-texture_filter = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_d3jkd")
-
-[node name="AirPlatformColl" type="CollisionShape2D" parent="AirGround"]
-position = Vector2(0, 8)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_2ku1j")
-
-[node name="MoveGround" type="Node2D" parent="."]
-position = Vector2(553, 111)
-scale = Vector2(1.5, 1.5)
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="MoveGround"]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("10_u3awl")
-
-[node name="Sprite2D" type="Sprite2D" parent="MoveGround/AnimatableBody2D"]
-texture_filter = 1
-texture = ExtResource("9_d3jkd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveGround/AnimatableBody2D"]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_2ku1j")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MoveGround/AnimatableBody2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_i8kv5")
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1131,6 +1080,57 @@ text = "99999999999"
 horizontal_alignment = 2
 script = ExtResource("25_gqmnx")
 
+[node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
+position = Vector2(144, 385)
+
+[node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
+
+[node name="FixedPlatform" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="FixedPlatform" type="CollisionShape2D" parent="FixedPlatform"]
+position = Vector2(23164.5, 451)
+shape = SubResource("RectangleShape2D_m7ahb")
+
+[node name="FixedPlatformColl" type="CollisionShape2D" parent="FixedPlatform"]
+position = Vector2(-10, 230.5)
+shape = SubResource("RectangleShape2D_conm7")
+
+[node name="AirGround" type="StaticBody2D" parent="."]
+position = Vector2(302, 270)
+scale = Vector2(1.5, 1.5)
+
+[node name="AirPlatform" type="Sprite2D" parent="AirGround"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_d3jkd")
+
+[node name="AirPlatformColl" type="CollisionShape2D" parent="AirGround"]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2ku1j")
+
+[node name="MoveGround" type="Node2D" parent="."]
+position = Vector2(553, 111)
+scale = Vector2(1.5, 1.5)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="MoveGround"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("10_u3awl")
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveGround/AnimatableBody2D"]
+texture_filter = 1
+texture = ExtResource("9_d3jkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveGround/AnimatableBody2D"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_2ku1j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MoveGround/AnimatableBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_i8kv5")
+}
+
 [node name="damagetest" type="Area2D" parent="."]
 position = Vector2(330, 369)
 collision_layer = 2
@@ -1232,6 +1232,7 @@ parameters/looping = true
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Restart" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/End" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseHealthButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp/HealthDisplayLabel" method="play_pop_up_animation"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseHealthButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/AttackUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseBaseDamageButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/AttackUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseBaseDamageButton_pressed"]
