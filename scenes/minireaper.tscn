@@ -514,10 +514,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.375, 1.5, 1.625, 1.75, 1.875, 2, 2.125),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -526,7 +526,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -540,10 +540,10 @@ tracks/3/path = NodePath(".:disable_mode")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.9, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2, 0]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_qyih2"]
@@ -709,7 +709,7 @@ _data = {
 radius = 0.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jfte"]
-size = Vector2(200, 200)
+size = Vector2(1000, 1000)
 
 [node name="minireaper" type="CharacterBody2D"]
 texture_filter = 1

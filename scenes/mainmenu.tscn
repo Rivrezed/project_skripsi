@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d1xytqr44a50q"]
+[gd_scene load_steps=59 format=3 uid="uid://d1xytqr44a50q"]
 
 [ext_resource type="Texture2D" uid="uid://vh742gftk0mi" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/sky_fc.png" id="1_h73c4"]
 [ext_resource type="Texture2D" uid="uid://0b0wqohf3r1i" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/far_mountains_fc.png" id="2_uui5l"]
@@ -13,7 +13,12 @@
 [ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="9_6pj40"]
 [ext_resource type="Texture2D" uid="uid://dfp1ggawiq706" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/Button_52x14.png" id="11_kait0"]
 [ext_resource type="Script" uid="uid://v6txgac4eltg" path="res://script/camera_mouse.gd" id="12_4hago"]
+[ext_resource type="Script" uid="uid://d2fbrc2fw66q" path="res://scenes/options_open.gd" id="12_fsdjo"]
 [ext_resource type="Script" uid="uid://bxfwnkbxetpb6" path="res://scenes/exitbutton.gd" id="12_kait0"]
+[ext_resource type="Texture2D" uid="uid://toytikah4cu0" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/RectangleBox_96x96.png" id="13_nkpmc"]
+[ext_resource type="Script" uid="uid://drmei7cvndk73" path="res://scenes/settings.gd" id="14_fsdjo"]
+[ext_resource type="Script" uid="uid://d34r2p7f4e80x" path="res://scenes/back_options.gd" id="16_prb5i"]
+[ext_resource type="AudioStream" uid="uid://bo65fko65bnvj" path="res://sfx/OGG Files/SFX/Waterfalls Rivers and Streams/River Stream Loop.ogg" id="19_xwyuh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kait0"]
 
@@ -71,6 +76,55 @@ modulate_color = Color(0.9, 0.9, 0.9, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fsdjo"]
 texture = ExtResource("11_kait0")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18cd8"]
+bg_color = Color(0.819608, 0.694118, 0.529412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5e1i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f107f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqs8n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7odu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gr43c"]
+bg_color = Color(0.729412, 0.568627, 0.345098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cquq5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6huh"]
+bg_color = Color(0.819608, 0.694118, 0.529412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnwml"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hn6ym"]
+bg_color = Color(0.729412, 0.568627, 0.345098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bj6dx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwyuh"]
+bg_color = Color(0.729412, 0.568627, 0.345098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="Animation" id="Animation_kait0"]
 length = 0.001
 tracks/0/type = "value"
@@ -96,6 +150,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParallaxBackground/Menu/Options:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1658, 360)]
 }
 
 [sub_resource type="Animation" id="Animation_gjjcl"]
@@ -125,10 +203,69 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(4, 4)]
 }
 
+[sub_resource type="Animation" id="Animation_6pj40"]
+resource_name = "options_open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 745)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackground/Menu/Options:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 997), Vector2(640, 360)]
+}
+
+[sub_resource type="Animation" id="Animation_xwyuh"]
+resource_name = "options_back"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-890, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackground/Menu/Options:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 360), Vector2(1658, 360)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6pj40"]
 _data = {
 &"RESET": SubResource("Animation_kait0"),
-&"camera_start": SubResource("Animation_gjjcl")
+&"camera_start": SubResource("Animation_gjjcl"),
+&"options_back": SubResource("Animation_xwyuh"),
+&"options_open": SubResource("Animation_6pj40")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -183,23 +320,25 @@ texture = ExtResource("5_kait0")
 [node name="Menu" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(-0.1, -0.1)
 
-[node name="Control" type="Node2D" parent="ParallaxBackground/Menu"]
+[node name="MainMenu" type="Node2D" parent="ParallaxBackground/Menu"]
 script = ExtResource("8_4hago")
 max_offset_x = 0.0
 max_offset_y = 0.0
 follow_speed = 0.0
 
-[node name="Project" type="Sprite2D" parent="ParallaxBackground/Menu/Control"]
+[node name="Project" type="Sprite2D" parent="ParallaxBackground/Menu/MainMenu"]
+texture_filter = 1
 position = Vector2(544, 104)
 scale = Vector2(0.586466, 0.586466)
 texture = ExtResource("3_s5g8n")
 
-[node name="Skripsi" type="Sprite2D" parent="ParallaxBackground/Menu/Control"]
+[node name="Skripsi" type="Sprite2D" parent="ParallaxBackground/Menu/MainMenu"]
+texture_filter = 1
 position = Vector2(616, 192)
 scale = Vector2(0.619718, 0.619718)
 texture = ExtResource("4_7yvfd")
 
-[node name="Start" type="Button" parent="ParallaxBackground/Menu/Control"]
+[node name="Start" type="Button" parent="ParallaxBackground/Menu/MainMenu"]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -229,7 +368,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_6pj40")
 text = "Play"
 script = ExtResource("3_7yvfd")
 
-[node name="Settings" type="Button" parent="ParallaxBackground/Menu/Control"]
+[node name="Settings" type="Button" parent="ParallaxBackground/Menu/MainMenu"]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -257,8 +396,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
 theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
 text = "Options"
+script = ExtResource("12_fsdjo")
 
-[node name="Credits" type="Button" parent="ParallaxBackground/Menu/Control"]
+[node name="Credits" type="Button" parent="ParallaxBackground/Menu/MainMenu"]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -287,7 +427,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
 theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
 text = "Credits"
 
-[node name="Exit" type="Button" parent="ParallaxBackground/Menu/Control"]
+[node name="Exit" type="Button" parent="ParallaxBackground/Menu/MainMenu"]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -317,6 +457,143 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
 text = "Exit"
 script = ExtResource("12_kait0")
 
+[node name="Options" type="Node2D" parent="ParallaxBackground/Menu"]
+position = Vector2(1658, 360)
+script = ExtResource("8_4hago")
+max_offset_x = 0.0
+max_offset_y = 0.0
+follow_speed = 0.0
+
+[node name="Project" type="Sprite2D" parent="ParallaxBackground/Menu/Options"]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("13_nkpmc")
+
+[node name="Control" type="Control" parent="ParallaxBackground/Menu/Options"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_fsdjo")
+
+[node name="Label" type="Label" parent="ParallaxBackground/Menu/Options/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -144.0
+offset_right = 173.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 48
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="ParallaxBackground/Menu/Options/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -101.0
+offset_right = 100.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_18cd8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_18cd8")
+min_value = -80.0
+max_value = 0.0
+
+[node name="Label2" type="Label" parent="ParallaxBackground/Menu/Options/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -47.0
+offset_right = 173.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 48
+text = "Display"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="ParallaxBackground/Menu/Options/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 9.0
+offset_right = 78.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a5e1i")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_f107f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jqs8n")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_g7odu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_gr43c")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cquq5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c6huh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fnwml")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hn6ym")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_bj6dx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xwyuh")
+alignment = 1
+
+[node name="Back" type="Button" parent="ParallaxBackground/Menu/Options/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 89.0
+offset_right = 78.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjjcl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gr43c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_18cd8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gj5y3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6643n")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5diu1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_prb5i")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c50wd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
+text = "Back"
+script = ExtResource("16_prb5i")
+
 [node name="CloudsFront" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(-0.4, -0.4)
 
@@ -336,16 +613,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_6pj40")
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_xwyuh")
+autoplay = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -24.0
-offset_top = -17.0
-offset_right = 16.0
-offset_bottom = 23.0
-scale = Vector2(14.8122, 12.0111)
-mouse_filter = 2
-
-[connection signal="pressed" from="ParallaxBackground/Menu/Control/Start" to="ParallaxBackground/Menu/Control/Start" method="_on_pressed_start"]
-[connection signal="pressed" from="ParallaxBackground/Menu/Control/Exit" to="ParallaxBackground/Menu/Control/Exit" method="_on_pressed"]
+[connection signal="pressed" from="ParallaxBackground/Menu/MainMenu/Start" to="ParallaxBackground/Menu/MainMenu/Start" method="_on_pressed_start"]
+[connection signal="pressed" from="ParallaxBackground/Menu/MainMenu/Exit" to="ParallaxBackground/Menu/MainMenu/Exit" method="_on_pressed"]
+[connection signal="value_changed" from="ParallaxBackground/Menu/Options/Control/HSlider" to="ParallaxBackground/Menu/Options/Control" method="_on_h_slider_value_changed"]

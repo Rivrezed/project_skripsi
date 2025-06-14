@@ -12,6 +12,7 @@ signal player_died_event
 
 func _on_health_health_depleted() -> void:
 	player_died_event.emit()
+	animation_player.play("death")
 	queue_free()
 	## Mulai animasi kematian
 	#animation_player.play("death")
@@ -26,9 +27,6 @@ func _on_health_health_depleted() -> void:
 #func _on_death_animation_finished(_anim_name: String) -> void:
 	#if _anim_name == "death":
 		#queue_free()  # Hapus node ini sepenuhnya dari scene
-
-
-
 var direction : Vector2
 
 func _ready():
@@ -47,3 +45,14 @@ func _physics_process(delta):
 		move_and_collide(velocity * delta)
 	else:
 		velocity = Vector2.ZERO
+
+
+
+# Tambahkan ini ke skrip utama enemy Anda (misal: enemy.gd)
+
+# Asumsi node Health adalah child langsung dari enemy dan bernama "Health"
+@onready var health_component = $Health 
+
+# Ini adalah fungsi yang hilang!
+func get_health_component() -> Health:
+	return health_component

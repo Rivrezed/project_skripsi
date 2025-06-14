@@ -40,7 +40,8 @@ func _on_IncreaseHealthButton_pressed():
 	if player_stats == null: return
 	if Startupcoin.coin_amount >= health_upgrade_cost:
 		Startupcoin.coin_amount -= health_upgrade_cost
-		player_stats.max_health_stat += 1
+		# Increase health by 1000
+		player_stats.max_health_stat += 1000
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
 	else:
@@ -48,8 +49,9 @@ func _on_IncreaseHealthButton_pressed():
 
 func _on_DecreaseHealthButton_pressed():
 	if player_stats == null: return
-	if player_stats.max_health_stat > 1:
-		player_stats.max_health_stat -= 1
+	# Ensure health doesn't go below a reasonable minimum, e.g., 1000 or 0 depending on your game logic
+	if player_stats.max_health_stat > 1000: # Assuming 1000 is your minimum meaningful health increment
+		player_stats.max_health_stat -= 1000
 		Startupcoin.coin_amount += health_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
@@ -60,7 +62,8 @@ func _on_IncreaseBaseDamageButton_pressed():
 	if player_stats == null: return
 	if Startupcoin.coin_amount >= base_damage_upgrade_cost:
 		Startupcoin.coin_amount -= base_damage_upgrade_cost
-		player_stats.base_damage_stat += 1
+		# Increase base damage by 100
+		player_stats.base_damage_stat += 100
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
 	else:
@@ -68,8 +71,8 @@ func _on_IncreaseBaseDamageButton_pressed():
 
 func _on_DecreaseBaseDamageButton_pressed():
 	if player_stats == null: return
-	if player_stats.base_damage_stat > 0:
-		player_stats.base_damage_stat -= 1
+	if player_stats.base_damage_stat > 100: # Assuming 100 is your minimum meaningful damage increment
+		player_stats.base_damage_stat -= 100
 		Startupcoin.coin_amount += base_damage_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
@@ -80,7 +83,8 @@ func _on_IncreaseCritRateButton_pressed():
 	if player_stats == null: return
 	if Startupcoin.coin_amount >= crit_rate_upgrade_cost:
 		Startupcoin.coin_amount -= crit_rate_upgrade_cost
-		player_stats.crit_rate_stat = min(player_stats.crit_rate_stat + 0.01, 1.0)
+		# Increase crit rate by 0.01 (1%)
+		player_stats.crit_rate_stat = min(player_stats.crit_rate_stat + 0.01, 1.0) # Changed from 0.05
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
 	else:
@@ -89,7 +93,8 @@ func _on_IncreaseCritRateButton_pressed():
 func _on_DecreaseCritRateButton_pressed():
 	if player_stats == null: return
 	if player_stats.crit_rate_stat > 0.0:
-		player_stats.crit_rate_stat = max(player_stats.crit_rate_stat - 0.01, 0.0)
+		# Decrease crit rate by 0.01 (1%)
+		player_stats.crit_rate_stat = max(player_stats.crit_rate_stat - 0.01, 0.0) # Changed from 0.05
 		Startupcoin.coin_amount += crit_rate_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
@@ -100,7 +105,8 @@ func _on_IncreaseCritDamageMultiplierButton_pressed():
 	if player_stats == null: return
 	if Startupcoin.coin_amount >= crit_damage_upgrade_cost:
 		Startupcoin.coin_amount -= crit_damage_upgrade_cost
-		player_stats.crit_damage_multiplier_stat += 0.01
+		# Increase crit damage multiplier by 0.10 (10%)
+		player_stats.crit_damage_multiplier_stat += 0.10 # Changed from 0.25
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()
 	else:
@@ -108,8 +114,10 @@ func _on_IncreaseCritDamageMultiplierButton_pressed():
 
 func _on_DecreaseCritDamageMultiplierButton_pressed():
 	if player_stats == null: return
+	# Ensure crit damage multiplier doesn't go below 1.0 (100%)
 	if player_stats.crit_damage_multiplier_stat > 1.0:
-		player_stats.crit_damage_multiplier_stat -= 0.01
+		# Decrease crit damage multiplier by 0.10 (10%)
+		player_stats.crit_damage_multiplier_stat -= 0.10 # Changed from 0.25
 		Startupcoin.coin_amount += crit_damage_upgrade_cost
 		ResourceSaver.save(player_stats, player_stats.resource_path)
 		update_coin_display()

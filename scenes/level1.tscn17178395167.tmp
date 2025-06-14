@@ -1,0 +1,1250 @@
+[gd_scene load_steps=91 format=3 uid="uid://di54eyrr8xw3g"]
+
+[ext_resource type="Script" uid="uid://bqsghgh87q8wv" path="res://scenes/level_1.gd" id="1_i8kv5"]
+[ext_resource type="PackedScene" uid="uid://m46def77t122" path="res://scenes/skeleton_boss.tscn" id="2_4niyd"]
+[ext_resource type="PackedScene" uid="uid://dmfh4praqdryj" path="res://scenes/player2.tscn" id="2_wwpf4"]
+[ext_resource type="Texture2D" uid="uid://ilawi6xsblay" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/ItemsIcons_24x24.png" id="3_i8kv5"]
+[ext_resource type="PackedScene" uid="uid://diln6iyvvpvpm" path="res://parallax.tscn" id="3_m7ahb"]
+[ext_resource type="Texture2D" uid="uid://clq2xs5qogaqp" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/HotkeyBox_34x34.png" id="7_conm7"]
+[ext_resource type="Texture2D" uid="uid://b423m4ao5kjf7" path="res://assets/Map/lvl1/groundlvl1.png" id="9_d3jkd"]
+[ext_resource type="FontFile" uid="uid://bx80rdp7dgbpm" path="res://assets/fibberish.ttf" id="10_2ku1j"]
+[ext_resource type="Script" uid="uid://cwh3l3l5x6y6l" path="res://scenes/upgrade_menu.gd" id="10_3w4mx"]
+[ext_resource type="Texture2D" uid="uid://bf5bel6y1i54p" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/CharacterBox_56x57.png" id="10_14jow"]
+[ext_resource type="Script" uid="uid://c3y7sv0jni38v" path="res://scenes/dead_menu.gd" id="10_dxn3v"]
+[ext_resource type="Texture2D" uid="uid://toytikah4cu0" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/RectangleBox_96x96.png" id="10_f31uk"]
+[ext_resource type="Script" uid="uid://ce7lgaog3bmfq" path="res://scenes/pause.gd" id="10_gnai3"]
+[ext_resource type="Script" uid="uid://bowbgo3ooxwyh" path="res://scenes/moving_platform.gd" id="10_u3awl"]
+[ext_resource type="Texture2D" uid="uid://dfp1ggawiq706" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/Button_52x14.png" id="11_f31uk"]
+[ext_resource type="Script" uid="uid://d1wefotx7rqv1" path="res://scenes/ChangeSceene.gd" id="12_f31uk"]
+[ext_resource type="Texture2D" uid="uid://b167n6edd7i3b" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/StatusIncDecButton_7x9.png" id="12_jvkml"]
+[ext_resource type="Texture2D" uid="uid://crw75n00mqqg6" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/CoinIcon_16x18.png" id="12_mvsps"]
+[ext_resource type="Texture2D" uid="uid://c6o081jvxcrf" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/BuffIcons_16x16.png" id="13_jvkml"]
+[ext_resource type="Script" uid="uid://ca33ogih0q53s" path="res://script/hitbox.gd" id="16_dxn3v"]
+[ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
+[ext_resource type="Script" uid="uid://gixqlxsoukbl" path="res://script/character_stats.gd" id="21_u068y"]
+[ext_resource type="Resource" uid="uid://b3jd3y4bp1ebk" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
+[ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
+[ext_resource type="Script" uid="uid://2mgsuyuois3g" path="res://scenes/combo_attack.gd" id="25_gqmnx"]
+[ext_resource type="Script" uid="uid://5e7hfxj5ln2m" path="res://scenes/textcd.gd" id="25_mq0oc"]
+[ext_resource type="Script" uid="uid://herbnujvex8v" path="res://scenes/statshup.gd" id="27_7dkav"]
+[ext_resource type="Script" uid="uid://g2end4cdybyl" path="res://scenes/healtest.gd" id="28_7dkav"]
+[ext_resource type="PackedScene" uid="uid://de5juuykkiprv" path="res://scenes/minireaper.tscn" id="30_1oofn"]
+[ext_resource type="PackedScene" uid="uid://ujtenlbccho3" path="res://scenes/wolf.tscn" id="30_3umqw"]
+[ext_resource type="Script" uid="uid://py2xksl41s20" path="res://scenes/claim_rewards.gd" id="31_p71k4"]
+[ext_resource type="Script" uid="uid://dp4jx7sk7caol" path="res://scenes/claim_reward_area.gd" id="32_p71k4"]
+[ext_resource type="Script" uid="uid://byx0yh6siitv1" path="res://scenes/claim.gd" id="34_6i0tl"]
+[ext_resource type="AudioStream" uid="uid://dw73dkqtxkjhw" path="res://sfx/BGS Loops/Forest Night/Forest Night.ogg" id="35_6lx4c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ku1j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f31uk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gnai3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8kv5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxn3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14jow"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gnai3"]
+texture = ExtResource("7_conm7")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jvkml"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvsps"]
+texture = ExtResource("7_conm7")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3w4mx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8kv5"]
+texture = ExtResource("7_conm7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxn3v"]
+atlas = ExtResource("3_i8kv5")
+region = Rect2(0, 32, 28, 28)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mvsps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u068y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ooyw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ai3nx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phfsf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3oqy1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mq0oc"]
+texture = ExtResource("11_f31uk")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msy1c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7dkav"]
+texture = ExtResource("11_f31uk")
+modulate_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4niyd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3umqw"]
+texture = ExtResource("11_f31uk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqmnx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p71k4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1oofn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6i0tl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lx4c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xmqk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvrd6"]
+texture = ExtResource("11_f31uk")
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1vjko"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3pui"]
+texture = ExtResource("11_f31uk")
+modulate_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vcq6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqir8"]
+texture = ExtResource("11_f31uk")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvsps"]
+atlas = ExtResource("13_jvkml")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvkml"]
+atlas = ExtResource("13_jvkml")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u068y"]
+atlas = ExtResource("13_jvkml")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w4mx"]
+atlas = ExtResource("13_jvkml")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_msy1c"]
+load_path = "res://.godot/imported/StatusIncDecButton_7x9.png-4945ba418055d8246ad7b611085cc7a9.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4niyd"]
+atlas = SubResource("CompressedTexture2D_msy1c")
+region = Rect2(7, 0, 6, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4niyd"]
+load_path = "res://.godot/imported/StatusIncDecButton_7x9.png-4945ba418055d8246ad7b611085cc7a9.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msy1c"]
+atlas = SubResource("CompressedTexture2D_4niyd")
+region = Rect2(1, 0, 6, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dkav"]
+atlas = SubResource("CompressedTexture2D_msy1c")
+region = Rect2(7, 0, 6, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
+size = Vector2(46329, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
+size = Vector2(20, 461)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ku1j"]
+size = Vector2(356, 40)
+
+[sub_resource type="Animation" id="Animation_f31uk"]
+resource_name = "LR"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gnai3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8kv5"]
+_data = {
+&"LR": SubResource("Animation_f31uk"),
+&"RESET": SubResource("Animation_gnai3")
+}
+
+[sub_resource type="Resource" id="Resource_msy1c"]
+script = ExtResource("21_u068y")
+run_speed = 300.0
+attacking_run_speed = 150.0
+max_air_speed = 200.0
+air_acceleration = 200.0
+jump_velocity = 600.0
+damage_random_range_stat = 5
+max_health_stat = 0
+base_damage_stat = 30
+crit_rate_stat = 0.5
+crit_damage_multiplier_stat = 2.0
+metadata/_custom_type_script = "uid://gixqlxsoukbl"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dkav"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4niyd"]
+
+[sub_resource type="GDScript" id="GDScript_gqmnx"]
+script/source = "extends Area2D
+
+@export var monster_scene: PackedScene
+@export var spawn_count: int = 1
+@export var spawn_delay: float = 0.0
+@export var spawn_on_enter: bool = true
+@export var spawn_min_radius: float = 50.0   # Jarak minimum dari pusat spawner
+@export var spawn_max_radius: float = 150.0  # Jarak maksimum dari pusat spawner
+
+var has_spawned := false
+
+func _ready():
+	connect(\"body_entered\", Callable(self, \"_on_body_entered\"))
+
+func _on_body_entered(body):
+	if not has_spawned and spawn_on_enter and body.name == \"Player2\":
+		call_deferred(\"spawn_monsters\")
+		has_spawned = true
+
+func spawn_monsters():
+	for i in range(spawn_count):
+		if spawn_delay > 0:
+			await get_tree().create_timer(spawn_delay).timeout
+		spawn_monster()
+
+func spawn_monster():
+	if monster_scene:
+		var monster_instance = monster_scene.instantiate()
+
+		# ... (kode logika offset Anda yang lain)
+		var distance = randf_range(spawn_min_radius, spawn_max_radius)
+		var direction = 1 if randf() > 0.5 else -1
+		var offset_x = distance * direction
+		var offset = Vector2(offset_x, 0)
+
+		monster_instance.position = global_position + offset
+		get_tree().current_scene.add_child(monster_instance)
+		
+		# BARIS DEBUGGING: Tambahkan ini
+		print(\"Monster spawned at position: \", monster_instance.position)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1oofn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6i0tl"]
+
+[node name="level1" type="Node2D" node_paths=PackedStringArray("player_node", "ui_manager")]
+script = ExtResource("1_i8kv5")
+player_node = NodePath("Player2")
+ui_manager = NodePath("CanvasLayer/DeadMenu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1212.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 70.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ku1j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_f31uk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gnai3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i8kv5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dxn3v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_14jow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gnai3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_jvkml")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mvsps")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3w4mx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_i8kv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/Button"]
+position = Vector2(23.5, 25)
+scale = Vector2(1.46875, 1.47059)
+texture = SubResource("AtlasTexture_dxn3v")
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_gnai3")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+position = Vector2(660.5, 404.5)
+scale = Vector2(2.94641, 4.68881)
+texture = ExtResource("10_f31uk")
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 229.0
+offset_right = 738.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Resume"
+
+[node name="Restart" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 309.0
+offset_right = 738.0
+offset_bottom = 379.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gqmnx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p71k4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1oofn")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6i0tl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6lx4c")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6xmqk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hvrd6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1vjko")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y3pui")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7vcq6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dqir8")
+text = "Restart"
+script = ExtResource("12_f31uk")
+target_scene_path = "res://scenes/level1.tscn"
+
+[node name="Settings" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 389.0
+offset_right = 738.0
+offset_bottom = 459.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Options"
+
+[node name="End" type="Button" parent="CanvasLayer/PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 469.0
+offset_right = 738.0
+offset_bottom = 539.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "End"
+script = ExtResource("12_f31uk")
+target_scene_path = "res://scenes/mainmenu.tscn"
+
+[node name="DeadMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_dxn3v")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DeadMenu"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/DeadMenu"]
+texture_filter = 1
+position = Vector2(660.5, 404.5)
+scale = Vector2(2.94641, 3.64881)
+texture = ExtResource("10_f31uk")
+
+[node name="Restart" type="Button" parent="CanvasLayer/DeadMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 269.0
+offset_right = 738.0
+offset_bottom = 339.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gqmnx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p71k4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1oofn")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6i0tl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6lx4c")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6xmqk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hvrd6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1vjko")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y3pui")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7vcq6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dqir8")
+text = "Restart"
+script = ExtResource("12_f31uk")
+target_scene_path = "res://scenes/level1.tscn"
+
+[node name="Settings" type="Button" parent="CanvasLayer/DeadMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 349.0
+offset_right = 738.0
+offset_bottom = 419.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Options"
+
+[node name="End" type="Button" parent="CanvasLayer/DeadMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 429.0
+offset_right = 738.0
+offset_bottom = 499.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "End"
+script = ExtResource("12_f31uk")
+target_scene_path = "res://scenes/mainmenu.tscn"
+
+[node name="UpgradeMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_3w4mx")
+
+[node name="Label" type="Control" parent="CanvasLayer/UpgradeMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UpgradeMenu/Label"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(661, 366)
+scale = Vector2(8.26608, 7.72632)
+texture = ExtResource("10_14jow")
+
+[node name="Upgrades" type="Label" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 524.0
+offset_top = 150.0
+offset_right = 745.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 48
+text = "UPGRADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinText2" type="Label" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 524.0
+offset_top = 264.0
+offset_right = 849.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "Max Health"
+vertical_alignment = 1
+
+[node name="CoinText3" type="Label" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 524.0
+offset_top = 320.0
+offset_right = 849.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "Attack"
+vertical_alignment = 1
+
+[node name="CoinText4" type="Label" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 524.0
+offset_top = 384.0
+offset_right = 849.0
+offset_bottom = 426.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "Crit Rate"
+vertical_alignment = 1
+
+[node name="CoinText5" type="Label" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 524.0
+offset_top = 444.0
+offset_right = 849.0
+offset_bottom = 486.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "Crit DAMAGE"
+vertical_alignment = 1
+
+[node name="Coin" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(854, 242)
+scale = Vector2(3, 3)
+texture = ExtResource("12_mvsps")
+
+[node name="Hp" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(488, 303)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_mvsps")
+
+[node name="Atk" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(488, 360)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_jvkml")
+
+[node name="CD" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(488, 478)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_u068y")
+
+[node name="CR" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/Label"]
+texture_filter = 1
+position = Vector2(488, 417)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_3w4mx")
+
+[node name="HealthUp" type="Control" parent="CanvasLayer/UpgradeMenu" node_paths=PackedStringArray("coin_display_label", "coin_display_label2")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("27_7dkav")
+coin_display_label = NodePath("CoinDisplayLabel")
+coin_display_label2 = NodePath("../../CoinDisplayLabel2")
+player_stats = ExtResource("22_ai3nx")
+
+[node name="CoinDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 436.0
+offset_top = 205.0
+offset_right = 799.0
+offset_bottom = 247.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 48
+text = "9999999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+position = Vector2(847, 300)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="HealthDisplayLabel" type="Label" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 669.0
+offset_top = 264.0
+offset_right = 787.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("21_1ooyw")
+player_character_stats_resource = ExtResource("22_ai3nx")
+
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 282.0
+offset_right = 875.0
+offset_bottom = 318.0
+texture_hover = SubResource("AtlasTexture_4niyd")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/HealthUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 282.0
+offset_right = 846.0
+offset_bottom = 318.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="AttackUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+position = Vector2(847, 358)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="BaseDamageLabel" type="Label" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 606.0
+offset_top = 320.0
+offset_right = 787.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("23_phfsf")
+player_character_stats_resource = ExtResource("22_ai3nx")
+
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 340.0
+offset_right = 875.0
+offset_bottom = 376.0
+texture_hover = SubResource("AtlasTexture_7dkav")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/AttackUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 340.0
+offset_right = 846.0
+offset_bottom = 376.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="CritRateUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+position = Vector2(847, 420)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="CritRateLabel" type="Label" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 642.0
+offset_top = 382.0
+offset_right = 787.0
+offset_bottom = 424.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("24_3oqy1")
+player_character_stats_resource = ExtResource("22_ai3nx")
+
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 402.0
+offset_right = 875.0
+offset_bottom = 438.0
+texture_hover = SubResource("AtlasTexture_7dkav")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritRateUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 402.0
+offset_right = 846.0
+offset_bottom = 438.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="CritDmgUp" type="Control" parent="CanvasLayer/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
+texture_filter = 1
+position = Vector2(847, 480)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jvkml")
+
+[node name="CritDamageMultiplierLabel" type="Label" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 686.0
+offset_top = 444.0
+offset_right = 787.0
+offset_bottom = 486.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("25_mq0oc")
+player_character_stats_resource = ExtResource("22_ai3nx")
+
+[node name="UpgradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 462.0
+offset_right = 875.0
+offset_bottom = 498.0
+texture_hover = SubResource("AtlasTexture_7dkav")
+stretch_mode = 0
+
+[node name="DowngradeButton" type="TextureButton" parent="CanvasLayer/UpgradeMenu/CritDmgUp"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 819.0
+offset_top = 462.0
+offset_right = 846.0
+offset_bottom = 498.0
+texture_hover = SubResource("AtlasTexture_msy1c")
+stretch_mode = 0
+
+[node name="ApplyButton" type="Button" parent="CanvasLayer/UpgradeMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 568.0
+offset_top = 496.0
+offset_right = 763.0
+offset_bottom = 566.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.694991, 0.694991)
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Close"
+
+[node name="ClaimRewards" type="Button" parent="CanvasLayer/UpgradeMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 900.0
+offset_top = 340.0
+offset_right = 1095.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.694991, 0.694991)
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mvsps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u068y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ooyw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ai3nx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_phfsf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3oqy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq0oc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_msy1c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7dkav")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4niyd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3umqw")
+text = "Claim"
+script = ExtResource("31_p71k4")
+
+[node name="Coin2" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(65, 123)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("12_mvsps")
+
+[node name="CoinDisplayLabel2" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -538.0
+offset_top = -249.0
+offset_right = -265.0
+offset_bottom = -218.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 35
+text = "9999999"
+vertical_alignment = 1
+
+[node name="ComboTextLabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -489.0
+offset_top = -212.0
+offset_right = -24.0
+offset_bottom = -98.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0.729412, 0.568627, 0.345098, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("10_2ku1j")
+theme_override_font_sizes/font_size = 50
+text = "99999999999"
+horizontal_alignment = 2
+script = ExtResource("25_gqmnx")
+
+[node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
+position = Vector2(144, 385)
+
+[node name="Parallax" parent="." instance=ExtResource("3_m7ahb")]
+
+[node name="FixedPlatform" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="FixedPlatform" type="CollisionShape2D" parent="FixedPlatform"]
+position = Vector2(23164.5, 451)
+shape = SubResource("RectangleShape2D_m7ahb")
+
+[node name="FixedPlatformColl" type="CollisionShape2D" parent="FixedPlatform"]
+position = Vector2(-10, 230.5)
+shape = SubResource("RectangleShape2D_conm7")
+
+[node name="AirGround" type="StaticBody2D" parent="."]
+position = Vector2(302, 270)
+scale = Vector2(1.5, 1.5)
+
+[node name="AirPlatform" type="Sprite2D" parent="AirGround"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_d3jkd")
+
+[node name="AirPlatformColl" type="CollisionShape2D" parent="AirGround"]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2ku1j")
+
+[node name="MoveGround" type="Node2D" parent="."]
+position = Vector2(553, 111)
+scale = Vector2(1.5, 1.5)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="MoveGround"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("10_u3awl")
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveGround/AnimatableBody2D"]
+texture_filter = 1
+texture = ExtResource("9_d3jkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveGround/AnimatableBody2D"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_2ku1j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MoveGround/AnimatableBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_i8kv5")
+}
+
+[node name="damagetest" type="Area2D" parent="."]
+position = Vector2(330, 369)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("16_dxn3v")
+character_stats = SubResource("Resource_msy1c")
+metadata/_custom_type_script = "uid://ca33ogih0q53s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damagetest"]
+shape = SubResource("CircleShape2D_7dkav")
+
+[node name="Label" type="Label" parent="damagetest"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "damage test"
+
+[node name="healtest" type="Area2D" parent="."]
+position = Vector2(456, 369)
+script = ExtResource("28_7dkav")
+heal_amount = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="healtest"]
+shape = SubResource("CircleShape2D_4niyd")
+
+[node name="Label" type="Label" parent="healtest"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "heal test"
+
+[node name="SpawnerMinireaper" type="Area2D" parent="."]
+position = Vector2(302, 191)
+script = SubResource("GDScript_gqmnx")
+monster_scene = ExtResource("30_1oofn")
+spawn_count = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerMinireaper"]
+shape = SubResource("CircleShape2D_1oofn")
+
+[node name="Label" type="Label" parent="SpawnerMinireaper"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "spawnerMiniReaper"
+
+[node name="SpawnerWolf" type="Area2D" parent="."]
+position = Vector2(1448, 392)
+script = SubResource("GDScript_gqmnx")
+monster_scene = ExtResource("30_3umqw")
+spawn_count = 20
+spawn_min_radius = 800.0
+spawn_max_radius = 800.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerWolf"]
+shape = SubResource("CircleShape2D_1oofn")
+
+[node name="Label" type="Label" parent="SpawnerWolf"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "spawnerWolf"
+
+[node name="Wolf" parent="." instance=ExtResource("30_3umqw")]
+position = Vector2(724, 359)
+
+[node name="SkeletonBoss" parent="." instance=ExtResource("2_4niyd")]
+position = Vector2(820, 146)
+
+[node name="minireaper" parent="." instance=ExtResource("30_1oofn")]
+
+[node name="ClaimRewardArea" type="Area2D" parent="."]
+position = Vector2(40, 409)
+script = ExtResource("32_p71k4")
+reward_target = NodePath("CanvasLayer/Claim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClaimRewardArea"]
+shape = SubResource("CircleShape2D_6i0tl")
+
+[node name="Label" type="Label" parent="ClaimRewardArea"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "claimrewards"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ClaimRewardArea"]
+
+[node name="Claim" type="Control" parent="ClaimRewardArea/CanvasLayer" node_paths=PackedStringArray("coin_display_label", "coin_display_label2")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("34_6i0tl")
+coin_display_label = NodePath("../../../CanvasLayer/UpgradeMenu/HealthUp/CoinDisplayLabel")
+coin_display_label2 = NodePath("../../../CanvasLayer/CoinDisplayLabel2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_6lx4c")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/UpgradeMenu" method="upgrade_select"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Restart" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/End" to="CanvasLayer/PauseMenu" method="pause_or_unpause"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseHealthButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp/HealthDisplayLabel" method="play_pop_up_animation"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/HealthUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseHealthButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/AttackUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseBaseDamageButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/AttackUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseBaseDamageButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritRateUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseCritRateButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritRateUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseCritRateButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/UpgradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_IncreaseCritDamageMultiplierButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/CritDmgUp/DowngradeButton" to="CanvasLayer/UpgradeMenu/HealthUp" method="_on_DecreaseCritDamageMultiplierButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/ApplyButton" to="CanvasLayer/UpgradeMenu" method="upgrade_menu"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/ClaimRewards" to="CanvasLayer/UpgradeMenu/HealthUp" method="_claim_rewards"]

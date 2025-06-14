@@ -14,8 +14,8 @@ signal player_died_event
 
 func _on_health_health_depleted() -> void:
 	player_died_event.emit()
+	animation_player.play("death")
 	queue_free()
-	#
 	## Mulai animasi kematian
 	#animation_player.play("death")
 #

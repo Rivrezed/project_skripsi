@@ -1,6 +1,6 @@
+# CharacterStats.gd
 class_name CharacterStats
 extends Resource
-
 
 signal resource_changed_custom
 
@@ -34,7 +34,7 @@ signal resource_changed_custom
 		damage_random_range_stat = value
 		resource_changed_custom.emit()
 
-var _max_health_stat: int = 3
+var _max_health_stat: int = 12500 
 @export var max_health_stat: int:
 	get:
 		return _max_health_stat
@@ -42,7 +42,7 @@ var _max_health_stat: int = 3
 		_max_health_stat = value
 		resource_changed_custom.emit()
 
-var _base_damage_stat: int = 5
+var _base_damage_stat: int = 123 
 @export var base_damage_stat: int:
 	get:
 		return _base_damage_stat
@@ -50,7 +50,7 @@ var _base_damage_stat: int = 5
 		_base_damage_stat = value
 		resource_changed_custom.emit()
 
-var _crit_rate_stat: float = 0.1
+var _crit_rate_stat: float = 0.25 
 @export var crit_rate_stat: float:
 	get:
 		return _crit_rate_stat
@@ -58,10 +58,29 @@ var _crit_rate_stat: float = 0.1
 		_crit_rate_stat = clampf(value, 0.0, 1.0)
 		resource_changed_custom.emit()
 
-var _crit_damage_multiplier_stat: float = 2.0
+var _crit_damage_multiplier_stat: float = 2.5 
 @export var crit_damage_multiplier_stat: float:
 	get:
 		return _crit_damage_multiplier_stat
 	set(value):
 		_crit_damage_multiplier_stat = maxf(1.0, value)
 		resource_changed_custom.emit()
+
+func reset_to_default():
+	max_health_stat = 10000
+	base_damage_stat = 100
+	crit_rate_stat = 0.05
+	crit_damage_multiplier_stat = 1.5
+	
+	# --- Add this section to save the resource ---
+	if ResourceLoader.exists(self.resource_path): # Check if the resource has a path (is saved to disk)
+		var error = ResourceSaver.save(self, self.resource_path)
+		if error == OK:
+			print("Player stats reset and saved to: ", self.resource_path)
+		else:
+			push_error("Error saving player stats: ", error)
+	else:
+		print("Player stats resource has no path, cannot save to disk.")
+	# --- End of added section ---
+	
+	print("Player stats reset to default values.")

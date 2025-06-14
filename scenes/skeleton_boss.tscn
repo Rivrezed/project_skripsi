@@ -496,6 +496,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:disable_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ekqw8"]
 resource_name = "attack_1"
@@ -675,6 +687,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:disable_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.375),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_qyih2"]
@@ -933,6 +957,7 @@ script = ExtResource("9_1bxu4")
 
 [node name="Attack" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("10_1bxu4")
+teleport_away_distance = 500.0
 
 [node name="Teleport" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("11_6w8g5")
@@ -944,12 +969,19 @@ minion_node = ExtResource("17_fkkif")
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("14_tkpea")
 
-[node name="HealthBarUI" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("20_wpsq5")]
-offset_top = -85.0
-offset_bottom = -85.0
-health_component = NodePath("../Health")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBarUI" parent="CanvasLayer" node_paths=PackedStringArray("health_component") instance=ExtResource("20_wpsq5")]
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -75.0
+grow_vertical = 0
+scale = Vector2(3, 2)
+health_component = NodePath("../../Health")
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

@@ -1,15 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkfv2k8qanwem"]
+[gd_scene load_steps=12 format=3 uid="uid://bkfv2k8qanwem"]
 
 [ext_resource type="Script" uid="uid://bwc5llb0lqe5x" path="res://scenes/mapselect.gd" id="1_t40jp"]
 [ext_resource type="Texture2D" uid="uid://be2o8ca1vk07" path="res://assets/Map/mapselect/awankanan.png" id="1_xi1su"]
-[ext_resource type="Texture2D" uid="uid://c7gq4aoc0dr7e" path="res://icon.svg" id="2_kx0xs"]
 [ext_resource type="Texture2D" uid="uid://bpnk6a6tuw1wx" path="res://assets/Map/mapselect/awankiri.png" id="2_te61r"]
 [ext_resource type="Script" uid="uid://cgp48rxpxqsoe" path="res://scenes/button_sceene.gd" id="3_t40jp"]
 [ext_resource type="Texture2D" uid="uid://p2mdx5nrla1m" path="res://assets/Map/mapselect/map.png" id="3_wu3ts"]
 [ext_resource type="Script" uid="uid://v6txgac4eltg" path="res://script/camera_mouse.gd" id="4_te61r"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wpd5d"]
-texture = ExtResource("2_kx0xs")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kx0xs"]
+bg_color = Color(0.435294, 0.333333, 0.192157, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
 
 [sub_resource type="Animation" id="Animation_rywqv"]
 length = 0.001
@@ -36,6 +40,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("awanR:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 360)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("awanL:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 360)]
 }
 
 [sub_resource type="Animation" id="Animation_t40jp"]
@@ -93,6 +121,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1.82, 1.82), Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("awanR:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(492, 314), Vector2(640, 360)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("awanL:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(817, 394), Vector2(640, 360)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sc5x1"]
 _data = {
@@ -105,29 +157,93 @@ _data = {
 script = ExtResource("1_t40jp")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(640, 360)
 scale = Vector2(1.82015, 1.82015)
 texture = ExtResource("3_wu3ts")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="awanR" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(640, 360)
 scale = Vector2(1.82015, 1.82015)
 texture = ExtResource("1_xi1su")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="awanL" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(640, 360)
 scale = Vector2(1.82015, 1.82015)
 texture = ExtResource("2_te61r")
 
 [node name="Button" type="Node2D" parent="."]
+position = Vector2(509, 348)
 
 [node name="Button" type="Button" parent="Button"]
-offset_left = 568.0
-offset_top = 374.0
-offset_right = 576.0
-offset_bottom = 382.0
-scale = Vector2(3.71237, 3.71237)
-theme_override_styles/normal = SubResource("StyleBoxTexture_wpd5d")
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx0xs")
+script = ExtResource("3_t40jp")
+
+[node name="Button2" type="Node2D" parent="."]
+position = Vector2(555, 351)
+
+[node name="Button" type="Button" parent="Button2"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx0xs")
+script = ExtResource("3_t40jp")
+
+[node name="Button3" type="Node2D" parent="."]
+position = Vector2(577, 387)
+
+[node name="Button" type="Button" parent="Button3"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx0xs")
+script = ExtResource("3_t40jp")
+
+[node name="Button4" type="Node2D" parent="."]
+position = Vector2(631, 391)
+
+[node name="Button" type="Button" parent="Button4"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx0xs")
 script = ExtResource("3_t40jp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
