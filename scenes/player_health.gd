@@ -7,15 +7,19 @@ signal health_depleted
 
 @export var character_stats: CharacterStats
 
+# --- Variabel Referensi Animasi ---
+@export var animation_player: AnimationPlayer
+@export var player_visuals: CanvasItem # BARU: Tambahkan variabel untuk node visual pemain (e.g., Sprite2D)
+
 @export var immortality: bool = false : set = set_immortality, get = get_immortality
 
-# --- New Audio Variables ---
-@export var damage_sound_player: AudioStreamPlayer2D # Reference to your AudioStreamPlayer2D node
-@export var damage_sound_effect: AudioStream # The actual sound file (e.g., a .wav or .ogg)
-@export var damage_sfx_cooldown: float = 0.2 # Durasi cooldown untuk SFX damage (dalam detik)
+# --- Variabel Audio ---
+@export var damage_sound_player: AudioStreamPlayer2D
+@export var damage_sound_effect: AudioStream
+@export var damage_sfx_cooldown: float = 0.2
 
 var immortality_timer: Timer = null
-var _can_play_damage_sfx: bool = true # Flag untuk mengontrol cooldown SFX
+var _can_play_damage_sfx: bool = true
 
 var _current_max_health: int = 1
 var health: int = 1 : set = set_health, get = get_health
@@ -82,26 +86,39 @@ func apply_damage(amount: int):
 	if immortality and amount > 0:
 		return
 
-	# Hanya mainkan suara dan terapkan damage jika ada damage yang nyata untuk diambil
-	# dan jika cooldown SFX sudah berakhir.
-	if amount > 0 && health - amount < health:
+	if amount > 0 and health - amount < health:
 		set_health(health - amount)
-		play_damage_sound() # Panggil fungsi play_damage_sound dengan logika cooldown
-		
+		play_damage_sound()
+		_play_damage_feedback() # BARU: Panggil fungsi feedback visual
+
+# BARU: Fungsi untuk memutar efek visual saat terkena damage
+func _play_damage_feedback():
+	if player_visuals == null:
+		push_warning("Player Visuals node is not assigned in Player_Health.")
+		return
+
+	# Buat Tween untuk menganimasikan properti modulate
+	var tween = get_tree().create_tween()
+	
+	# Atur warna menjadi merah seketika
+	player_visuals.modulate = Color.RED
+	
+	# Animasikan warna kembali ke putih (normal) selama 0.3 detik.
+	# Ini menciptakan efek "fade" kembali ke warna semula, bukan kembali secara tiba-tiba.
+	tween.tween_property(player_visuals, "modulate", Color.WHITE, 0.3)
+
 func play_damage_sound():
-	# Hanya memutar SFX jika _can_play_damage_sfx bernilai true dan ada player/efek suara yang diatur
-	if damage_sound_player and damage_sound_effect and _can_play_damage_sfx:
+	if not _can_play_damage_sfx:
+		return
+
+	if damage_sound_player and damage_sound_effect:
 		damage_sound_player.stream = damage_sound_effect
 		damage_sound_player.play()
 		
-		# Set flag ke false untuk memulai cooldown
-		_can_play_damage_sfx = false
-		
-		# Buat timer untuk mereset flag setelah durasi cooldown
-		get_tree().create_timer(damage_sfx_cooldown).timeout.connect(func():
-			_can_play_damage_sfx = true
-		)
-
+	_can_play_damage_sfx = false
+	get_tree().create_timer(damage_sfx_cooldown).timeout.connect(func():
+		_can_play_damage_sfx = true
+	)
 
 func update_from_resource():
 	if character_stats != null:

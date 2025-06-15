@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://m46def77t122"]
+[gd_scene load_steps=91 format=3 uid="uid://m46def77t122"]
 
 [ext_resource type="Texture2D" uid="uid://eq1t02ym53yf" path="res://assets/png/attacking.png" id="1_qt3rb"]
 [ext_resource type="Script" uid="uid://bwkcxtsohucts" path="res://scenes/skeleton_boss.gd" id="1_sf4ck"]
@@ -17,6 +17,9 @@
 [ext_resource type="Script" uid="uid://wfrbsqh1jwgp" path="res://scenes/attack.gd" id="10_1bxu4"]
 [ext_resource type="Script" uid="uid://be7q5amwopadh" path="res://scenes/Teleport.gd" id="11_6w8g5"]
 [ext_resource type="Script" uid="uid://cb8ex5wx8w06q" path="res://scenes/spawn_minion.gd" id="12_uk8m5"]
+[ext_resource type="AudioStream" uid="uid://dn4a0pgahhhck" path="res://sfx/Sword Unsheath 1.ogg" id="12_x61nq"]
+[ext_resource type="AudioStream" uid="uid://o011ma2pwv0y" path="res://sfx/teleport sound effect-yt.savetube.me.mp3" id="13_aq1nl"]
+[ext_resource type="AudioStream" uid="uid://d0mfpbo2yqfcd" path="res://sfx/Witch Casting Spell - Sound Effect [HD]-yt.savetube.me.mp3" id="14_tbl33"]
 [ext_resource type="Script" uid="uid://dsan83pvxqls0" path="res://scenes/death.gd" id="14_tkpea"]
 [ext_resource type="PackedScene" uid="uid://de5juuykkiprv" path="res://scenes/minireaper.tscn" id="17_fkkif"]
 [ext_resource type="PackedScene" uid="uid://b7pep4hq1kt5g" path="res://scenes/health_bar_ui.tscn" id="20_wpsq5"]
@@ -25,6 +28,7 @@
 size = Vector2(59, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7non"]
+size = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6w8g5"]
 atlas = ExtResource("1_qt3rb")
@@ -482,7 +486,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(20, 20)]
+"values": [Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -494,7 +498,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -561,6 +565,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.22151,
+"start_offset": 0.0235922,
+"stream": ExtResource("12_x61nq")
+}],
+"times": PackedFloat32Array(0.0235922)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_4ud2b"]
 resource_name = "attack_2"
@@ -614,6 +633,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.179024,
+"start_offset": 0.0222045,
+"stream": ExtResource("12_x61nq")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_tgfm4"]
 resource_name = "boss_slained"
@@ -773,10 +807,24 @@ tracks/2/keys = {
 "method": &"teleport"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.445148,
+"start_offset": 0.0210335,
+"stream": ExtResource("13_aq1nl")
+}],
+"times": PackedFloat32Array(0.0210335)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jkutw"]
 resource_name = "summon"
-length = 0.625013
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -816,6 +864,21 @@ tracks/2/keys = {
 "method": &"spawn"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.96588,
+"start_offset": 1.19984,
+"stream": ExtResource("14_tbl33")
+}],
+"times": PackedFloat32Array(0.0101641)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7yjwk"]
 _data = {
@@ -834,16 +897,17 @@ size = Vector2(200, 200)
 
 [node name="SkeletonBoss" type="CharacterBody2D"]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_sf4ck")
 stats = ExtResource("6_x61nq")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("player_canvas_item")]
 script = ExtResource("2_4yvo6")
 character_stats = ExtResource("6_x61nq")
 damage_sound_effect = ExtResource("4_wpsq5")
+player_canvas_item = NodePath("..")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -865,6 +929,7 @@ metadata/_custom_type_script = "uid://ca33ogih0q53s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("RectangleShape2D_r7non")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

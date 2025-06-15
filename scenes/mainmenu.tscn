@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://d1xytqr44a50q"]
+[gd_scene load_steps=64 format=3 uid="uid://d1xytqr44a50q"]
 
 [ext_resource type="Texture2D" uid="uid://vh742gftk0mi" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/sky_fc.png" id="1_h73c4"]
 [ext_resource type="Texture2D" uid="uid://0b0wqohf3r1i" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/far_mountains_fc.png" id="2_uui5l"]
@@ -15,10 +15,13 @@
 [ext_resource type="Script" uid="uid://v6txgac4eltg" path="res://script/camera_mouse.gd" id="12_4hago"]
 [ext_resource type="Script" uid="uid://d2fbrc2fw66q" path="res://scenes/options_open.gd" id="12_fsdjo"]
 [ext_resource type="Script" uid="uid://bxfwnkbxetpb6" path="res://scenes/exitbutton.gd" id="12_kait0"]
+[ext_resource type="Script" uid="uid://cdn83jnbv5keh" path="res://scenes/credits_open.gd" id="13_hn6ym"]
 [ext_resource type="Texture2D" uid="uid://toytikah4cu0" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/RectangleBox_96x96.png" id="13_nkpmc"]
 [ext_resource type="Script" uid="uid://drmei7cvndk73" path="res://scenes/settings.gd" id="14_fsdjo"]
 [ext_resource type="Script" uid="uid://d34r2p7f4e80x" path="res://scenes/back_options.gd" id="16_prb5i"]
-[ext_resource type="AudioStream" uid="uid://bo65fko65bnvj" path="res://sfx/OGG Files/SFX/Waterfalls Rivers and Streams/River Stream Loop.ogg" id="19_xwyuh"]
+[ext_resource type="Texture2D" uid="uid://bf5bel6y1i54p" path="res://assets/Fantasy Minimal Pixel Art GUI by eta-commercial-free/UI/CharacterBox_56x57.png" id="17_c6huh"]
+[ext_resource type="Script" uid="uid://7658r2vqndcn" path="res://scenes/credits_back.gd" id="19_gr43c"]
+[ext_resource type="AudioStream" uid="uid://dueprykaojm6v" path="res://sfx/Ambient 10.mp3" id="22_gr43c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kait0"]
 
@@ -175,9 +178,34 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1658, 360)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParallaxBackground/Menu/Control:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 745)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D/CanvasLayer/ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_gjjcl"]
 resource_name = "camera_start"
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -202,14 +230,27 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(4, 4)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D/CanvasLayer/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="Animation" id="Animation_6pj40"]
-resource_name = "options_open"
+[sub_resource type="Animation" id="Animation_18cd8"]
+resource_name = "credits_back"
 length = 0.4
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
+tracks/0/path = NodePath("ParallaxBackground/Menu/Control:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -221,14 +262,43 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ParallaxBackground/Menu/Options:position")
+tracks/1/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(640, 997), Vector2(640, 360)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gr43c"]
+resource_name = "credits_open"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/Menu/Control:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 745), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -745)]
 }
 
 [sub_resource type="Animation" id="Animation_xwyuh"]
@@ -260,10 +330,40 @@ tracks/1/keys = {
 "values": [Vector2(640, 360), Vector2(1658, 360)]
 }
 
+[sub_resource type="Animation" id="Animation_6pj40"]
+resource_name = "options_open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParallaxBackground/Menu/MainMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 745)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParallaxBackground/Menu/Options:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 997), Vector2(640, 360)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6pj40"]
 _data = {
 &"RESET": SubResource("Animation_kait0"),
 &"camera_start": SubResource("Animation_gjjcl"),
+&"credits_back": SubResource("Animation_18cd8"),
+&"credits_open": SubResource("Animation_gr43c"),
 &"options_back": SubResource("Animation_xwyuh"),
 &"options_open": SubResource("Animation_6pj40")
 }
@@ -426,6 +526,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
 theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
 text = "Credits"
+script = ExtResource("13_hn6ym")
 
 [node name="Exit" type="Button" parent="ParallaxBackground/Menu/MainMenu"]
 texture_filter = 1
@@ -594,6 +695,108 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
 text = "Back"
 script = ExtResource("16_prb5i")
 
+[node name="Control" type="Control" parent="ParallaxBackground/Menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 745.0
+offset_right = 40.0
+offset_bottom = 785.0
+
+[node name="Project2" type="Sprite2D" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+position = Vector2(640, 360)
+scale = Vector2(12, 12)
+texture = ExtResource("17_c6huh")
+
+[node name="Credits2" type="Label" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 284.0
+offset_top = 20.0
+offset_right = 956.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Label" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 284.0
+offset_top = -2.0
+offset_right = 956.0
+offset_bottom = 682.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.788235, 0.647059, 1)
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 25
+text = "DEVELOPERS
+Arifqi
+Reka
+Zada
+
+GAME ASSETS USED
+GRASSY MOUNTAINS: PARALLAX BACKGROUND by Vicente Nitti
+Fantasy Minimal Pixel Art GUI by eta commercialfree
+Reaper (Animated Pixel Art) by SamuelLee
+Free Werewolf Sprite Sheets Pixel Art by craftpix
+Undead Executioner by Kronovi
+Pixel Art Animations Slashes by Frostwindz
+Animated Chests by Admurin
+SFX pack by TomMusic
+
+
+Terima kasih sudah bermain!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back2" type="Button" parent="ParallaxBackground/Menu/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 523.0
+offset_top = 580.0
+offset_right = 718.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("9_6pj40")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjjcl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gr43c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_18cd8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_gj5y3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6643n")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5diu1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_prb5i")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c50wd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nkpmc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kcrt3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsdjo")
+text = "Back"
+script = ExtResource("19_gr43c")
+
 [node name="CloudsFront" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(-0.4, -0.4)
 
@@ -604,9 +807,16 @@ scale = Vector2(4.05631, 5.38243)
 texture = ExtResource("6_6pj40")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(640, 360)
 script = ExtResource("12_4hago")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -614,8 +824,9 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_xwyuh")
+stream = ExtResource("22_gr43c")
 autoplay = true
+parameters/looping = false
 
 [connection signal="pressed" from="ParallaxBackground/Menu/MainMenu/Start" to="ParallaxBackground/Menu/MainMenu/Start" method="_on_pressed_start"]
 [connection signal="pressed" from="ParallaxBackground/Menu/MainMenu/Exit" to="ParallaxBackground/Menu/MainMenu/Exit" method="_on_pressed"]

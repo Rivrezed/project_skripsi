@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Skripsi"
-run/main_scene="uid://di54eyrr8xw3g"
+config/name="SkripsiLeveling"
+run/main_scene="uid://d1xytqr44a50q"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://ccly17hwcia4m"
 
 [autoload]
 

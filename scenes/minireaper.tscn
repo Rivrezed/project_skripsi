@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://de5juuykkiprv"]
+[gd_scene load_steps=68 format=3 uid="uid://de5juuykkiprv"]
 
 [ext_resource type="Script" uid="uid://vp51deg3a470" path="res://scenes/minireaper.gd" id="1_l4qqq"]
 [ext_resource type="Resource" uid="uid://dwq7hgdlc4tqq" path="res://minireaper.tres" id="2_47164"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b47jm2doi58ph" path="res://assets/Characters/Reaper (Animated Pixel Art)/Animation Sprite Sheets (PNG)/HolsterWeaponReaper-Sheet.png" id="7_47164"]
 [ext_resource type="Texture2D" uid="uid://b65e30togmvy4" path="res://assets/Characters/Reaper (Animated Pixel Art)/Animation Sprite Sheets (PNG)/HostileIdleReaper-Sheet.png" id="8_uw517"]
 [ext_resource type="Texture2D" uid="uid://b1c1cjwwduyi3" path="res://assets/Characters/Reaper (Animated Pixel Art)/Animation Sprite Sheets (PNG)/HostileRunningReaper-Sheet.png" id="9_fg8n6"]
+[ext_resource type="AudioStream" uid="uid://bbe8wn5crmh14" path="res://sfx/Sword Unsheath 2.ogg" id="11_uw517"]
 [ext_resource type="Script" uid="uid://bwcnq1vxbxafu" path="res://scenes/wolffinite_state_machine.gd" id="11_vrlq1"]
 [ext_resource type="Script" uid="uid://bo3beafg8rpn" path="res://scenes/wolfidle.gd" id="12_2ds26"]
 [ext_resource type="Script" uid="uid://ciaf73p5iv8a5" path="res://scenes/wolffollow.gd" id="13_vrobn"]
@@ -23,7 +24,7 @@
 size = Vector2(20, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55f01"]
-size = Vector2(250, 200)
+size = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o06vj"]
 atlas = ExtResource("6_l4qqq")
@@ -341,7 +342,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(250, 200)]
+"values": [Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -353,7 +354,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -419,6 +420,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_uw517")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_4ud2b"]
 resource_name = "attack_2"
@@ -472,6 +488,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.135067,
+"start_offset": 0.0810404,
+"stream": ExtResource("11_uw517")
+}],
+"times": PackedFloat32Array(0.0810404)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_tgfm4"]
 resource_name = "boss_slained"
@@ -719,10 +750,11 @@ collision_mask = 4
 script = ExtResource("1_l4qqq")
 stats = ExtResource("2_47164")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("player_canvas_item")]
 script = ExtResource("3_fg8n6")
 character_stats = ExtResource("2_47164")
 damage_sound_effect = ExtResource("4_47164")
+player_canvas_item = NodePath("..")
 metadata/_custom_type_script = "uid://cgeyfxu6i0b7u"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -745,6 +777,7 @@ metadata/_custom_type_script = "uid://ca33ogih0q53s"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-1.33333, 0)
 shape = SubResource("RectangleShape2D_55f01")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tv6jp")

@@ -10,17 +10,20 @@ signal damage_taken(amount: int)
 
 @export var immortality: bool = false : set = set_immortality, get = get_immortality
 
-# --- Re-add damage_sound_effect here! ---
 @export var damage_sound_effect: AudioStream # The actual sound file (e.g., a .wav or .ogg)
 @export var damage_sfx_cooldown: float = 0.2 # Durasi cooldown untuk SFX damage (dalam detik)
 
+# --- Tambahan: Node CanvasItem yang akan dimodulasi warnanya ---
+@export var player_canvas_item: CanvasItem # Seret node player Anda di sini (misal: Sprite2D, CharacterBody2D, dll.)
+@export var flash_color_duration: float = 0.1 # Durasi kilatan merah (dalam detik)
+
 var immortality_timer: Timer = null
 var _can_play_damage_sfx: bool = true # Flag untuk mengontrol cooldown SFX
+var _original_player_modulate: Color # Menyimpan warna modulasi asli pemain
 
 var _current_max_health: int = 1
 var health: int = 1 : set = set_health, get = get_health
 
-# --- Tambahkan referensi ke SoundManager global ---
 @onready var sound_manager = get_node("/root/SoundManager") # Pastikan nama autoload sesuai
 
 func _ready():
@@ -32,6 +35,10 @@ func _ready():
 		character_stats.resource_changed_custom.connect(update_from_resource)
 
 	set_health(_current_max_health)
+	
+	# Simpan warna modulasi asli jika player_canvas_item ada
+	if player_canvas_item:
+		_original_player_modulate = player_canvas_item.modulate
 
 func set_max_health(value: int):
 	var clamped_value = max(1, value)
@@ -73,7 +80,6 @@ func set_health(value: int):
 	if new_health_value != health:
 		var difference = new_health_value - health
 		health = new_health_value
-		# Emit sinyal health_changed dengan perbedaan
 		health_changed.emit(difference)
 
 		if health == 0:
@@ -86,32 +92,48 @@ func apply_damage(amount: int):
 	if immortality and amount > 0:
 		return
 
-	var actual_damage = clampi(amount, 0, health) # Avoid over-damage
+	var actual_damage = clampi(amount, 0, health)
 	
-	if actual_damage > 0: # Only apply damage if there's actual damage to take
+	if actual_damage > 0:
 		set_health(health - actual_damage)
-		play_damage_sound() # Play sound when damage is successfully applied
-		damage_taken.emit(actual_damage) # Emit the damage_taken signal
+		play_damage_sound()
+		flash_red() # Panggil fungsi flash_red di sini
+		damage_taken.emit(actual_damage)
 
-		# Panggil ComboTextLabel jika ada
 		var combo_label = get_tree().get_root().get_node("level1/CanvasLayer/ComboTextLabel")
 		if combo_label:
 			combo_label.add_combo_damage(actual_damage)
 
 func play_damage_sound():
-	# Memutar SFX melalui SoundManager global jika cooldown memungkinkan
 	if _can_play_damage_sfx:
-		# Panggil fungsi di SoundManager untuk memutar suara
-		if sound_manager and damage_sound_effect: # CHECK FOR damage_sound_effect here
-			sound_manager.play_sfx(damage_sound_effect) # Pass the specific sound effect
+		if sound_manager and damage_sound_effect:
+			sound_manager.play_sfx(damage_sound_effect)
 		
-		# Set flag ke false untuk memulai cooldown
 		_can_play_damage_sfx = false
 		
-		# Buat timer untuk mereset flag setelah durasi cooldown
 		get_tree().create_timer(damage_sfx_cooldown).timeout.connect(func():
 			_can_play_damage_sfx = true
 		)
+
+# --- Fungsi baru untuk kilatan merah ---
+func flash_red():
+	if player_canvas_item:
+		# Hentikan tween yang sedang berjalan agar tidak tumpang tindih
+		if player_canvas_item.get_meta("_modulate_tween_") and \
+		   is_instance_valid(player_canvas_item.get_meta("_modulate_tween_")):
+			(player_canvas_item.get_meta("_modulate_tween_") as Tween).kill()
+
+		# Mulai tween untuk mengubah warna menjadi merah
+		var tween_to_red = get_tree().create_tween()
+		player_canvas_item.set_meta("_modulate_tween_", tween_to_red) # Simpan referensi tween
+		tween_to_red.tween_property(player_canvas_item, "modulate", Color.RED, 0.05) # Kilatan cepat ke merah
+		
+		# Setelah kilatan merah, kembalikan ke warna asli
+		tween_to_red.tween_property(player_canvas_item, "modulate", _original_player_modulate, flash_color_duration - 0.05)
+		# Pastikan tween selesai sebelum potensi perubahan warna lainnya
+		tween_to_red.set_trans(Tween.TRANS_LINEAR)
+		tween_to_red.set_ease(Tween.EASE_IN_OUT)
+
 
 func update_from_resource():
 	if character_stats != null:

@@ -1,7 +1,7 @@
 # Ini adalah skrip untuk node Button Anda
 extends Button
 
-@onready var animation_player = $"../../AnimationPlayer"
+@onready var animation_player = $"../../../../../AnimationPlayer"
 
 func _ready():
 	# Menghubungkan sinyal 'pressed' dari tombol ke fungsi '_on_Button_pressed'
