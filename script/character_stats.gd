@@ -69,7 +69,7 @@ var _crit_damage_multiplier_stat: float = 2.5
 func reset_to_default():
 	max_health_stat = 10000
 	base_damage_stat = 100
-	crit_rate_stat = 0.05
+	crit_rate_stat = 0.25
 	crit_damage_multiplier_stat = 1.5
 	
 	# --- Add this section to save the resource ---

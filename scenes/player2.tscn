@@ -1,7 +1,7 @@
 [gd_scene load_steps=181 format=3 uid="uid://dmfh4praqdryj"]
 
 [ext_resource type="Script" uid="uid://dk72a787wgai6" path="res://script/player_controller2.gd" id="1_c08b3"]
-[ext_resource type="Resource" uid="uid://b5wgyquwvxxby" path="res://player_stats.tres" id="3_acr3s"]
+[ext_resource type="Resource" uid="uid://b5nl88gk6dqwj" path="res://player_stats.tres" id="3_acr3s"]
 [ext_resource type="Script" uid="uid://djt5fdxpwthgi" path="res://script/limbo_hsm.gd" id="3_dj65e"]
 [ext_resource type="Script" uid="uid://dg33k2qka3af1" path="res://script/character_facing.gd" id="4_7f0u4"]
 [ext_resource type="Script" uid="uid://6nh3p1sb6mch" path="res://scenes/player_health.gd" id="4_grty4"]
@@ -121,7 +121,7 @@ attack = &"attack"
 metadata/_custom_type_script = "uid://b57o25wi20y4s"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8etlw"]
-size = Vector2(20, 61.7143)
+size = Vector2(20, 62.8571)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxvnq"]
 atlas = ExtResource("41_ma5ec")
@@ -428,63 +428,6 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xjogy")
-}, {
 "duration": 1.0,
 "texture": ExtResource("30_xjogy")
 }],
@@ -1948,7 +1891,8 @@ health = NodePath("../PlayerHealth")
 metadata/_custom_type_script = "uid://m72no1svtvu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 1.14286)
+position = Vector2(0, 0.571432)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8etlw")
 
 [node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("limbo_hsm")]
@@ -1988,47 +1932,38 @@ states = {
 "ground": NodePath("GroundMoveState")
 }
 
-[node name="GroundMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sound_player")]
+[node name="GroundMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sfx")]
 script = ExtResource("7_24gv0")
 idle_anim = &"idle_s"
 move_anim = &"run_s"
-dash_max_distance = 200.0
-dash_cooldown = 1.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
-dash_sound_player = NodePath("../../SFX")
-dash_sound_effect = ExtResource("100_rtit8")
+dash_sfx = NodePath("../../dash2")
 animation_name = &"idle_s"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
 [node name="AirMoveState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sound_player")]
 script = ExtResource("8_dauvq")
 dash_max_distance = 200.0
-dash_cooldown = 1.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
 dash_sound_player = NodePath("../../SFX")
 dash_sound_effect = ExtResource("100_rtit8")
 animation_name = &"jump"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
-[node name="GrondAttack" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite", "dash_sound_player")]
+[node name="GrondAttack" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("11_ltp6r")
 attack_2 = &"attack_2"
 attack_3 = &"attack_3"
 can_move = false
 can_jump = false
 movement_speed_var = &"attacking_run_speed"
-dash_max_distance = 150.0
-dash_cooldown = 1.0
 animated_sprite = NodePath("../../Facing/AnimatedSprite2D")
-dash_sound_player = NodePath("../../SFX")
-dash_sound_effect = ExtResource("100_rtit8")
 animation_name = &"attack_1"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
 [node name="AirAttackState" type="LimboState" parent="LimboHSM"]
 script = ExtResource("52_2y2ai")
-dash_max_distance = 150.0
-dash_cooldown = 1.0
+dash_max_distance = 200.0
 animation_name = &"air_attack"
 metadata/_custom_type_script = "uid://bg4c2ger4swq2"
 
@@ -2115,6 +2050,9 @@ color = Color(1, 1, 1, 0)
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("100_rtit8")
+
+[node name="dash2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("100_rtit8")
 
 [connection signal="health_depleted" from="PlayerHealth" to="." method="_on_health_health_depleted"]

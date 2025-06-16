@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 var direction: Vector2
 var gravity: float = 500.0  # Nilai gravitasi (bisa disesuaikan)
-var speed: float = 150.0
+var speed: float = 200.0
 
 @onready var animation_player = $AnimationPlayer
 

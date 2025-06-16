@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://drwwfudjyksk4" path="res://scenes/settings_ingame.gd" id="17_7vcq6"]
 [ext_resource type="Script" uid="uid://8xsbmiwq0x8x" path="res://scenes/back.gd" id="20_7vcq6"]
 [ext_resource type="Script" uid="uid://bt2vau8g6mo3d" path="res://scenes/texthp.gd" id="21_1ooyw"]
-[ext_resource type="Resource" uid="uid://b1115p166atty" path="res://player_stats.tres" id="22_ai3nx"]
+[ext_resource type="Resource" uid="uid://c1aoxsa2wgdj1" path="res://player_stats.tres" id="22_ai3nx"]
 [ext_resource type="Script" uid="uid://b8xrk7ar2cn66" path="res://scenes/textatk.gd" id="23_phfsf"]
 [ext_resource type="Script" uid="uid://ckmbn7pbwyihd" path="res://scenes/textcr.gd" id="24_3oqy1"]
 [ext_resource type="Script" uid="uid://2mgsuyuois3g" path="res://scenes/combo_attack.gd" id="25_gqmnx"]
@@ -458,13 +458,13 @@ player_node = NodePath("Player2")
 ui_manager = NodePath("CanvasLayer/DeadMenu")
 
 [node name="Player2" parent="." instance=ExtResource("2_wwpf4")]
-position = Vector2(-1782, 385)
+position = Vector2(92.9999, 385)
 
 [node name="Label4" type="Label" parent="."]
 texture_filter = 1
-offset_left = -1632.0
+offset_left = 243.0
 offset_top = 221.0
-offset_right = -1382.0
+offset_right = 493.0
 offset_bottom = 439.0
 theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("10_2ku1j")
@@ -479,9 +479,9 @@ vertical_alignment = 1
 
 [node name="Label9" type="Label" parent="."]
 texture_filter = 1
-offset_left = -1318.0
+offset_left = 557.0
 offset_top = 221.0
-offset_right = -802.0
+offset_right = 1073.0
 offset_bottom = 439.0
 theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("10_2ku1j")
@@ -493,9 +493,9 @@ vertical_alignment = 1
 
 [node name="Label5" type="Label" parent="."]
 texture_filter = 1
-offset_left = -745.001
+offset_left = 1130.0
 offset_top = 37.0
-offset_right = -323.001
+offset_right = 1552.0
 offset_bottom = 255.0
 theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("10_2ku1j")
@@ -507,9 +507,9 @@ vertical_alignment = 1
 
 [node name="Label6" type="Label" parent="."]
 texture_filter = 1
-offset_left = -510.001
+offset_left = 1365.0
 offset_top = 101.0
-offset_right = -88.001
+offset_right = 1787.0
 offset_bottom = 319.0
 theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("10_2ku1j")
@@ -520,9 +520,9 @@ vertical_alignment = 1
 
 [node name="Label7" type="Label" parent="."]
 texture_filter = 1
-offset_left = -43.0
+offset_left = 1832.0
 offset_top = 237.0
-offset_right = 379.0
+offset_right = 2254.0
 offset_bottom = 455.0
 theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("10_2ku1j")
@@ -532,7 +532,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AirRewards2" type="StaticBody2D" parent="."]
-position = Vector2(2560, 274)
+position = Vector2(4435, 274)
 scale = Vector2(1.5, 1.5)
 
 [node name="ClaimRewardArea" type="Area2D" parent="AirRewards2" node_paths=PackedStringArray("animation_player", "sfx_player")]
@@ -603,7 +603,7 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2ku1j")
 
 [node name="AirRewards4" type="StaticBody2D" parent="."]
-position = Vector2(-536.001, 274)
+position = Vector2(1339, 274)
 scale = Vector2(1.5, 1.5)
 
 [node name="ClaimRewardArea" type="Area2D" parent="AirRewards4" node_paths=PackedStringArray("animation_player", "sfx_player")]
@@ -674,7 +674,7 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2ku1j")
 
 [node name="AirRewards3" type="StaticBody2D" parent="."]
-position = Vector2(5095, 274)
+position = Vector2(9667, 274)
 scale = Vector2(1.5, 1.5)
 
 [node name="ClaimRewardArea" type="Area2D" parent="AirRewards3" node_paths=PackedStringArray("animation_player", "sfx_player")]
@@ -745,9 +745,9 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2ku1j")
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 15073.0
+offset_left = 16948.0
 offset_top = 101.0
-offset_right = 15401.0
+offset_right = 17276.0
 offset_bottom = 157.0
 theme_override_fonts/font = ExtResource("10_2ku1j")
 theme_override_font_sizes/font_size = 64
@@ -756,9 +756,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 16291.0
+offset_left = 18166.0
 offset_top = 237.0
-offset_right = 16711.0
+offset_right = 18586.0
 offset_bottom = 293.0
 theme_override_fonts/font = ExtResource("10_2ku1j")
 theme_override_font_sizes/font_size = 64
@@ -767,7 +767,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ClaimRewardArea" type="Area2D" parent="." node_paths=PackedStringArray("animation_player", "sfx_player")]
-position = Vector2(15718, 393)
+position = Vector2(17593, 393)
 script = ExtResource("32_p71k4")
 animation_player = NodePath("AnimationPlayer")
 sfx_player = NodePath("AudioStreamPlayer2D")
@@ -823,7 +823,7 @@ coin_display_label2 = NodePath("../../../CanvasLayer/CoinDisplayLabel2")
 stream = ExtResource("36_hvrd6")
 
 [node name="ClaimRewardArea2" type="Area2D" parent="." node_paths=PackedStringArray("animation_player", "sfx_player")]
-position = Vector2(15613, 393)
+position = Vector2(17488, 393)
 script = ExtResource("32_p71k4")
 animation_player = NodePath("AnimationPlayer")
 sfx_player = NodePath("AudioStreamPlayer2D")
@@ -879,7 +879,7 @@ coin_display_label2 = NodePath("../../../CanvasLayer/CoinDisplayLabel2")
 stream = ExtResource("36_hvrd6")
 
 [node name="ClaimRewardArea3" type="Area2D" parent="." node_paths=PackedStringArray("animation_player", "sfx_player")]
-position = Vector2(15505, 393)
+position = Vector2(17380, 393)
 script = ExtResource("32_p71k4")
 animation_player = NodePath("AnimationPlayer")
 sfx_player = NodePath("AudioStreamPlayer2D")
@@ -935,7 +935,7 @@ coin_display_label2 = NodePath("../../../CanvasLayer/CoinDisplayLabel2")
 stream = ExtResource("36_hvrd6")
 
 [node name="ClaimRewardArea4" type="Area2D" parent="." node_paths=PackedStringArray("animation_player", "sfx_player")]
-position = Vector2(15397, 393)
+position = Vector2(17272, 393)
 script = ExtResource("32_p71k4")
 animation_player = NodePath("AnimationPlayer")
 sfx_player = NodePath("AudioStreamPlayer2D")
@@ -991,7 +991,7 @@ coin_display_label2 = NodePath("../../../CanvasLayer/CoinDisplayLabel2")
 stream = ExtResource("36_hvrd6")
 
 [node name="ShrineHeal" type="StaticBody2D" parent="."]
-position = Vector2(7619, 274)
+position = Vector2(12380, 274)
 scale = Vector2(1.5, 1.5)
 
 [node name="Shrine" type="Area2D" parent="ShrineHeal"]
@@ -1026,8 +1026,44 @@ position = Vector2(0, 8)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2ku1j")
 
+[node name="ShrineHeal3" type="StaticBody2D" parent="."]
+position = Vector2(7087, 274)
+scale = Vector2(1.5, 1.5)
+
+[node name="Shrine" type="Area2D" parent="ShrineHeal3"]
+position = Vector2(0, -63.3333)
+scale = Vector2(0.666667, 0.666667)
+script = ExtResource("28_7dkav")
+heal_amount = 99999999
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShrineHeal3/Shrine"]
+position = Vector2(3, 45)
+shape = SubResource("CircleShape2D_4niyd")
+
+[node name="Label" type="Label" parent="ShrineHeal3/Shrine"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "heal test"
+
+[node name="Sprite2D" type="Sprite2D" parent="ShrineHeal3/Shrine"]
+texture_filter = 1
+position = Vector2(3, -13)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("30_1vjko")
+
+[node name="AirPlatform" type="Sprite2D" parent="ShrineHeal3"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_d3jkd")
+
+[node name="AirPlatformColl" type="CollisionShape2D" parent="ShrineHeal3"]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2ku1j")
+
 [node name="ShrineHeal2" type="StaticBody2D" parent="."]
-position = Vector2(-147.001, 274)
+position = Vector2(1728, 274)
 scale = Vector2(1.5, 1.5)
 
 [node name="Shrine" type="Area2D" parent="ShrineHeal2"]
@@ -1973,7 +2009,7 @@ position = Vector2(-2073, 229)
 shape = SubResource("RectangleShape2D_conm7")
 
 [node name="SpawnerWolf" type="Area2D" parent="."]
-position = Vector2(1281, 392)
+position = Vector2(3156, 392)
 priority = 15
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("30_3umqw")
@@ -1990,7 +2026,7 @@ offset_bottom = 23.0
 text = "spawnerWolf"
 
 [node name="SpawnerWolf2" type="Area2D" parent="."]
-position = Vector2(3841, 392)
+position = Vector2(5716, 392)
 priority = 15
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("30_3umqw")
@@ -2007,7 +2043,7 @@ offset_bottom = 23.0
 text = "spawnerWolf"
 
 [node name="SpawnerWolf3" type="Area2D" parent="."]
-position = Vector2(6401, 392)
+position = Vector2(8276, 392)
 priority = 15
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("30_3umqw")
@@ -2024,7 +2060,7 @@ offset_bottom = 23.0
 text = "spawnerWolf"
 
 [node name="SpawnerMinireaper" type="Area2D" parent="."]
-position = Vector2(6401, 179)
+position = Vector2(8276, 179)
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("30_1oofn")
 spawn_count = 10
@@ -2040,7 +2076,7 @@ offset_bottom = 23.0
 text = "spawnerMiniReaper"
 
 [node name="SpawnerWolf4" type="Area2D" parent="."]
-position = Vector2(8961, 392)
+position = Vector2(10836, 392)
 priority = 15
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("30_3umqw")
@@ -2057,7 +2093,7 @@ offset_bottom = 23.0
 text = "spawnerWolf"
 
 [node name="SpawnerMinireaper2" type="Area2D" parent="."]
-position = Vector2(8961, 179)
+position = Vector2(10836, 179)
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("30_1oofn")
 spawn_count = 20
@@ -2073,7 +2109,7 @@ offset_bottom = 23.0
 text = "spawnerMiniReaper"
 
 [node name="SpawnerBoss" type="Area2D" parent="."]
-position = Vector2(12801, 179)
+position = Vector2(14676, 179)
 script = SubResource("GDScript_gqmnx")
 monster_scene = ExtResource("2_4niyd")
 spawn_min_radius = 0.0
@@ -2111,7 +2147,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(16872, 290)
+position = Vector2(18747, 290)
 script = ExtResource("40_7vcq6")
 target_scene = ExtResource("41_dqir8")
 target_player_name = &"Player2"
